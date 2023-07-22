@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaqribei <jaqribei@student.42sp.org.b      +#+  +:+       +#+        */
+/*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:28:27 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/21 16:31:05 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:36:21 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
-{
-	int	len;
+#include "libft.h"
 
-	index = 0;
-	while (str[len] = 0)
+size_t	ft_strlen(const char *str)
+{
+	unsigned int	len;
+
+	len = 0;
+	while (str[len] != '\0')
 	{
 		len++;
 	}
-	return(len);
+	return (len);
 }

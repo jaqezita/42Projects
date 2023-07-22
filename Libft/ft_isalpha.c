@@ -6,22 +6,14 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:07 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/21 16:27:51 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:33:31 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char c)
+int	ft_isalpha(int c)
 {
 	if ((c < 65 || c > 90) && (c < 97 || c > 122))
 		return (0);
 	else
 		return (1);
-}
-int main(void)
-{
-    printf ("%d\n", ft_isprint('\t'));
-    printf ("%d\n", ft_isprint('\n'));
-    printf ("%d\n", ft_isprint('\b'));
-	
-	return (0);
 }

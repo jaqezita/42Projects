@@ -6,11 +6,11 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:31:56 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/21 15:44:42 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:33:15 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(char c)
+int	ft_isdigit(int c)
 {
 	if (c < 48 || c > 57)
 		return (0);
