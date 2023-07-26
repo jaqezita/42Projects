@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 16:20:05 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/24 17:35:36 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/07/23 15:03:08 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/07/23 17:54:31 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "libft.h"
+
+int	ft_tolower(int c)
 {
-	if (c < 32 || c > 126)
-		return (0);
-	return (1);
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+	{
+		if (c >= 65 && c <= 90)
+			c = c + 32;
+		return (c);
+	}
+	return (c);
 }
+
+/* int	main(void)
+{
+	int	c;
+
+	c = 'D';
+
+	c = ft_tolower(c);
+
+	write(1, &c, 1);
+} */
