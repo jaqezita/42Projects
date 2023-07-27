@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:56:56 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/22 19:14:36 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/27 20:14:02 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@ int	ft_isascii(int c)
 {
 	if (c < 0 || c > 127)
 		return (0);
-	else
-		return (1);
+	return (1);
 }
