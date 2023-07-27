@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:02:12 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/26 14:29:03 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:51:35 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
+	size_t	i;
 
-	unsigned char	*buffer;
-	unsigned char	*src_copy;
-	unsigned char	*dest_copy;
-	size_t			index;
-	
-	src_copy =	(unsigned char *)src;
-	dest_copy = (unsigned char *)dest;
-	buffer = src_copy;
-	index = 0;
-	//overlap treating need
-	if (!dest_copy && !buffer)
+	i = 0;
+	if (!dest && !src)
 		return (0);
-	while (index < n)
+	if (src > dest)
 	{
-		dest_copy[index] = buffer[index];
-		index++;
+		while (i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
 	}
-	return (dest_copy);
+	else
+	{
+		while (n > 0)
+		{
+			((unsigned char *)dest)[n - 1] = ((unsigned char *)src)[n - 1];
+			n--;
+		}
+	}
+	return (dest);
 }
-
 
 /* //A C program to demonstrate working of memmove 
 #include <stdio.h>
