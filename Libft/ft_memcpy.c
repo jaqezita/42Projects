@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:01:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/26 13:41:04 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/27 20:08:51 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		((unsigned char *)dest)[index] = ((unsigned char *)src)[index];
 		index++;
 	}
-	return(dest);
+	return (dest);
 }

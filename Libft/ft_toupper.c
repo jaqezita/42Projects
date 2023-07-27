@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:02:55 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/23 17:53:02 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/27 20:10:14 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int	ft_toupper(int c)
 		if (c >= 97 && c <= 122)
 			c = c - 32;
 		return (c);
-
 	}
-	return (c);	
+	return (c);
 }
 
 /* int	main(void)

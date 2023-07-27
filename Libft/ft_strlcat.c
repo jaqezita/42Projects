@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:02:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/25 17:11:20 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/27 20:09:18 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	index;
 	size_t	len;
 	size_t	result;
-	
+
 	index = 0;
 	len = ft_strlen(dst);
 	result = (ft_strlen(dst) + ft_strlen(src));
@@ -29,7 +29,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		{
 			dst[len] = src[index];
 			len++;
-			index++;	
+			index++;
 		}
 		dst[len] = '\0';
 		return (result);
