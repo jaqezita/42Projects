@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaqribei <jaqribei@student.42sp.org.b      +#+  +:+       +#+        */
+/*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:04:54 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/30 19:55:58 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/30 20:41:28 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ char	*ft_strdup(const char *s)
 	int		index;
 
 	new = malloc(ft_strlen(s) + 1 * sizeof(char));
-	
 	if (!new)
-		return(NULL);
+		return (NULL);
 	index = 0;
 	while (s[index] != '\0')
 	{

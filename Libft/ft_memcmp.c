@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:04:07 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/25 17:58:00 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/30 20:41:00 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (s1_copy[index] - s2_copy[index]);
 }
-
 
 /* #include <stdio.h>
 #include <string.h>

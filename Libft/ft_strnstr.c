@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:04:25 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/30 19:29:26 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/30 20:40:27 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	index_b;
-	size_t	index_l;
+	size_t	b;
+	size_t	l;
 
-	index_b = 0;
-	if (*little ==  0)
+	b = 0;
+	if (*little == 0)
 		return ((char *)big);
-	while (index_b < len && big[index_b] != '\0')
+	while (b < len && big[b] != '\0')
 	{
-		if (big[index_b] == little[0])
+		if (big[b] == little[0])
 		{
-			index_l = 0;
-			while (big[index_b + index_l] == little[index_l] && (index_b + index_l < len))
+			l = 0;
+			while (big[b + l] == little[l] && (b + l < len))
 			{
-				if (little[index_l + 1] == '\0')
-					return ((char *)&big[index_b]);
-				index_l++;
+				if (little[l + 1] == '\0')
+					return ((char *)&big[b]);
+				l++;
 			}
 		}
-		index_b++;
+		b++;
 	}
 	return (NULL);
 }
