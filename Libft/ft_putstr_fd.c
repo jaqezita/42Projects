@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:14:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/31 00:07:01 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/31 01:19:36 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_putstr_fd(char *s, int fd)
 		write (fd, &s[index], 1);
 		index++;
 	}
-} 
+}
 
 /* int	main(void)
 {

@@ -3,11 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaqribei <jaqribei@student.42sp.org.b      +#+  +:+       +#+        */
+/*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:13:40 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/30 23:13:41 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/31 01:09:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
+char	*ft_strmapi(char const *s, char(*f)(unsigned int, char));

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:15:09 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/31 00:53:53 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/31 01:19:24 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_putnbr_fd(int n, int fd)
 		n *= -1;
 		ft_recursive(n, fd);
 	}
-	else 
+	else
 		ft_recursive(n, fd);
 }
 

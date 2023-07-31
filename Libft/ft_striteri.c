@@ -3,11 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaqribei <jaqribei@student.42sp.org.b      +#+  +:+       +#+        */
+/*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:13:56 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/30 23:13:58 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/31 01:18:32 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
+void	ft_srtiteri(char *s, void (*f)(unsigned int, char*));
