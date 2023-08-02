@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:12:29 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/31 01:55:03 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/07/31 02:18:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char			*substr;
 
 	substr = (char *)malloc((len + 1) * sizeof(char));
-	index = 0;
+	index = start;
 	sub_index = start;
 	if (!substr)
 		return (NULL);
