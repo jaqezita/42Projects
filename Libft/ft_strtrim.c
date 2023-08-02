@@ -6,16 +6,16 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:13:03 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/02 13:06:25 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:21:56 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/* #include "libft.h"
 
 char *ft_strtrim(char const *s1, char const *set)
 {
 	
-}
+} */
 
 /* #include<stdio.h>
 

@@ -3,11 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaqribei <jaqribei@student.42sp.org.b      +#+  +:+       +#+        */
+/*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:13:28 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/30 23:13:30 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:25:50 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* #include "libft.h"
 
+char	*ft_itoa(int n)
+{
+	char	number;
+
+
+}
+ */
