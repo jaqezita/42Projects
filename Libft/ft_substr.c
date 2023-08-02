@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:12:29 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/02 12:37:39 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:46:21 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	substr = malloc ((len + 1) * sizeof(char));
 	index = 0;
- 	if (start >= ft_strlen(s))
+	if (start >= ft_strlen(s))
 	{
-			substr[index] = '\0';
-			return (substr);
+		substr[index] = '\0';
+		return (substr);
 	}
 	if (!substr)
 		return (NULL);
@@ -43,4 +43,3 @@ int	main(void)
 	printf("%s", ft_substr("Blackpink In Your Area", 5, 8));
 	return (0);
 } */
-
