@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:36:33 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/31 01:22:14 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/02 20:18:12 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strtrim(char const *s1, char const*set);
 char	**ft_split(char *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-void	ft_srtiteri(char *s, void (*f)(unsigned int, char*));
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *c, int fd);
 void	ft_putendl_fd(char *s, int fd);

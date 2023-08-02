@@ -6,10 +6,26 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:13:40 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/31 01:09:26 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/02 20:03:02 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char(*f)(unsigned int, char));
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	int		index;
+	char	*result;
+
+	index = 0;
+	result = malloc((ft_strlen(s) + 1) * (sizeof(char)));
+	if (!result)
+		return (NULL);
+	while (s[index] != '\0')
+	{
+		result[index] = f(index, s[index]);
+		index++;
+	}
+	result[index] = '\0';
+	return (result);
+}
