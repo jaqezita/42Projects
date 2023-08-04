@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:13:40 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/02 20:03:02 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:56:22 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int		index;
 	char	*result;
 
+	if (!s)
+		return (NULL);
 	index = 0;
 	result = malloc((ft_strlen(s) + 1) * (sizeof(char)));
 	if (!result)

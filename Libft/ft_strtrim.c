@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:13:03 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/03 18:39:07 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/04 19:06:02 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	i;
 	size_t	j;
 
+	if (s1 == NULL || set == NULL)
+		return (NULL);
 	i = 0;
 	j = ft_strlen(s1);
 	// Sentido ->

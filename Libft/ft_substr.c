@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:12:29 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/04 15:08:13 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/04 19:03:25 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char			*substr;
 
 	index = 0;
+	if (!s)
+		return (NULL);
 	if (start >= ft_strlen(s))
 	{
 		return (ft_strdup(""));

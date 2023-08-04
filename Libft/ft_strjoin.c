@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:12:44 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/02 22:38:42 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/04 19:06:56 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		index;
 	char	*result;
 
+	if (!s1 || !s2)
+		return (NULL);
 	result = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	index_pre = 0;
 	index_suf = 0;
