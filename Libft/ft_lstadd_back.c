@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 23:14:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/04 15:06:06 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/08/03 21:04:16 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/08/04 17:34:45 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	index;
+	t_list	*last;
 
-	index = 0;
-	while (s[index] != '\0')
+	if (*lst == NULL)
+		*lst = new;
+	else
 	{
-		write (fd, &s[index], 1);
-		index++;
+		last = ft_lstlast(*lst);	
+		last->next = new;
 	}
 }
-
-/* int	main(void)
-{
-	ft_putstr_fd("\nend!", -1);
-	return (0);
-} */

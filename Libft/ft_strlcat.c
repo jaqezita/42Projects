@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:02:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/27 20:09:18 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:03:40 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	len;
 	size_t	result;
 
+	if (dst != 0)
+		len = ft_strlen(dst); 
+	else
+		len = 0;
 	index = 0;
-	len = ft_strlen(dst);
-	result = (ft_strlen(dst) + ft_strlen(src));
+	result = (len + ft_strlen(src));
 	if (size > len)
 	{
 		while (src[index] && len < (size - 1))
