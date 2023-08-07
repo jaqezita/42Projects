@@ -6,12 +6,12 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:12:44 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/07 01:29:29 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/07 01:57:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-cd ..
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		index_suf;
