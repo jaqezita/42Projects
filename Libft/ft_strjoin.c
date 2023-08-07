@@ -6,32 +6,29 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:12:44 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/04 19:29:21 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/07 01:29:29 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+cd ..
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		index_pre;
 	int		index_suf;
 	int		index;
 	char	*result;
 
 	if (!s1 || !s2)
 		return (NULL);
-	result = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	index_pre = 0;
-	index_suf = 0;
-	index = 0;
+	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
-	while (s1[index_pre] != '\0')
+	index_suf = 0;
+	index = 0;
+	while (s1[index] != '\0')
 	{
-			result[index] = s1[index_pre];
+			result[index] = s1[index];
 			index++;
-			index_pre++;
 	}
 	while (s2[index_suf] != '\0')
 	{
