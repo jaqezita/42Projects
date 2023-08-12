@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:19:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/11 05:21:58 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:10:52 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_line(int fd)
 	char			*copy_buffer;
 	unsigned long	index;
 	static char		*next;
-	unsigned long	size;
+	unsigned long	size; // sizeof(buf) - index of first '\n'
 
 	// copy_buffer = (char *)ft_calloc(sizeof(buffer) + 1, sizeof(char));
 	copy_buffer = buffer;
