@@ -6,12 +6,16 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:21:04 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/11 05:01:34 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/12 01:48:05 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE
+#endif
 
 # include <unistd.h>
 # include <stdlib.h>
