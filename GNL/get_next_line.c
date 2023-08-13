@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:19:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/13 00:47:06 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/13 00:48:54 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	ft_open_file(const char* Path)
 char	*get_next_line(int fd)
 {
 	char			buffer[2046];
-	unsigned long	index;
+	long			index;
 	static char		*next;
-	unsigned long	size; // sizeof(buf) - index of first '\n'
+	long			size; // sizeof(buf) - index of first '\n'
 
 	//LOCALIZAR \N
 	//ARMAZENAR READ ATUAL EM VARIAVEL ESTATICA
