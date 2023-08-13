@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:19:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/12 02:01:32 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/13 00:45:50 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,15 @@ int	ft_open_file(const char* Path)
 
 char	*get_next_line(int fd)
 {
-	char			buffer[80];
-	char			*copy_buffer;
+	char			buffer[2046];
 	unsigned long	index;
 	static char		*next;
 	unsigned long	size; // sizeof(buf) - index of first '\n'
 
 	//LOCALIZAR \N
 	//ARMAZENAR READ ATUAL EM VARIAVEL ESTATICA
-	// copy_buffer = (char *)ft_calloc(sizeof(buffer) + 1, sizeof(char));
-	copy_buffer = buffer;
-	size = sizeof(buffer);
+	next = (char *)ft_calloc(sizeof(buffer) + 1, sizeof(char));
+	size = BUFFER_SIZE;
 	fd = ft_open_file("teste.txt");
 	if (fd != -1)
 	{
@@ -48,11 +46,48 @@ char	*get_next_line(int fd)
 				break;
 			}
 			index++;
+			if (buffer[index] == EOF)
+			return (NULL);
 		}
 		ft_putstr(buffer);
 	}
 	return (next);
 }
+
+/* char	*get_next_line(int fd)
+{
+	char			buffer[2046];
+	long			index;
+	static char		*next;
+	static char		*buf;
+	unsigned long	size; // sizeof(buf) - index of first '\n'
+
+	//LOCALIZAR \N
+	//ARMAZENAR READ ATUAL EM VARIAVEL ESTATICA
+	next = (char *)ft_calloc(sizeof(buffer) + 1, sizeof(char));
+	size = BUFFER_SIZE;
+	fd = ft_open_file("teste.txt");
+	if (fd != -1)
+	{
+		index = 0;
+		while (index < read (fd, buffer, size))
+		{
+			next = &buffer[index];
+			if (buffer[index] == '\n')
+			{
+				buffer[index] = '\0';
+				buf = ft_substr(buffer, index + 1, ft_strlen(&buffer[index + 1]));
+				break;
+			}
+			index++;
+			if (buffer[index] == EOF)
+				return (NULL);
+		}
+		ft_putstr(buf);
+	}
+	return (next);
+} */
+
  
 int	main(int argc, char *argv[])
 {
