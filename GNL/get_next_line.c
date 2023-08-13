@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:19:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/13 00:45:50 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/13 00:47:06 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*get_next_line(int fd)
 			}
 			index++;
 			if (buffer[index] == EOF)
-			return (NULL);
+				return (NULL);
 		}
 		ft_putstr(buffer);
 	}
