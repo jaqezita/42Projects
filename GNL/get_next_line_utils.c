@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:20:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/14 03:57:32 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/14 05:33:49 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-
 char	*ft_strdup(const char *s)
 {
 	char	*new;
@@ -96,32 +95,4 @@ char	*ft_strdup(const char *s)
 	}
 	new[index] = '\0';
 	return (new);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
-
-	if (nmemb == 0 || size == 0)
-		return (malloc(0));
-	if (nmemb != (nmemb * size) / size)
-		return (NULL);
-	ptr = malloc(nmemb * size);
-	if (!ptr)
-		return (NULL);
-	ft_memset(ptr, 0, (nmemb * size));
-	return (ptr);
-}
-
-void	*ft_memset(void *s, int c, size_t n)
-{
-	size_t	index;
-
-	index = 0;
-	while (index < n)
-	{
-		((unsigned char *)s)[index] = c;
-		index++;
-	}
-	return (s);
 }

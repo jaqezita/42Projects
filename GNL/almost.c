@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   almost.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:19:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/14 02:15:13 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/14 05:33:06 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
-	
+
 	//LOCALIZAR \N
 	//ARMAZENAR READ ATUAL EM VARIAVEL ESTATICA
 	//Verify if it's first time calling the function
@@ -21,7 +21,7 @@ char	*ft_first_read(char *buffer, int fd)
 {
 	int			index;
 	static char	*next;
-	
+
 	next = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	read(fd, buffer, BUFFER_SIZE);
 	index = 0;
@@ -31,7 +31,7 @@ char	*ft_first_read(char *buffer, int fd)
 		{
 			next = ft_substr(buffer, index + 1, ft_strlen(&buffer[index + 1]));
 			buffer[index] = '\0';
-			break;
+			break ;
 		}
 		index++;
 	}
@@ -53,7 +53,7 @@ char	*ft_next_read(char *next)
 		{
 			next = ft_substr(buf, index + 1, ft_strlen(&buf[index + 1]));
 			buf[index] = '\0';
-			break;
+			break ;
 		}
 		index++;
 	}
@@ -66,7 +66,7 @@ char	*get_next_line(int fd)
 	char			*buffer;
 	static char		*next;
 
-	buffer = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char)); 
+	buffer = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	next = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (fd != -1)
 		ft_first_read(buffer, fd);
@@ -76,9 +76,9 @@ char	*get_next_line(int fd)
 int	main(int argc, char *argv[])
 {
 	int			fd;
-	const char*	Path;
+	const char	*path;
 
-	fd = open(Path, O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (argc == 1)
 	{
 		ft_putstr("File name missing.\n");

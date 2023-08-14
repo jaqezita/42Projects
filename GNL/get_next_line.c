@@ -6,31 +6,26 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 02:29:21 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/14 04:21:59 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/14 05:50:22 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include<stdio.h>
 
 char	*get_next_line(int fd)
 {
 	static char	*line;
 	char		*buf;
-	long		index;
+	int			index;
 
 	buf = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!buf)
-		return (NULL);
 	if (fd == -1)
 		return (NULL);
-	if (!line)
+	if (line == NULL)
 	{	
 		index = 0;
 		while (ft_strchr(buf, '\n') == 0)
-		{
 			read(fd, buf, BUFFER_SIZE);
-		}
 		while (buf[index] != '\0')
 		{
 			if (buf[index] == '\n')
@@ -38,8 +33,8 @@ char	*get_next_line(int fd)
 				line = ft_substr(buf, index + 1, ft_strlen(&buf[index + 1]));
 				buf[index] = '\0';
 				ft_putstr_fd(buf, 1);
-				write(1, "\n", 1);
-				break;
+				write (1, "\n", 1);
+				break ;
 			}
 			index++;
 		}
@@ -50,37 +45,60 @@ char	*get_next_line(int fd)
 		index = 0;
 		while (buf[index] != '\n')
 		{
+			if (buf[index] == '\0')
+				return (NULL);
 			index++;
 		}
 		line = ft_substr(buf, index + 1, ft_strlen(&buf[index + 1]));
 		buf[index] = '\0';
 		ft_putstr_fd(buf, 1);
-		write(1, "\n", 1);
+		write (1, "\n", 1);
 	}
-	return(NULL);
+	return (buf);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*ptr;
+
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	if (nmemb != (nmemb * size) / size)
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, (nmemb * size));
+	return (ptr);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t	index;
+
+	index = 0;
+	while (index < n)
+	{
+		((unsigned char *)s)[index] = c;
+		index++;
+	}
+	return (s);
 }
 
 int	main(int argc, char *argv[])
 {
 	int			fd;
-	const char*	Path;
+	int			i;
 
-	fd = open(Path, O_RDONLY);
-	if (argc > 1)
+	if (argc < 1)
+		return (1);
+	fd = open (argv[1], O_RDONLY);
+	i = 0;
+	while (i < 20)
 	{
-		fd = open (argv[1], O_RDONLY);
 		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-
-		close (fd);
-		return (0);
+		i++;
 	}
+	close (fd);
+	return (0);
 }
-
-
