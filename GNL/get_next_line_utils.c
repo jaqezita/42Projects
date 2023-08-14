@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:20:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/11 04:54:00 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/14 03:57:32 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@ void	ft_putstr_fd(char *s, int fd)
 	while (s[index] != '\0')
 	{
 		write(fd, &s[index], 1);
-		index++;
-	}
-}
-
-void	ft_putstr(char *str)
-{
-	int	index;
-
-	index = 0;
-	while (str[index] != '\0')
-	{
-		write(1, &str[index], 1);
 		index++;
 	}
 }
