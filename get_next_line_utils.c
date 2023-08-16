@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 23:12:44 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/07 05:36:56 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/08/10 16:20:52 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/08/16 06:07:27 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
+
+size_t	ft_strlen(const char *s)
+{
+	unsigned int	len;
+
+	len = 0;
+	while (s[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -40,14 +52,33 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-/*
-#include <stdio.h>
-int     main(void)
+char	*ft_strchr(const char *s, int c)
 {
-        char    *ptr;
+	char	*s_copy;
 
-        ptr = ft_strjoin("black", "pink");
+	s_copy = (char *)s;
+	while (*s_copy)
+	{
+		if (*s_copy == (char)c)
+			return (s_copy);
+		s_copy++;
+	}
+	if ((unsigned char)c == '\0')
+		return (s_copy);
+	return (0);
+}
 
-        printf("%s\n", ptr);
-        return (0);
-}*/
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*pointer;
+	int		result;
+
+	pointer = NULL;
+	result = nmemb * size;
+	if (!nmemb || !size || nmemb == result / size)
+		pointer = malloc(result);
+	if (pointer)
+		while (result--)
+			*(unsigned char *)(pointer + result) = 0;
+	return (pointer);
+}

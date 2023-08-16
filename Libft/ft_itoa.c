@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:13:28 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/02 19:47:29 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/07 05:11:43 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_itoa(int n)
 	int		len;
 	long	n_aux;
 
-	len = ft_nlen (n);
+	len = ft_nlen(n);
 	n_aux = n;
 	charnumber = malloc ((len + 1) * sizeof(char));
 	if (!charnumber)
@@ -57,3 +57,13 @@ char	*ft_itoa(int n)
 	}
 	return (charnumber);
 }
+
+/* #include<stdio.h>
+int	main(void)
+{
+	int	n;
+
+	n = -2147483648;
+	printf("%s", ft_itoa(n));
+	return (0);
+} */

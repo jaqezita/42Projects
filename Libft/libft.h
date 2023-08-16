@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:36:33 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/07 02:52:13 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/07 05:32:00 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
-	void	*content;
+	void			*content;
 	struct s_list	*next;
 }t_list;
 

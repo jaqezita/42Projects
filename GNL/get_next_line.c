@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 02:29:21 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/14 05:50:22 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/16 03:44:47 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (line == NULL)
 	{	
-		index = 0;
-		while (ft_strchr(buf, '\n') == 0)
+		while (ft_strchr(buf, '\n') == 0 && fd != -1)
 			read(fd, buf, BUFFER_SIZE);
+		index = 0;
 		while (buf[index] != '\0')
 		{
 			if (buf[index] == '\n')
@@ -54,7 +54,7 @@ char	*get_next_line(int fd)
 		ft_putstr_fd(buf, 1);
 		write (1, "\n", 1);
 	}
-	return (buf);
+	return (ft_strjoin(buf, line));
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)
@@ -85,6 +85,35 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		index_suf;
+	int		index;
+	char	*result;
+
+	if (!s1 || !s2)
+		return (NULL);
+	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	index_suf = 0;
+	index = 0;
+	while (s1[index] != '\0')
+	{
+			result[index] = s1[index];
+			index++;
+	}
+	while (s2[index_suf] != '\0')
+	{
+			result[index] = s2[index_suf];
+			index++;
+			index_suf++;
+	}
+	result[index] = '\0';
+	return (result);
+}
+
+
 int	main(int argc, char *argv[])
 {
 	int			fd;
@@ -94,7 +123,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	fd = open (argv[1], O_RDONLY);
 	i = 0;
-	while (i < 20)
+	while (i < 30)
 	{
 		get_next_line(fd);
 		i++;
