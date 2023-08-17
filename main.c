@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 03:29:20 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/16 06:09:33 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/16 23:38:33 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(void)
 	int	fd;
 	int	size = 5;
 	char	*buf;
-
+	
 	fd = open("teste.txt", O_RDONLY);
 	buf = ft_read(fd, size);
 	ft_putstr(buf);
