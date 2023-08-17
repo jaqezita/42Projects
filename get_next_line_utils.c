@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:20:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/16 23:34:44 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/17 00:01:47 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	result = (char *)ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
+	result = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!result)
 		return (NULL);
 	index_suf = 0;
@@ -82,4 +82,3 @@ void	*ft_calloc(size_t nmemb, size_t size)
 			*(unsigned char *)(pointer + result) = 0;
 	return (pointer);
 }
-
