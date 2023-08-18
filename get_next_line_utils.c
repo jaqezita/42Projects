@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:20:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/17 00:01:47 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:57:37 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	unsigned int	len;
 
 	len = 0;
-	while (s[len] != '\0')
+	while (s != NULL && s[len] != '\0')
 	{
 		len++;
 	}
@@ -30,25 +30,24 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		index;
 	char	*result;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (NULL);
 	result = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!result)
 		return (NULL);
 	index_suf = 0;
 	index = 0;
-	while (s1[index] != '\0')
+	while (s1 != NULL && s1[index] != '\0')
 	{
 			result[index] = s1[index];
 			index++;
 	}
-	while (s2[index_suf] != '\0')
+	while (s2 != NULL && s2[index_suf] != '\0')
 	{
 			result[index] = s2[index_suf];
 			index++;
 			index_suf++;
 	}
-	result[index] = '\0';
 	return (result);
 }
 
@@ -57,7 +56,7 @@ char	*ft_strchr(const char *s, int c)
 	char	*s_copy;
 
 	s_copy = (char *)s;
-	while (*s_copy)
+	while (s_copy != NULL && *s_copy)
 	{
 		if (*s_copy == (char)c)
 			return (s_copy);
@@ -81,4 +80,49 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		while (result--)
 			*(unsigned char *)(pointer + result) = 0;
 	return (pointer);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	unsigned int	index;
+	char			*substr;
+
+	index = 0;
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+	{
+		return (ft_strdup(""));
+	}
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	substr = ft_calloc((len + 1), sizeof(char));
+	if (!substr)
+		return (NULL);
+	while (s[start] != '\0' && index < len)
+	{
+		substr[index] = s[start];
+		start++;
+		index++;
+	}
+	return (substr);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*new;
+	int		index;
+
+	if (!s)
+		return (NULL);
+	new = ft_calloc((ft_strlen(s) + 1), sizeof(char));
+	if (!new)
+		return (NULL);
+	index = 0;
+	while (s[index] != '\0')
+	{
+		new[index] = s[index];
+		index++;
+	}
+	return (new);
 }
