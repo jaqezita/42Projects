@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:20:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/21 01:19:01 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/21 21:03:24 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 && !s2)
 		return (NULL);
-	result = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
+	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 2) * sizeof(char));
 	if (!result)
 		return (NULL);
 	index_suf = 0;
@@ -48,6 +48,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 			index++;
 			index_suf++;
 	}
+	result[index] = '\0';
 	return (result);
 }
 
@@ -96,7 +97,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (str);
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	substr = ft_calloc((len + 1), sizeof(char));
+	substr = (char *)malloc((len + 2) * sizeof(char));
 	if (!substr)
 		return (NULL);
 	while (s[start] != '\0' && index < len)
@@ -105,5 +106,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		start++;
 		index++;
 	}
+	substr[index] = '\0';
 	return (substr);
 }
