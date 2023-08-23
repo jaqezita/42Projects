@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:24 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/22 20:39:03 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:28:47 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*next;
+	static char	*next[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	next = ft_read(fd, BUFFER_SIZE, next);
-	if (!next)
+	next[fd] = ft_read(fd, BUFFER_SIZE, next[fd]);
+	if (!next[fd])
 	{
-		free(next);
-		next = NULL;
+		free(next[fd]);
+		next[fd] = NULL;
 		return (NULL);
 	}
-	line = ft_get_line(next);
-	next = ft_get_rest(next);
+	line = ft_get_line(next[fd]);
+	next[fd] = ft_get_rest(next[fd]);
 	return (line);
 }
 
