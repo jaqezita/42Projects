@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:36 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/22 19:47:31 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:00:35 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_get_line(char *str);
-char	*ft_read(int fd, int size, char *next);
+char	*ft_read(int fd, char *next);
 char	*ft_get_rest(char *str);
 int		ft_check_bytes(long bytes_readed, char *aux, char *buf, char *temp);
 

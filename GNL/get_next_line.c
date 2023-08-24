@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 02:29:21 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/22 19:53:24 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:54:46 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	next = ft_read(fd, BUFFER_SIZE, next);
+	next = ft_read(fd, next);
 	if (!next)
 	{
 		free(next);
@@ -31,19 +31,19 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-char	*ft_read(int fd, int size, char *next)
+char	*ft_read(int fd, char *next)
 {
 	char	*buf;
 	char	*temp;
 	long	bytes_readed;
 
-	buf = (char *)malloc((size + 1) * (sizeof(char)));
+	buf = (char *)malloc((BUFFER_SIZE + 1) * (sizeof(char)));
 	if (!buf)
 		return (NULL);
 	temp = NULL;
 	while (ft_strchr(next, '\n') == 0)
 	{
-		bytes_readed = read(fd, buf, size);
+		bytes_readed = read(fd, buf, BUFFER_SIZE);
 		if (bytes_readed == 0)
 			break ;
 		if (ft_check_bytes(bytes_readed, next, buf, temp) == 0)

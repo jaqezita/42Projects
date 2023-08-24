@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 03:29:20 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/22 20:15:47 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:11:32 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@
 
 int	main(void)
 {
-	int		**fd;
+	int		fd;
 	int		size;
 	char	*buf;
-	char	*path;
 
 	size = 0;
-	path = "teste.txt";
 	buf = NULL;
-	fd = open(path, O_RDONLY);
-	while (size < 30)
+	fd = open("teste.txt", O_RDONLY);
+	// *fd = open("teste2.txt", O_RDONLY);
+	while (size < 20)
 	{
-		buf = get_next_line(*fd[path]);
+		buf = get_next_line(fd);
 		if (buf == NULL)
 			return (0);
 		printf ("%s", buf);
