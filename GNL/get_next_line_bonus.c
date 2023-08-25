@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:24 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/25 18:28:36 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/25 18:37:03 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_read(int fd, char *next)
 		bytes_readed = read(fd, buf, BUFFER_SIZE);
 		if (bytes_readed == 0)
 			break ;
-		if (ft_check_bytes(bytes_readed, next, buf, temp) == 0)
+		if (ft_check_errors(bytes_readed, next, buf, temp) == 0)
 			return (NULL);
 		temp = next;
 		buf[bytes_readed] = '\0';
@@ -57,7 +57,7 @@ char	*ft_read(int fd, char *next)
 	return (next);
 }
 
-int	ft_check_bytes(long bytes_readed, char *aux, char *buf, char *temp)
+int	ft_check_errors(long bytes_readed, char *aux, char *buf, char *temp)
 {
 	if ((aux != NULL && aux[0] == '\0') || bytes_readed == -1)
 	{
