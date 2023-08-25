@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 03:29:20 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/24 16:11:32 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:41:17 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	main(void)
 	size = 0;
 	buf = NULL;
 	fd = open("teste.txt", O_RDONLY);
-	// *fd = open("teste2.txt", O_RDONLY);
-	while (size < 20)
+	while (size < 35)
 	{
 		buf = get_next_line(fd);
 		if (buf == NULL)

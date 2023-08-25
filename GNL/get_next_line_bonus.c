@@ -6,11 +6,11 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:24 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/24 15:58:36 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/25 18:28:36 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
