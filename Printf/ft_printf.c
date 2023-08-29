@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 02:13:08 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/29 00:09:37 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/29 02:11:09 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@
 // 	ft_char(args);   //c
 // }
 
+int	ft_int(const char *format, va_list args);
+
 int	ft_printf(const char *format, ...)
 {
 	char	c;
 	char	*s;
-	int		i;
+	// int		i;
 	int		index;
 	va_list	args;
 
@@ -59,8 +61,7 @@ int	ft_printf(const char *format, ...)
 		if (format[index] == '%' && format[index + 1] == 'i') //int
 		{	
 			index++;
-			i = va_arg(args, int);
-			ft_putnbr_fd(i, 1);
+			ft_int(format, args);
 		}
 		index++;
 	}
@@ -73,38 +74,11 @@ int	main()
 	char	*str;
 	char	c;
 	int		i;
-	
+
 	str = "bla";
 	c = 'a';
-	i = 1348435122;
+	i = 2365478;
 	
-	ft_printf("hauhdcuias//%chduilc465778%i", i, c);
+	ft_printf("hauhdcuias//%chduilc465778ygASYGAyg%i", c, i);
 	return 0;
 }
-
-//       {
-//           va_list ap;
-//           int d;
-    //        char c, *s;
-
-    //        va_start(ap, fmt);
-    //        while (*fmt)
-    //            switch (*fmt++) {
-    //            case 's':              /* string */
-    //                s = va_arg(ap, char *);
-    //                printf("string %s\n", s);
-    //                break;
-    //            case 'd':              /* int */
-    //                d = va_arg(ap, int);
-    //                printf("int %d\n", d);
-    //                break;
-    //            case 'c':              /* char */
-    //                /* need a cast here since va_arg only
-    //                   takes fully promoted types */
-    //                c = (char) va_arg(ap, int);
-    //                printf("char %c\n", c);
-    //                break;
-    //            }
-    //        va_end(ap);
-    //    }
-
