@@ -6,79 +6,87 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 02:13:08 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/29 02:11:09 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:52:06 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include "42_libft/libft.h"
+#include "libft_printf.h"
 
-// void	ft_check_specifier_type(args)
-// {
-// 	ft_int(args);    // i
-// 	ft_string(args); // s
-// 	ft_pointer(args);// p
-// 	ft_dec(args); //d
-// 	ft_unsigned_dec(args); //u
-// 	ft_unsigned_hexa_low(args);//x
-// 	ft_unsigned_hexa_up(args);//X
-// 	ft_char(args);   //c
-// }
-
-int	ft_int(const char *format, va_list args);
+void	ft_check_specifier_type(const char *format, va_list args);
 
 int	ft_printf(const char *format, ...)
 {
-	char	c;
-	char	*s;
-	// int		i;
-	int		index;
+	int		i;
 	va_list	args;
 
 	va_start(args, format);
-
-	index = 0;
-	while (format[index] != '\0')
+	i = 0;
+	while (format[i] != '\0')
 	{
-		if (format[index] != '%')
+		if (format[i] != '%')
 		{
-			write(1, &format[index], 1);
+			write(1, &format[i], 1);
 		}
-		if (format[index] == '%' && format[index + 1] == 's')    //string
+		if (format[i] == '%')
 		{
-			index++;
-			s = va_arg(args, char *);
-			write(1, &format[index], 1);
+			// ft_check_specifier_type(format, args);
+			if ((format[i + 1] == 'i') || (format[i + 1] == 'd') || (format[i + 1] == 'u'))
+			{
+				i++;
+				ft_number(format, args);
+			}
+			if (format[i + 1] == 's')
+			{
+				i++;
+				ft_str(format, args);
+			}
+			if (format[i + 1] == 'c')
+			{
+				i++;
+				ft_chr(format, args);
+			}
 		}
-		if (format[index] == '%' && format[index + 1] == 'c') //char
-		{
-			index++;
-			c = (char) va_arg(args, int);
-			write(1, &format[index], 1);
-		}
-		if (format[index] == '%' && format[index + 1] == 'i') //int
-		{	
-			index++;
-			ft_int(format, args);
-		}
-		index++;
+		i++;
 	}
 	va_end(args);
-	return 0;
+	return (0);
 }
 
-int	main()
-{
-	char	*str;
-	char	c;
-	int		i;
-
-	str = "bla";
-	c = 'a';
-	i = 2365478;
+// void	ft_check_specifier_type(const char *format, va_list args)
+// {
+// 	int	i;
 	
-	ft_printf("hauhdcuias//%chduilc465778ygASYGAyg%i", c, i);
-	return 0;
+// 	i = 0;
+// 	while (format[i] != '\0')
+// 	{
+// 		if ((format[i + 1] == 'i') || (format[i + 1] == 'd') || (format[i + 1] == 'u'))
+// 		{
+// 			i++;
+// 			ft_number(format, args);
+// 		}
+// 		if (format[i + 1] == 's')
+// 		{
+// 			i++;
+// 			ft_str(format, args);
+// 		}
+// 		if (format[i + 1] == 'c')
+// 		{
+// 			i++;
+// 			ft_chr(format, args);
+// 		}
+// 	}
+// }
+
+int	main(void)
+{
+	// char	*str;
+// // 	char	c;
+// // 	int		i;
+
+	// str = "bla";
+// // 	c = 'x';
+// // 	i = 2365478;
+
+	ft_printf("hauhdcuias/  %u/   %d\n%i usahasuh", -1, -1, -1);
+	return (0);
 }

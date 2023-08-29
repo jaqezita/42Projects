@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_int.c                                           :+:      :+:    :+:   */
+/*   ft_number.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 00:47:24 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/29 02:06:54 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:01:39 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include "42_libft/libft.h"
+#include "libft_printf.h"
 
 static void	ft_recursive(int n)
 {
@@ -48,7 +45,7 @@ int	ft_putnbr(int n)
 	return (n);
 }
 
-int	ft_int(const char *format, va_list args)
+int	ft_number(const char *format, va_list args)
 {
 	int	index;
 
@@ -62,12 +59,8 @@ int	ft_int(const char *format, va_list args)
 
 // void	ft_check_specifier_type(args)
 // {
-// 	ft_int(args);    // i
-// 	ft_string(args); // s
+
 // 	ft_pointer(args);// p
-// 	ft_dec(args); //d
-// 	ft_unsigned_dec(args); //u
 // 	ft_unsigned_hexa_low(args);//x
 // 	ft_unsigned_hexa_up(args);//X
-// 	ft_char(args);   //c
 // }
