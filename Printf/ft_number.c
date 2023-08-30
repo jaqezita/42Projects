@@ -6,13 +6,13 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 00:47:24 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/29 19:01:39 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/29 23:11:36 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
 
-static void	ft_recursive(int n)
+static void	ft_recursive(size_t n)
 {
 	char	charnumber;
 
@@ -45,6 +45,18 @@ int	ft_putnbr(int n)
 	return (n);
 }
 
+size_t	ft_putnbr_positive(size_t n)
+{
+	if (n < 0)
+	{
+		n = n + (4294967295 + 1);
+		ft_recursive(n);
+	}
+	else
+		ft_recursive(n);
+	return (n);
+}
+
 int	ft_number(const char *format, va_list args)
 {
 	int	index;
@@ -52,15 +64,20 @@ int	ft_number(const char *format, va_list args)
 	index = 0;
 	while (format[index] != '\0')
 	{
+		if (format[index] == 'u' && format[index] < 0)
+		{
+			return (ft_putnbr(va_arg(args, int)));
+		}
 		index++;
 	}
 	return (ft_putnbr(va_arg(args, int)));
 }
 
-// void	ft_check_specifier_type(args)
-// {
-
-// 	ft_pointer(args);// p
-// 	ft_unsigned_hexa_low(args);//x
-// 	ft_unsigned_hexa_up(args);//X
-// }
+unsigned int	ft_number_positive(const char *format, va_list args)
+{
+	while (*format)
+	{
+			format++;
+	}
+	return (ft_putnbr_positive(va_arg(args, unsigned int)));
+}
