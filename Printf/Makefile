@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 19:00:54 by jaqribei          #+#    #+#              #
-#    Updated: 2023/08/29 17:07:34 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/08/30 00:31:41 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Werror -Wextra
 
 NAME = ft_printf
 
-SRC = ft_printf.c ft_number.c ft_str.c
+SRC = ft_printf.c ft_number.c ft_str.c ft_hp.c
 
 OBJ = ${SRC:%.c=%.o}
 

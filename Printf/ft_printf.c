@@ -6,11 +6,13 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 02:13:08 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/29 23:12:17 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/30 00:42:25 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
+
+int	ft_unsigned_hexa_low(const char *format, va_list args);
 
 int	ft_printf(const char *format, ...)
 {
@@ -47,6 +49,21 @@ int	ft_printf(const char *format, ...)
 				index++;
 				ft_chr(format, args);
 			}
+		// 	if (format[index + 1] == 'x')
+		// 	{
+		// 		index++;
+		// 		ft_unsigned_hexa_low(format, args);
+		// 	}
+		// // 	if (format[index + 1] == 'X')
+		// // 	{
+		// // 		index++;
+		// // 		ft_unsigned_hexa_up(format, args);
+		// // 	}
+		// // 	if (format[index + 1] == 'p')
+		// // 	{
+		// // 		index++;
+		// // 		ft_pointer(format, args);
+		// // 	}
 		}
 		index++;
 	}
@@ -64,6 +81,6 @@ int	ft_printf(const char *format, ...)
 // // // 	c = 'x';
 // // // 	i = 2365478;
 
-// 	ft_printf("hauhdcuias/  %u/   %d\n%i usahasuh", -1, -1, -1);
+// 	ft_printf("hauhdcuias/  %u/   %d\n%i usahasuh", -1, 750, -1);
 // 	return (0);
 // }
