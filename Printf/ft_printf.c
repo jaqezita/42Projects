@@ -6,13 +6,11 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 02:13:08 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/30 00:42:25 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:42:01 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_printf.h"
-
-int	ft_unsigned_hexa_low(const char *format, va_list args);
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {
@@ -49,16 +47,16 @@ int	ft_printf(const char *format, ...)
 				index++;
 				ft_chr(format, args);
 			}
-		// 	if (format[index + 1] == 'x')
-		// 	{
-		// 		index++;
-		// 		ft_unsigned_hexa_low(format, args);
-		// 	}
-		// // 	if (format[index + 1] == 'X')
-		// // 	{
-		// // 		index++;
-		// // 		ft_unsigned_hexa_up(format, args);
-		// // 	}
+			if (format[index + 1] == 'x')
+			{
+			 	index++;
+			 	ft_unsigned_hexa_low(format, args);
+			}
+			if (format[index + 1] == 'X')
+			{
+				index++;
+				ft_unsigned_hexa_upper(format, args);
+			}
 		// // 	if (format[index + 1] == 'p')
 		// // 	{
 		// // 		index++;
@@ -68,19 +66,25 @@ int	ft_printf(const char *format, ...)
 		index++;
 	}
 	va_end(args);
+	return (index);
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*str;
+// // 	char	c;
+// // 	int		i;
+
+	str = "bla";
+// // 	c = 'x';
+// // 	i = 2365478;
+
+	// ft_printf("abc/  %u/   %d\n%i abc\n%x\n%X\n\n", -89, 750, -1, -68684654, 68684654);
+	// printf("abc/  %u/   %d\n%i abc\n%x\n%X\n\n", -89, 750, -1, -68684654, 68684654);
+	// ft_printf("%p\n", 10);
+	printf("%p\n", str);
 	return (0);
 }
 
-// int	main(void)
-// {
-// 	// char	*str;
-// // // 	char	c;
-// // // 	int		i;
-
-// 	// str = "bla";
-// // // 	c = 'x';
-// // // 	i = 2365478;
-
-// 	ft_printf("hauhdcuias/  %u/   %d\n%i usahasuh", -1, 750, -1);
-// 	return (0);
-// }

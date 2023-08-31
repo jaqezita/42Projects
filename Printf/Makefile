@@ -6,19 +6,19 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 19:00:54 by jaqribei          #+#    #+#              #
-#    Updated: 2023/08/30 00:31:41 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/08/30 22:36:58 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g3
 
-# NAME = libftprintf.a
+#NAME = libftprintf.a
 
 NAME = ft_printf
 
-SRC = ft_printf.c ft_number.c ft_str.c ft_hp.c
+SRC = ft_printf.c ft_number.c ft_str.c ft_hexa.c
 
 OBJ = ${SRC:%.c=%.o}
 

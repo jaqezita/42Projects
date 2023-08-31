@@ -6,11 +6,11 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:55:27 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/29 23:11:41 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:32:19 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_printf.h"
+#include "ft_printf.h"
 
 char	ft_putstr(char *s)
 {
@@ -53,11 +53,3 @@ char	ft_chr(const char *format, va_list args)
 	}
 	return ((char)ft_putchar(va_arg(args, int)));
 }
-
-// void	ft_check_specifier_type(args)
-// {
-
-// 	ft_pointer(args);// p
-// 	ft_unsigned_hexa_low(args);//x
-// 	ft_unsigned_hexa_up(args);//X
-// }
