@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 23:13:42 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/01 20:52:08 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/02 22:32:39 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int	ft_check_specifier_type(char format, va_list args)
 		index += ft_numbers_hexa_upper(args);
 	if (format == 'p')
 		index += ft_pointer(args);
+	if (format == '%')
+		index += ft_percent(format);
 	return (index);
 }

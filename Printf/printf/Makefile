@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 19:00:54 by jaqribei          #+#    #+#              #
-#    Updated: 2023/09/01 20:37:46 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/09/02 20:05:30 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 
 FLAGS = -Wall -Werror -Wextra -g3
 
-#NAME = libftprintf.a
+# NAME = libftprintf.a
 
 NAME = ft_printf
 
@@ -31,7 +31,7 @@ $(NAME): $(OBJ)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
-#ar rc $(NAME) $@
+# ar rc $(NAME) $@
 
 norm:
 	${NORM} ${SRC}

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:27:13 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/01 21:21:20 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/02 22:41:06 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ size_t	ft_numbers_hexa_low(va_list args)
 
 	n = va_arg(args, unsigned int);
 	count_nbr = ft_count_numbers(n);
-	ft_putnbr_hexa_low(n);
+	ft_recursive_low(n);
 	return (count_nbr);
 }
