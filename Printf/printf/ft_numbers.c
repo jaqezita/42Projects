@@ -6,13 +6,13 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 19:36:21 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/01 20:28:08 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:50:35 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_count_numbers(int number)
+static int	ft_count_numbers(int number)
 {
 	int	count;
 

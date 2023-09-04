@@ -6,18 +6,20 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:55:27 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/02 19:58:50 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:59:07 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	ft_str(va_list args)
+int	ft_str(va_list args)
 {
 	char	*str;
 	int		count_chr;
 
 	str = va_arg(args, char *);
+	if (str == NULL)
+		return (0);
 	count_chr = 0;
 	while (str[count_chr] != '\0')
 	{
@@ -27,7 +29,7 @@ char	ft_str(va_list args)
 	return (count_chr);
 }
 
-char	ft_chr(va_list args)
+int	ft_chr(va_list args)
 {
 	int		count_chr;
 	char	c;

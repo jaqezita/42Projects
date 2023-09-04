@@ -6,11 +6,28 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:27:13 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/02 22:41:06 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:51:32 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	ft_count_numbers(int number)
+{
+	int	count;
+
+	count = 0;
+	if (number <= 0)
+	{
+		count = count + 1;
+	}
+	while (number != 0)
+	{
+		count++;
+		number = number / 10;
+	}
+	return (count);
+}
 
 static void	ft_recursive_low(size_t n)
 {

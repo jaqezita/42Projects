@@ -6,21 +6,24 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:29:34 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/02 22:36:21 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:24:08 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-#include <string.h>
-int	ft_printf(const char *format, ...);
+// #include <string.h>
+// #include <limits.h>
 
 int	main(void)
 {
-	char	*str;
-
-	str = strdup("bla");
-	ft_printf("abc/ %u \n %d\n%i abc\n%x\n%X\n%p\n%%\n\n\n", -8, 750, -1, 0xabc123, 68684654, str);
-	printf("abc/  %u\n %d\n%i abc\n%x\n%X\n%p\n\n%%", -8, 750, -1, 0xabc123, 68684654, str);
+	char *s2 = "Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus.";
+	// char	*str;
+	int n;
+	// str = "bla";
+	n = ft_printf(" %s %s %s %s %s", " - ", "", "4", "", s2);
+	printf ("%i\n", n);	
+	printf ("\n");
+	printf("Retorno: %d\n", printf(" %s %s %s %s %s", " - ", "", "4", "", s2));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 23:13:42 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/02 22:32:39 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:57:38 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 int	ft_check_specifier_type(char format, va_list args)
 {
-	int	index;
+	int	count;
 
-	index = 0;
+	count = 0;
 	if ((format == 'i') || (format == 'd'))
-		index += ft_numbers(args);
-	if (format == 'u')
-		index += ft_unsigned_number(args);
-	if (format == 's')
-		index += ft_str(args);
-	if (format == 'c')
-		index += ft_chr(args);
-	if (format == 'x')
-		index += ft_numbers_hexa_low(args);
-	if (format == 'X')
-		index += ft_numbers_hexa_upper(args);
-	if (format == 'p')
-		index += ft_pointer(args);
-	if (format == '%')
-		index += ft_percent(format);
-	return (index);
+		count += ft_numbers(args);
+	else if (format == 'u')
+		count += ft_unsigned_number(args);
+	else if (format == 's')
+		count += ft_str(args);
+	else if (format == 'c')
+		count += ft_chr(args);
+	else if (format == 'x')
+		count += ft_numbers_hexa_low(args);
+	else if (format == 'X')
+		count += ft_numbers_hexa_upper(args);
+	else if (format == 'p')
+		count += ft_pointer(args);
+	else if (format == '%')
+		count += ft_percent(format);
+	return (count);
 }

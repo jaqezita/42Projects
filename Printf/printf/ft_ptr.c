@@ -6,17 +6,34 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:32:10 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/02 22:40:25 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:52:09 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	ft_count_numbers(int number)
+{
+	int	count;
+
+	count = 0;
+	if (number <= 0)
+	{
+		count = count + 1;
+	}
+	while (number != 0)
+	{
+		count++;
+		number = number / 10;
+	}
+	return (count);
+}
+
 int	ft_pointer(va_list args)
 {
 	size_t	ptr;
 	int		count_nbr;
-  
+
 
 	count_nbr = 0;
 	ptr = (size_t)(va_arg(args, void *));
@@ -29,7 +46,7 @@ int	ft_pointer(va_list args)
 char	ft_percent(char c)
 {
 	int		count_chr;
-	
+
 	c = '%';
 	count_chr = write (1, &c, 1);
 	return (count_chr);
