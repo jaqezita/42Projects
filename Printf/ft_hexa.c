@@ -1,77 +1,76 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hexa.c                                          :+:      :+:    :+:   */
+/*   ft_hexa_low.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 00:16:19 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/30 22:32:14 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/09/01 20:27:13 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/09/05 17:16:20 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_recursive_low(size_t n)
+static size_t	ft_strlen(const char *s)
 {
-	char	charnumber;
+	unsigned int	len;
 
-	if (n / 16 == 0)
+	len = 0;
+	while (s[len] != '\0')
 	{
-		charnumber = (n % 10) + '0';
-		write (1, &charnumber, 1);
-		return ;
+		len++;
 	}
-	ft_recursive_low(n / 16);
-	charnumber = (n % 16) + '0';
-	if (charnumber >= 58 && charnumber <= 63)
-		charnumber = charnumber + 39;
-	write (1, &charnumber, 1);
+	return (len);
 }
 
-size_t	ft_putnbr_hexa_low(size_t n)
+static int	ft_putnbr_hexa(long int n, char *base)
 {
-	ft_recursive_low(n);
-	return (n);
-}
+	int	len;
+	int	base_len;
 
-size_t	ft_unsigned_hexa_low(const char *format, va_list args)
-{
-	while (*format)
+	len = 0;
+	base_len = ft_strlen(base);
+	if (n < 0)
 	{
-		format++;
+		len += write(1, "-", 1);
+		if (n == -2147483648)
+		{
+			len += write (1, "2", 1);
+			n = n + 2000000000;
+		}
+		n *= -1;
 	}
-	return (ft_putnbr_hexa_low((va_arg(args, size_t))));
-}
-
-static void	ft_recursive_upper(size_t n)
-{
-	char	charnumber;
-
-	if (n / 16 == 0)
+	if (n >= base_len)
 	{
-		charnumber = (n % 10) + '0';
-		write (1, &charnumber, 1);
-		return ;
+		len += ft_putnbr_hexa((n / base_len), base);
 	}
-	ft_recursive_upper(n / 16);
-	charnumber = (n % 16) + '0';
-	if (charnumber >= 58 && charnumber <= 63)
-		charnumber = charnumber + 7;
-	write (1, &charnumber, 1);
+	len += write(1, &base[n % base_len], 1);
+	return (len);
 }
 
-size_t	ft_putnbr_hexa_upper(size_t n)
+int	ft_numbers_hexa_low(va_list args)
 {
-	ft_recursive_upper(n);
-	return (n);
+	size_t	n;
+	int		count;
+	char	*base;
+
+	count = 0;
+	base = "0123456789abcdef";
+	n = va_arg(args, unsigned int);
+	count += ft_putnbr_hexa(n, base);
+	return (count);
 }
 
-size_t	ft_unsigned_hexa_upper(const char *format, va_list args)
+int	ft_numbers_hexa_upper(va_list args)
 {
-	while (*format)
-	{
-		format++;
-	}
-	return (ft_putnbr_hexa_upper((va_arg(args, size_t))));
+	size_t	n;
+	int		count;
+	char	*base;
+
+	count = 0;
+	base = "0123456789ABCDEF";
+	n = va_arg(args, unsigned int);
+	count += ft_putnbr_hexa(n, base);
+	return (count);
 }

@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 19:00:54 by jaqribei          #+#    #+#              #
-#    Updated: 2023/08/30 22:36:58 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/09/05 17:20:24 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,24 +14,23 @@ CC = cc
 
 FLAGS = -Wall -Werror -Wextra -g3
 
-#NAME = libftprintf.a
+NAME = libftprintf.a
 
-NAME = ft_printf
+# NAME = ft_printf
 
-SRC = ft_printf.c ft_number.c ft_str.c ft_hexa.c
+SRC = ft_hexa.c ft_numbers.c  ft_printf.c ft_ptr.c ft_str_chr.c ft_unsigned_number.c main.c
 
 OBJ = ${SRC:%.c=%.o}
 
 NORM = norminette -R CheckForbiddenSourceHeader
 
-
-all: ${NAME}
+all: $(NAME)
 
 $(NAME): $(OBJ)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
-#ar rc $(NAME) $@
+	ar rcs $(NAME) $@
 
 norm:
 	${NORM} ${SRC}

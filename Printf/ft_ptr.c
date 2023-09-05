@@ -6,44 +6,61 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:32:10 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/04 17:52:09 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:10:02 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_count_numbers(int number)
+static size_t	ft_strlen(const char *s)
 {
-	int	count;
+	unsigned int	len;
 
-	count = 0;
-	if (number <= 0)
+	len = 0;
+	while (s[len] != '\0')
 	{
-		count = count + 1;
+		len++;
 	}
-	while (number != 0)
+	return (len);
+}
+
+static int	ft_putnbr_hexa(unsigned long int n, char *base)
+{
+	int	len;
+	int	base_len;
+
+	len = 0;
+	base_len = ft_strlen(base);
+	if (n < 0)
 	{
-		count++;
-		number = number / 10;
+		len += write(1, "-", 1);
+		n *= -1;
 	}
-	return (count);
+	if (n >= (unsigned long)base_len)
+	{
+		len += ft_putnbr_hexa((n / base_len), base);
+	}
+	len += write(1, &base[n % base_len], 1);
+	return (len);
 }
 
 int	ft_pointer(va_list args)
 {
-	size_t	ptr;
-	int		count_nbr;
+	unsigned long	ptr;
+	int				count;
+	char			*base;
 
-
-	count_nbr = 0;
-	ptr = (size_t)(va_arg(args, void *));
-	count_nbr = ft_count_numbers(ptr);
-	write(1, "0x", 2);
-	ft_putnbr_hexa_low(ptr);
-	return (count_nbr);
+	count = 0;
+	base = "0123456789abcdef";
+	ptr = (va_arg(args, unsigned long));
+	if ((void *)ptr == NULL)
+		return (write(1, "(nil)", 5));
+	count += write(1, "0x", 2);
+	count += ft_putnbr_hexa(ptr, base);
+	return (count);
 }
 
-char	ft_percent(char c)
+int	ft_percent(char c)
 {
 	int		count_chr;
 

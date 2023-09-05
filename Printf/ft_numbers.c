@@ -1,30 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_number.c                                        :+:      :+:    :+:   */
+/*   ft_numbers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 00:47:24 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/30 20:16:40 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/09/01 19:36:21 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/09/05 16:27:06 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	ft_count_numbers(int number)
+{
+	int	count;
+
+	count = 0;
+	if (number <= 0)
+	{
+		count = count + 1;
+	}
+	while (number != 0)
+	{
+		count++;
+		number = number / 10;
+	}
+	return (count);
+}
+
 static void	ft_recursive(size_t n)
 {
-	char	charnumber;
+	char	char_number;
 
 	if (n / 10 == 0)
 	{
-		charnumber = (n % 10) + '0';
-		write (1, &charnumber, 1);
+		char_number = (n % 10) + '0';
+		write (1, &char_number, 1);
 		return ;
 	}
 	ft_recursive(n / 10);
-	charnumber = (n % 10) + '0';
-	write (1, &charnumber, 1);
+	char_number = (n % 10) + '0';
+	write (1, &char_number, 1);
 }
 
 int	ft_putnbr(int n)
@@ -45,39 +62,13 @@ int	ft_putnbr(int n)
 	return (n);
 }
 
-size_t	ft_putnbr_positive(size_t n)
+int	ft_numbers(va_list args)
 {
-	if (n < 0)
-	{
-		n = n + (4294967295 + 1);
-		ft_recursive(n);
-	}
-	else
-		ft_recursive(n);
-	return (n);
-}
+	int	n;
+	int	count_nbr;
 
-int	ft_number(const char *format, va_list args)
-{
-	int	index;
-
-	index = 0;
-	while (format[index] != '\0')
-	{
-		if (format[index] == 'u' && format[index] < 0)
-		{
-			return (ft_putnbr(va_arg(args, int)));
-		}
-		index++;
-	}
-	return (ft_putnbr(va_arg(args, int)));
-}
-
-unsigned int	ft_number_positive(const char *format, va_list args)
-{
-	while (*format)
-	{
-			format++;
-	}
-	return (ft_putnbr_positive(va_arg(args, unsigned int)));
+	n = va_arg(args, int);
+	count_nbr = ft_count_numbers(n);
+	ft_putnbr(n);
+	return (count_nbr);
 }

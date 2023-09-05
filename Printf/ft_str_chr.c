@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:55:27 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/04 18:59:07 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:52:07 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_str(va_list args)
 
 	str = va_arg(args, char *);
 	if (str == NULL)
-		return (0);
+		return (write(1, "(null)", 6));
 	count_chr = 0;
 	while (str[count_chr] != '\0')
 	{
