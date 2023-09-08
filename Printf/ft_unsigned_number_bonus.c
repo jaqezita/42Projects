@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numbers.c                                       :+:      :+:    :+:   */
+/*   ft_unsigned_number_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 19:36:21 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/06 21:27:40 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/08/29 00:47:24 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/09/06 21:36:57 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_count_numbers(int number)
+static int	ft_count_numbers(unsigned int number)
 {
 	int	count;
 
@@ -44,17 +44,11 @@ static void	ft_recursive(size_t n)
 	write (1, &char_number, 1);
 }
 
-int	ft_putnbr(int n)
+static size_t	ft_putnbr_unsigned(size_t n)
 {
 	if (n < 0)
 	{
-		write(1, "-", 1);
-		if (n == -2147483648)
-		{
-			write (1, "2", 1);
-			n = n + 2000000000;
-		}
-		n *= -1;
+		n = n + (4294967295 + 1);
 		ft_recursive(n);
 	}
 	else
@@ -62,14 +56,13 @@ int	ft_putnbr(int n)
 	return (n);
 }
 
-int	ft_numbers(va_list args)
+size_t	ft_unsigned_number_flag(va_list args)
 {
-	int	n;
-	int	count_nbr;
+	unsigned int	n;
+	int				count_nbr;
 
-	count_nbr = 0;
-	n = va_arg(args, int);
-	count_nbr += ft_count_numbers(n);
-	ft_putnbr(n);
+	n = va_arg(args, unsigned int);
+	ft_putnbr_unsigned(n);
+	count_nbr = ft_count_numbers(n);
 	return (count_nbr);
 }

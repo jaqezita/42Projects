@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptr.c                                           :+:      :+:    :+:   */
+/*   ft_ptr_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:32:10 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/05 17:37:38 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:09:42 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	ft_putnbr_hexa(unsigned long int n, char *base)
 	return (len);
 }
 
-int	ft_pointer(va_list args)
+int	ft_pointer_flag(va_list args)
 {
 	unsigned long	ptr;
 	int				count;

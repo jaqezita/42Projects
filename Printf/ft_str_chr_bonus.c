@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_chr.c                                       :+:      :+:    :+:   */
+/*   ft_str_chr_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:55:27 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/07 19:51:18 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:33:58 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	ft_str(va_list args)
+int	ft_str_flag(va_list args)
 {
 	char	*str;
 	int		count_chr;
@@ -22,11 +22,14 @@ int	ft_str(va_list args)
 		return (write(1, "(null)", 6));
 	count_chr = 0;
 	while (str[count_chr] != '\0')
-		count_chr += write (1, &str[count_chr], 1);
+	{
+		write (1, &str[count_chr], 1);
+		count_chr++;
+	}
 	return (count_chr);
 }
 
-int	ft_chr(va_list args)
+int	ft_chr_flag(va_list args)
 {
 	int		count_chr;
 	char	c;
@@ -36,7 +39,7 @@ int	ft_chr(va_list args)
 	return (count_chr);
 }
 
-int	ft_percent(char c)
+int	ft_percent_flag(char c)
 {
 	int	count_chr;
 
