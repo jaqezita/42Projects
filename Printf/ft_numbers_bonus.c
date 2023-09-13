@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 19:36:21 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/07 17:46:47 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:51:33 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ int	ft_numbers_flag(char flag, va_list args)
 	if (flag == ' ')
 	{
 		if (n >= 0)
-		count += write(1, " ", 1);
+			count += write(1, " ", 1);
 	}
 	else if (flag == '+')
 	{
 		if (n >= 0)
-		count += write(1, "+", 1);
+			count += write(1, "+", 1);
 	}
 	count += ft_putnbr_base(n, base);
 	return (count);

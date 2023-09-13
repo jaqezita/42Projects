@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:04:48 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/09/07 20:22:24 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:58:08 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_printf(const char *fmt, ...)
 	va_list	args;
 	int		count;
 
+	if (!fmt)
+		return (-1);
 	va_start(args, fmt);
 	i = 0;
 	count = 0;
