@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/23 15:04:32 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/07 03:29:29 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/07/30 23:14:39 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/08/04 18:54:47 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	result;
 	int	index;
-	int	sign;
 
-	sign = 1;
 	index = 0;
-	while ((nptr[index] >= 9 && nptr[index] <= 13) || nptr[index] == 32)
-		index++;
-	if (nptr[index] == '-' || nptr[index] == '+')
+	if (!s)
+		return ;
+	if (fd > 0)
 	{
-		if (nptr[index] == '-')
-			sign = sign * -1;
-		index++;
+		while (s[index] != '\0')
+		{
+			write (fd, &s[index], 1);
+			index++;
+		}
 	}
-	result = 0;
-	while (nptr[index] != '\0' && (nptr[index] >= 48 && nptr[index] <= 57))
-	{
-		result = result * 10 + nptr[index] - '0';
-		index++;
-	}
-	return (result * sign);
 }
+
+/* int	main(void)
+{
+	ft_putstr_fd("\nend!", -1);
+	return (0);
+} */

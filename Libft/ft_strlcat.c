@@ -6,13 +6,11 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:02:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/27 20:09:18 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/08/07 03:26:19 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlen(const char *s);
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
@@ -20,9 +18,12 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	len;
 	size_t	result;
 
+	if (dst != 0)
+		len = ft_strlen(dst);
+	else
+		len = 0;
 	index = 0;
-	len = ft_strlen(dst);
-	result = (ft_strlen(dst) + ft_strlen(src));
+	result = (len + ft_strlen(src));
 	if (size > len)
 	{
 		while (src[index] && len < (size - 1))
@@ -36,15 +37,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	}
 	return (ft_strlen(src) + size);
 }
-
-/*  #include <stdio.h>
-
-int	main(void)
-{
-	char		str[] = "Blackpink";
-	char		dest[] = " In Your Area"; 
-	size_t		size = 3;
-
-	printf("%zu\n", ft_strlcat(dest, str, size));
-}
- */

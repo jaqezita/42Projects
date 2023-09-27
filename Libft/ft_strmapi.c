@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/23 15:04:32 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/08/07 03:29:29 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/07/30 23:13:40 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/08/04 18:56:22 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	result;
-	int	index;
-	int	sign;
+	int		index;
+	char	*result;
 
-	sign = 1;
+	if (!s)
+		return (NULL);
 	index = 0;
-	while ((nptr[index] >= 9 && nptr[index] <= 13) || nptr[index] == 32)
-		index++;
-	if (nptr[index] == '-' || nptr[index] == '+')
+	result = malloc((ft_strlen(s) + 1) * (sizeof(char)));
+	if (!result)
+		return (NULL);
+	while (s[index] != '\0')
 	{
-		if (nptr[index] == '-')
-			sign = sign * -1;
+		result[index] = f(index, s[index]);
 		index++;
 	}
-	result = 0;
-	while (nptr[index] != '\0' && (nptr[index] >= 48 && nptr[index] <= 57))
-	{
-		result = result * 10 + nptr[index] - '0';
-		index++;
-	}
-	return (result * sign);
+	result[index] = '\0';
+	return (result);
 }

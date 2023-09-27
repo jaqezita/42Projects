@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/23 15:04:54 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/30 20:41:28 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/08/27 02:13:08 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/09/11 14:58:19 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strdup(const char *s)
+int	ft_printf(const char *format, ...)
 {
-	char	*new;
 	int		index;
+	va_list	args;
+	int		count;
 
-	new = malloc(ft_strlen(s) + 1 * sizeof(char));
-	if (!new)
-		return (NULL);
+	if (!format)
+		return (-1);
+	va_start(args, format);
 	index = 0;
-	while (s[index] != '\0')
+	count = 0;
+	while (format[index] != '\0')
 	{
-		new[index] = s[index];
+		if (format[index] != '%')
+		{
+			write(1, &format[index], 1);
+			count++;
+		}
+		else if (format[index] == '%')
+		{
+			count += ft_check_specifier_type(format[index + 1], args);
+			index++;
+		}
 		index++;
 	}
-	new[index] = '\0';
-	return (new);
+	va_end(args);
+	return (count);
 }
