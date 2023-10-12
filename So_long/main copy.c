@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:28:05 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/11 01:18:55 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/10 23:09:07 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 	int32_t		width;
 	int32_t		height;
 	mlx_image_t	*img;
+	int	x;
+	int	y;
 	mlx_texture_t *texture;
 	
 	width = 512;

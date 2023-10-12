@@ -6,32 +6,41 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 13:14:23 by jaqribei          #+#    #+#              #
-#    Updated: 2023/09/27 13:54:01 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/11 01:12:39 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-HEADER =
+HEADER = solong.h
 
-CC = CC
+CC = cc
 
-FLAGS = -Wall -Werror -Wextra -g3
+FLAGS = -g3
 
-INCLUDES = 
+LIBX = MLX42/build/libmlx42.a -I MLX42/include/MLX42/MLX42.h -ldl -lglfw -pthread -lm
 
-LIBX = -lmlx -lXext -lX11
+SRC = main.c map_reader.c
 
-SRC:
+SRC_OBJ = $(SRC:%.c=%.o)
 
-SRC_OBJ:
+all: libft $(NAME)
 
-all:
+$(NAME): $(SRC_OBJ)
+	$(CC) $(FLAGS) $(SRC_OBJ) $(LIBX) ./libft/libft.a -o $(NAME)
+
+%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
+
+libft:
+	make -C ./libft
 
 clean:
+	rm -f $(SRC_OBJ)
 
-fclean:
+fclean: clean
+	rm -f $(NAME)
 
-re:
+re: fclean all
 
-
+.PHONY: all libft bonus clean fclean re
