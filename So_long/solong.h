@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/11 00:49:21 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/12 02:41:45 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,16 @@
 #	include "./libft/libft.h"
 
 void	ft_create_matrix(char *path);
+
+// typedef struct t_count
+// {
+// 	int	player;
+// }		t_count;
+
+// typedef struct t_game
+// {
+// 	char	**map;
+// }			t_game;
+
 
 #endif

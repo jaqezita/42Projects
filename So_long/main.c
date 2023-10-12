@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:28:05 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/11 01:18:55 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/12 04:46:00 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int main(int argc, char *argv[])
 	img = mlx_texture_to_image(mlx, texture);
 	
 	mlx_image_to_window(mlx, img, 0, 0);
-
-	
 	
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
