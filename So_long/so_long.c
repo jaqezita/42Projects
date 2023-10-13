@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:28:05 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 16:58:49 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 19:27:44 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	main(int argc, char *argv[])
 	ft_load_assets(&game);
 	ft_place_assets(&game, 0, 0);
 	mlx_loop(game->mlx);
+	ft_free_load(&game);
 	mlx_terminate(game->mlx);
 	// ft_mechanisms(mlx);
-	ft_free_load(&game);
 	ft_free_struct(&game);
 	return (0);
 }

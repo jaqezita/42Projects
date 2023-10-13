@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 16:57:53 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:35:13 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdio.h>
 # include "./MLX42/include/MLX42/MLX42.h"
 # include "./libft/libft.h"
+
+# define WALL_SIZE 75
 
 typedef struct s_assets
 {
