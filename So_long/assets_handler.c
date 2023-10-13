@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 05:46:10 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:11:02 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,31 @@ void	ft_load_assets(t_game **game)
 	(*game)->load->portal = mlx_texture_to_image((*game)->mlx, (*game)->load->t_portal);
 }
 
-void	ft_place_assets(t_game **game)
+void	ft_place_assets(t_game **game, int x, int y)
 {
 	size_t	i;
 	size_t	j;
 
-	(*game)->x = 0;
-	(*game)->y = 0;
 	i = 0;
+	x = 0;
 	while (i < (*game)->len)
 	{
+		y = 0;
 		j = 0;
 		while (j <= ft_strlen((*game)->map[i]))
 		{
 			if ((*game)->map[i][j] == '1')
-				mlx_image_to_window((*game)->mlx, (*game)->load->tree, (*game)->x, (*game)->y);
+				mlx_image_to_window((*game)->mlx, (*game)->load->tree, y, x);
 			else if ((*game)->map[i][j] == 'P')
-				mlx_image_to_window((*game)->mlx, (*game)->load->percy, (*game)->x + 20, (*game)->y + 20);
+				mlx_image_to_window((*game)->mlx, (*game)->load->percy, y + 20, x + 20);
 			else if ((*game)->map[i][j] == 'E')
-				mlx_image_to_window((*game)->mlx, (*game)->load->portal, (*game)->x + 20, (*game)->y + 20);
+				mlx_image_to_window((*game)->mlx, (*game)->load->portal, y + 20, x + 20);
 			else if ((*game)->map[i][j] == 'C')
-				mlx_image_to_window((*game)->mlx, (*game)->load->bolt, (*game)->x + 20, (*game)->y + 20);
+				mlx_image_to_window((*game)->mlx, (*game)->load->bolt, y + 35, x + 35);
 			j++;
-			(*game)->x += 40;
+			y += 75;
 		}
 		i++;
-		(*game)->y += 40;
+		x += 75;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 05:52:11 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:57:53 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_create_matrix(char *path, t_game **game);
 void	ft_read_map(t_game **game);
 // void	ft_check_map(char **str);
 void	ft_load_assets(t_game **game);
-void	ft_place_assets(t_game **game);
+void	ft_place_assets(t_game **game, int x, int y);
 void	ft_free_load(t_game **game);
 // void	ft_mechanisms(mlx stuff);
 // void	ft_free(t_game allocate);

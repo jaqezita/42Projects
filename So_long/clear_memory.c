@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:09:18 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 05:26:03 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:21:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ void	ft_free_load(t_game **game)
 
 void	ft_free_struct(t_game **game)
 {
-	free((*game)->map);
-	free((*game)->map_copy);
+	free(*game);
 	free((*game)->count);
 	free((*game)->load);
-	free((*game)->mlx);
-	free(*game);
 }
