@@ -1,33 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_checker.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/13 05:48:14 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/10/13 05:48:35 by jaqribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "solong.h"
+#include "so_long.h"
 
-
-void	ft_create_matrix(char *path)
+void	ft_create_matrix(char *path, t_game **game)
 {
 	int		fd;
 	char	*lines;
-	char	**map;
 	char	*temp;
 
 	fd = open(path, O_RDONLY);
-
 	lines = get_next_line(fd);
 	temp = " ";
-
+	(*game)->len = 0;
 	while (ft_strchr(lines, '\0') && temp != NULL)
 	{
 		temp = get_next_line(fd);
+		(*game)->len++;
 		lines = ft_strjoin(lines, temp);
 	}
-	map = ft_split(lines, '\n');
+	(*game)->map = ft_split(lines, '\n');
 }
 
 // void	check_stuff(char **map)
 // {
-// 	int i;
+// 	int i
 // 	int j;
+// 	t_game *map;
 
-// 	map[i][j];
+// 	map[i][j]; //needs memory allocation (need to know, the array size)
 
 // 	while (i < 1920)
 // 	{
@@ -42,17 +52,15 @@ void	ft_create_matrix(char *path)
 // 			}
 // 			if (map[i][j] == 'E')
 // 			{
-// 				save position - exit;
 // 				quant-exit ++;
 // 			}
 // 			if (map[i][j] == 'C')
 // 			{
-// 				save position - ligthning;
 // 				quant-ligthning ++;
 // 			}
-// 			j += j + valor;
+// 			j += valor;
 // 		}
-// 		i+= i+ valor;
+// 		i += valor;
 // 	}
 // }
 
@@ -60,31 +68,26 @@ void	ft_create_matrix(char *path)
 // {
 // 	copy map[i][j];
 
-// 	while (i < 1920)
-// 	{
-// 		while (j < 1080)
-// 		{
 // 			if (map[i][j] == '1')
 // 				return;
-// 			if (map[i][j] == '0')
+// 			else if (map[i][j] == '0')
 // 			{
 // 				map[i][j] = x;
 // 			}
-// 			if (map[i][j] == 'P')
+// 			else if (map[i][j] == 'P')
 // 			{
 // 				return;
 // 			}
-// 			if (map[i][j] == 'C')
+// 			else if (map[i][j] == 'C')
 // 			{
 // 				map[i][j] = 0;
 // 			}
-// 			if (map[i][j] == 'E')
+// 			else if (map[i][j] == 'E')
 // 			{
 // 				return;
 // 			}
-// 			j += j + valor;
-// 		}
-// 		i+= i+ valor;
+			// ft_flood_fill()
+
 // 	}
 // }
 

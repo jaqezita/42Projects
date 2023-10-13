@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:28:05 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/10 23:09:07 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 05:51:23 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,62 +15,26 @@
 // See README in the root project for more information.
 // -----------------------------------------------------------------------------
 
-#include "solong.h"
+#include "so_long.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	mlx_t		*mlx;
-	int32_t		width;
-	int32_t		height;
-	mlx_image_t	*img;
-	int	x;
-	int	y;
-	mlx_texture_t *texture;
-	
-	width = 512;
-	height = 512;
-	texture = mlx_load_png("bg.png");
-	
+	t_game	*game;
+
 	if (argc != 2)
 	{
 		ft_printf("%s\n", mlx_strerror(MLX_INVFILE));
-		return(1);
+		return (1);
 	}
-	
-	ft_create_matrix(argv[1]);
-	
-	mlx = mlx_init(width, height, "The Lightning Thief", true);
-	
-	img = mlx_texture_to_image(mlx, texture);
-	
-	mlx_image_to_window(mlx, img, 0, 0);
-
-	
-	
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	
+	game = ft_calloc(1, sizeof(t_game));
+	game->load = ft_calloc(1, sizeof(t_assets));
+	ft_create_matrix(argv[1], &game);
+	ft_load_assets(&game);
+	ft_place_assets(&game);
+	mlx_loop(game->mlx);
+	mlx_terminate(game->mlx);
+	// ft_mechanisms(mlx);
+	ft_free_load(&game);
+	ft_free_struct(&game);
 	return (0);
 }
-
-// int main(void)
-// {
-// 	void	*mlx;
-// 	void	*mlx_win;
-// 	void	*img;
-// 	int		width; 
-// 	int		height;
-	
-// 	mlx = mlx_init();
-// 	mlx_win = mlx_new_window(mlx, 600, 600, "sprite");
-
-// 	img = mlx_xpm_file_to_image(mlx, "sprite.xpm", &width, &height);
-	
-// 	mlx_put_image_to_window(mlx, mlx_win, img, 0, 0);
-	
-// 	mlx_loop(mlx);
-
-// 	// mlx_destroy_image(mlx, img);
-// 	// mlx_destroy_window(mlx, mlx_win);
-// 	// free(mlx);
-// }
