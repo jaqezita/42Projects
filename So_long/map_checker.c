@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 05:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 19:32:26 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 22:05:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	ft_create_matrix(char *path, t_game **game)
 	char	*lines;
 	char	*temp;
 	char	*temp2;
-	
+
+	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 4) != 0)
+		exit(ft_printf("Error:\n%s", mlx_strerror(MLX_INVEXT)));
 	fd = open(path, O_RDONLY);
 	lines = get_next_line(fd);
 	temp = " "; 
@@ -34,6 +36,78 @@ void	ft_create_matrix(char *path, t_game **game)
 	}
 	(*game)->map = ft_split(lines, '\n');
 	free(lines);
+}
+
+int	validate_map(t_game **game, int x, int y)
+{
+	y = 0;
+	while (y < (*game)->len)
+	{
+		x = 0;
+		while (x < ft_strlen((*game)->map[0]))
+		{
+			if ((x >= 0 && x < ft_strlen((*game)->map[0]) ) && (y == 0 || y == (*game)->len - 1))
+			{
+				if ((*game)->map[y][x] != '1')
+					return (0);
+			}
+			else if ((x == 0 || x == ft_strlen((*game)->map[0]) - 1) && (y > 0 || y < (*game)->len - 1))
+			{
+				if ((*game)->map[y][x] != '1')
+					return (0);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
+int	validate_square_map(t_game **game)
+{
+	if (ft_strlen((*game)->map[0]) == (*game)->len)
+		return (0);
+	return (1);
+}
+
+int	ft_validate_characteres(t_game **game, int x, int y)
+{
+	y = 0;
+	while (y < (*game)->len)
+	{
+		x = 0;
+		while (x < ft_strlen((*game)->map[0]))
+		{
+			if (!ft_strchr("PEC10", (*game)->map[y][x]))
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
+int	count_characters(t_game **game, int x, int y)
+{
+	y = 0;
+	while (y < (*game)->len)
+	{
+		x = 0;
+		while (x < ft_strlen((*game)->map[0]))
+		{
+			if((*game)->map[y][x] == 'P')
+				(*game)->count->player++;
+			else if((*game)->map[y][x] == 'E')
+				(*game)->count->exit++;
+			else if((*game)->map[y][x] == 'C')
+				(*game)->count->coin++;
+			x++;
+		}
+		y++;
+	}
+	if ((*game)->count->player != 1 || (*game)->count->exit != 1 || (*game)->count->coin < 1)
+		return (0);
+	return (1);
 }
 
 // void	check_stuff(char **map)
@@ -95,46 +169,3 @@ void	ft_create_matrix(char *path, t_game **game)
 
 // 	}
 // }
-
-// // void	ft_put_stuff(game_t)
-// // {
-// // 	int i;
-// // 	int j;
-
-// // 	map[i][j];
-
-// // 	while (i < 1920)
-// // 	{
-// // 		while (j < 1080)
-// // 		{
-// // 			if (map[i][j] == '1')
-// // 				put wall;
-// // 				texture = mlx_load_png("bg.png");
-// // 				img = mlx_texture_to_image(mlx, texture);
-// // 				mlx_image_to_window(mlx, img, 0, 0);
-// // 			if (map[i][j] == 'P')
-// // 			{
-// // 				put player;
-// // 				texture = mlx_load_png("bg.png");
-// // 				img = mlx_texture_to_image(mlx, texture);
-// // 				mlx_image_to_window(mlx, img, 0, 0);
-// // 			}
-// // 			if (map[i][j] == 'E')
-// // 			{
-// // 				put exit;
-// // 				texture = mlx_load_png("bg.png");
-// // 				img = mlx_texture_to_image(mlx, texture);
-// // 				mlx_image_to_window(mlx, img, 0, 0);
-// // 			}
-// // 			if (map[i][j] == 'C')
-// // 			{
-// // 				put lighting
-// // 				texture = mlx_load_png("bg.png");
-// // 				img = mlx_texture_to_image(mlx, texture);
-// // 				mlx_image_to_window(mlx, img, 0, 0);
-// // 			}	
-// // 			j += j + valor;	
-// // 		}
-// // 		i+= i+ valor;	
-// // 	}
-// // }

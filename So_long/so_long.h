@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 18:35:13 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 21:40:38 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ typedef struct s_assets
 
 typedef struct s_count
 {
-	size_t	player;
-	size_t	exit;
-	size_t	coin;
-	size_t	enemy;
+	int	player;
+	int	exit;
+	int	coin;
 }		t_count;
 
 typedef struct s_game
@@ -66,5 +65,9 @@ void	ft_free_load(t_game **game);
 // void	ft_mechanisms(mlx stuff);
 // void	ft_free(t_game allocate);
 void	ft_free_struct(t_game **game);
+int	validate_map(t_game **game, int x, int y);
+int	validate_square_map(t_game **game);
+int	ft_validate_characteres(t_game **game, int x, int y);
+int	count_characters(t_game **game, int x, int y);
 
 #endif

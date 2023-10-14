@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:28:05 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 19:27:44 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/13 21:46:50 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,24 @@ int	main(int argc, char *argv[])
 	}
 	game = ft_calloc(1, sizeof(t_game));
 	game->load = ft_calloc(1, sizeof(t_assets));
+	game->count = ft_calloc(1, sizeof(t_count));
 	ft_create_matrix(argv[1], &game);
+	if(validate_square_map(&game))
+		ft_printf("ok\n");
+	else
+		ft_printf("not ok\n");
+	if (validate_map(&game, 0, 0))
+		ft_printf("ok\n");
+	else
+		ft_printf("not ok\n");
+	if(ft_validate_characteres(&game, 0, 0))
+		ft_printf("ok\n");
+	else
+		ft_printf("not ok\n");
+	if(count_characters(&game, 0, 0))
+		ft_printf("ok\n");
+	else
+		ft_printf("not ok\n");
 	ft_load_assets(&game);
 	ft_place_assets(&game, 0, 0);
 	mlx_loop(game->mlx);
