@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:09:18 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 19:38:49 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:55:06 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ void	ft_free_struct(t_game **game)
 		free((*game)->map[i]);
 		i++;
 	}
+	i = 0;
+	while (i < (*game)->len)
+	{
+		free((*game)->map_copy[i]);
+		i++;
+	}
 	free((*game)->map);
+	free((*game)->map_copy);
 	free(*game);
 }

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/13 21:40:38 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:36:17 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_count
 	int	player;
 	int	exit;
 	int	coin;
+	int	collected;
 }		t_count;
 
 typedef struct s_game
@@ -58,16 +59,20 @@ typedef struct s_game
 
 void	ft_create_matrix(char *path, t_game **game);
 void	ft_read_map(t_game **game);
-// void	ft_check_map(char **str);
 void	ft_load_assets(t_game **game);
 void	ft_place_assets(t_game **game, int x, int y);
 void	ft_free_load(t_game **game);
-// void	ft_mechanisms(mlx stuff);
-// void	ft_free(t_game allocate);
 void	ft_free_struct(t_game **game);
-int	validate_map(t_game **game, int x, int y);
-int	validate_square_map(t_game **game);
-int	ft_validate_characteres(t_game **game, int x, int y);
-int	count_characters(t_game **game, int x, int y);
+int		validate_map(t_game **game, int x, int y);
+int		validate_square_map(t_game **game);
+int		ft_validate_characteres(t_game **game, int x, int y);
+int		count_characters(t_game **game, int x, int y);
+void	ft_move(mlx_key_data_t keydata, t_game **game);
+void	ft_walk(t_game **game);
+int		ft_validate_walk(t_game **game);
+int		validate_horizontal(t_game **game, int offset);
+int		validate_vertical(t_game **game, int offset);
+void	check_bolts(t_game **game);
+void	exit_game(t_game **game);
 
 #endif

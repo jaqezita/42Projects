@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 13:14:23 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/13 20:49:47 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/15 03:25:16 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FLAGS = -g3
 
 LIBX = MLX42/build/libmlx42.a -I MLX42/include/MLX42/MLX42.h -ldl -lglfw -pthread -lm
 
-SRC = so_long.c map_checker.c assets_handler.c clear_memory.c 
+SRC = so_long.c map_checker.c assets_handler.c clear_memory.c mechanisms.c ending_game.c
 
 SRC_OBJ = $(SRC:%.c=%.o)
 
