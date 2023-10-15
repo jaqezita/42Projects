@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:28:05 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/15 03:36:03 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/15 04:10:23 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_printf("%s\n", mlx_strerror(MLX_INVFILE));
+		ft_printf("Error\n%s", mlx_strerror(MLX_INVFILE));
 		return (1);
 	}
 	game = ft_calloc(1, sizeof(t_game));
