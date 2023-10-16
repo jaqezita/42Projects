@@ -82,7 +82,10 @@ int	ft_validate_characteres(t_game **game, int x, int y)
 		while (x < ft_strlen((*game)->map[0]))
 		{
 			if (!ft_strchr("PEC10", (*game)->map[y][x]))
-				return (0);
+			{
+				ft_printf("Error\n%s", "INVALID MAP");
+				exit(EXIT_FAILURE);
+			}
 			x++;
 		}
 		y++;
@@ -90,7 +93,7 @@ int	ft_validate_characteres(t_game **game, int x, int y)
 	return (1);
 }
 
-int	count_characters(t_game **game, int x, int y)
+void	count_characters(t_game **game, int x, int y)
 {
 	y = 0;
 	while (y < (*game)->len)
@@ -110,33 +113,34 @@ int	count_characters(t_game **game, int x, int y)
 	}
 	if ((*game)->count->player != 1 || (*game)->count->exit != 1 \
 	|| (*game)->count->coin < 1)
-		return (0);
-	return (1);
+	{
+		ft_printf("Error\n%s", "INVALID MAP");
+		exit(EXIT_FAILURE);
+	}
+		
 }
 
-// void	ft_flood_fill(game_t coisas)
-// {
-// 	copy map[i][j];
-
-// 			if (map[i][j] == '1')
-// 				return;
-// 			else if (map[i][j] == '0')
-// 			{
-// 				map[i][j] = x;
-// 			}
-// 			else if (map[i][j] == 'P')
-// 			{
-// 				return;
-// 			}
-// 			else if (map[i][j] == 'C')
-// 			{
-// 				map[i][j] = 0;
-// 			}
-// 			else if (map[i][j] == 'E')
-// 			{
-// 				return;
-// 			}
-			// ft_flood_fill()
-
-// 	}
-// }
+void	ft_flood_fill(t_game **game, int x, int y)
+{
+	if (x >= 0 && y >= 0 && x < (*game)->map[x][y] && y < (*game)->map[x][y])
+	{
+		if ((*game)->map_copy[x][y] == '1' || (*game)->map_copy[x][y] == '#' \
+			|| (*game)->map_copy[x][y] == 'E' || (*game)->map_copy[x][y] == 'C')
+			return ;
+		else if ((*game)->map_copy[x][y] == '0')
+			(*game)->map_copy[x][y] = '#';
+		else if ((*game)->map_copy[x][y] == 'C')
+		{
+			(*game)->map[y][x] = '0';
+		}
+		else if ((*game)->map_copy[x][y] == 'E')
+		{
+			(*game)->map[y][x] = 'E';
+			(*game)->count->exit = true;
+		}
+			ft_flood_fill(game, x + 1, y);
+			ft_flood_fill(game, x - 1, y);
+			ft_flood_fill(game, x, y + 1);
+			ft_flood_fill(game, x, y - 1);
+	}
+}
