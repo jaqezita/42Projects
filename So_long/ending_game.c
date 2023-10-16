@@ -19,14 +19,19 @@ void	exit_game(t_game **game)
 	int	portal_x;
 	int	portal_y;
 
-	percy_x = (*game)->load->percy->instances[0].x;
-	percy_y = (*game)->load->percy->instances[0].y;
-	portal_y = (*game)->load->portal->instances[0].x;
-	portal_x = (*game)->load->portal->instances[0].y;
+	percy_x = (*game)->load->percy->instances->x;
+	percy_y = (*game)->load->percy->instances->y;
+	portal_y = (*game)->load->portal->instances->x;
+	portal_x = (*game)->load->portal->instances->y;
 	if ((*game)->count->collected == (*game)->load->bolt->count)
 		(*game)->load->portal->enabled = true;
-	if ((percy_x > portal_x && percy_y > portal_y)
-		&& percy_x < portal_x && percy_y < portal_y
-		&& (*game)->load->portal->enabled == true)
-		mlx_close_window((*game)->mlx);
+	
+		if ((*game)->load->portal->enabled == true
+		&& (percy_x > portal_x && percy_y < portal_y)
+		&& percy_x > portal_x + (*game)->load->portal->width 
+		&& percy_y < portal_y + (*game)->load->portal->height)
+	{
+		ft_printf("You won!\n");
+		exit(EXIT_SUCCESS);
+	}
 }
