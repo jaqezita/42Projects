@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/15 03:32:12 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/16 21:18:22 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_place_assets(t_game **game, int x, int y)
 			else if ((*game)->map[i][j] == 'P')
 				mlx_image_to_window((*game)->mlx, (*game)->load->percy, y + 10, x + 7);
 			else if ((*game)->map[i][j] == 'E')
-				mlx_image_to_window((*game)->mlx, (*game)->load->portal, y + 15, x + 10);
+				mlx_image_to_window((*game)->mlx, (*game)->load->portal, y + 5, x + 5);
 			else if ((*game)->map[i][j] == 'C')
 				mlx_image_to_window((*game)->mlx, (*game)->load->bolt, y + 13, x + 15);
 			j++;
