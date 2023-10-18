@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/18 19:33:02 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:17:39 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_game
 	int			screen_numbers;
 	int			pos_x1;
 	int			pos_y1;
+	int			i;
+	int			j;
 }				t_game;
 
 void	ft_create_matrix(char *path, t_game **game);
@@ -86,5 +88,6 @@ void	ft_left(t_game **game);
 void	ft_right(t_game **game);
 void	ft_check_place(t_game **game, t_assets *load, int y, int x);
 void	ft_flood_fill(t_game **game, int x, int y);
+void	ft_conditions(t_game **game, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/18 18:55:07 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:21:04 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,29 +45,29 @@ void	ft_place_assets(t_game **game, int x, int y)
 
 void	ft_check_place(t_game **game, t_assets *load, int y, int x)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
+	(*game)->i = 0;
 	x = 0;
-	while (i < (*game)->len)
+	while ((*game)->i < (*game)->len)
 	{
 		y = 0;
-		j = 0;
-		while (j <= ft_strlen((*game)->map[i]))
+		(*game)->j = 0;
+		while ((*game)->j <= ft_strlen((*game)->map[(*game)->i]))
 		{
-			if ((*game)->map[i][j] == '1')
+			if ((*game)->map[(*game)->i][(*game)->j] == '1')
 				mlx_image_to_window((*game)->mlx, (*game)->load->tree, y, x);
-			else if ((*game)->map[i][j] == 'P')
-				mlx_image_to_window((*game)->mlx, (*game)->load->percy, y + 10, x + 7);
-			else if ((*game)->map[i][j] == 'E')
-				mlx_image_to_window((*game)->mlx, (*game)->load->portal, y + 5, x + 5);
-			else if ((*game)->map[i][j] == 'C')
-				mlx_image_to_window((*game)->mlx, (*game)->load->bolt, y + 13, x + 15);
-			j++;
+			else if ((*game)->map[(*game)->i][(*game)->j] == 'P')
+				mlx_image_to_window((*game)->mlx, \
+				(*game)->load->percy, y + 10, x + 7);
+			else if ((*game)->map[(*game)->i][(*game)->j] == 'E')
+				mlx_image_to_window((*game)->mlx, \
+				(*game)->load->portal, y + 5, x + 5);
+			else if ((*game)->map[(*game)->i][(*game)->j] == 'C')
+				mlx_image_to_window((*game)->mlx, \
+				(*game)->load->bolt, y + 13, x + 15);
+			(*game)->j++;
 			y += 75;
 		}
-		i++;
+		(*game)->i++;
 		x += 75;
 	}
 }
