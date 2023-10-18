@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:07:59 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/16 21:25:51 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:58:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void	ft_move(mlx_key_data_t keydata, t_game **game)
 	{
 		if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W) \
 			&& validate_vertical(game, -75) == 0)
-				(*game)->load->percy->instances[0].y -= 75;
+			ft_up(game);
 		if ((keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_S) \
 			&& validate_vertical(game, 75) == 0)
-				(*game)->load->percy->instances[0].y += 75;
+			ft_down(game);
 		if ((keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_D) \
 			&& validate_horizontal(game, 75) == 0)
-				(*game)->load->percy->instances[0].x += 75;
+			ft_right(game);
 		if ((keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A) \
 			&& validate_horizontal(game, -75) == 0)
-				(*game)->load->percy->instances[0].x -= 75;
+			ft_left(game);
 		check_bolts(game);
 	}
 }

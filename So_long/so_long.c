@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:28:05 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/16 21:43:23 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:57:30 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ int	main(int argc, char *argv[])
 	game->count = ft_calloc(1, sizeof(t_count));
 	ft_create_matrix(argv[1], &game);
 	map_ok(&game);
-	// validate_square_map(&game);
-	// validate_map(&game, 0, 0);
-	// ft_validate_characteres(&game, 0, 0);
-	// count_characters(&game, 0, 0);
 	ft_load_assets(&game);
 	ft_place_assets(&game, 0, 0);
 	ft_walk(&game);

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/16 21:43:04 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:46:20 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_count
 	int	exit;
 	int	coin;
 	int	collected;
+	int	steps;
 }		t_count;
 
 typedef struct s_game
@@ -76,6 +77,11 @@ int		validate_vertical(t_game **game, int offset);
 void	check_bolts(t_game **game);
 void	exit_game(t_game **game);
 void	ft_flood_fill(t_game **game, int x, int y);
-void	map_ok(t_game **game)
+void	map_ok(t_game **game);
+void	ft_up(t_game **game);
+void	ft_down(t_game **game);
+void	ft_left(t_game **game);
+void	ft_right(t_game **game);
+void	ft_check_place(t_game **game, t_assets *load, int y, int x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/16 21:18:22 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:55:07 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,18 @@ void	ft_load_assets(t_game **game)
 
 void	ft_place_assets(t_game **game, int x, int y)
 {
+	mlx_image_to_window((*game)->mlx, (*game)->load->bg, y, x);
+	ft_check_place(game, (*game)->load, x, y);
+	(*game)->load->portal->enabled = false;
+}
+
+void	ft_check_place(t_game **game, t_assets *load, int y, int x)
+{
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	x = 0;
-	mlx_image_to_window((*game)->mlx, (*game)->load->bg, y, x);
 	while (i < (*game)->len)
 	{
 		y = 0;
@@ -64,5 +70,4 @@ void	ft_place_assets(t_game **game, int x, int y)
 		i++;
 		x += 75;
 	}
-	(*game)->load->portal->enabled = false;
 }
