@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 05:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/18 19:50:59 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:09:28 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,5 @@ void	count_characters(t_game **game, int x, int y)
 	}
 	if ((*game)->count->player != 1 || (*game)->count->exit != 1 \
 	|| (*game)->count->coin < 1)
-		exit(EXIT_FAILURE);
+		exit((ft_printf("Error\n%s", "INVALID MAP")));
 }
