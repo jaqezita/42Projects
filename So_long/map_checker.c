@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 05:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/18 18:37:53 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:50:59 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,11 @@ void	count_characters(t_game **game, int x, int y)
 		while (x < ft_strlen((*game)->map[0]))
 		{
 			if ((*game)->map[y][x] == 'P')
+			{
 				(*game)->count->player++;
+				(*game)->pos_x1 = x;
+				(*game)->pos_y1 = y;
+			}
 			else if ((*game)->map[y][x] == 'E')
 				(*game)->count->exit++;
 			else if ((*game)->map[y][x] == 'C')
@@ -113,8 +117,5 @@ void	count_characters(t_game **game, int x, int y)
 	}
 	if ((*game)->count->player != 1 || (*game)->count->exit != 1 \
 	|| (*game)->count->coin < 1)
-	{
-		ft_printf("Error\n%s", "INVALID MAP");
 		exit(EXIT_FAILURE);
-	}
 }

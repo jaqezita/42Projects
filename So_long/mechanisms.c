@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:07:59 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/18 18:58:26 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:37:01 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	ft_walk(t_game **game)
 
 void	ft_move(mlx_key_data_t keydata, t_game **game)
 {
-	if (keydata.key == MLX_KEY_ESCAPE)
-		mlx_close_window((*game)->mlx);
 	if (keydata.action == MLX_PRESS)
 	{
 		if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W) \
@@ -37,6 +35,8 @@ void	ft_move(mlx_key_data_t keydata, t_game **game)
 			ft_left(game);
 		check_bolts(game);
 	}
+	if (keydata.key == MLX_KEY_ESCAPE)
+		mlx_close_window((*game)->mlx);
 }
 
 int	validate_horizontal(t_game **game, int offset)
