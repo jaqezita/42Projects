@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mechanisms.c                                       :+:      :+:    :+:   */
+/*   mechanisms_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:07:59 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/18 21:32:53 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/18 21:27:58 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_walk(t_game **game)
 void	ft_move(mlx_key_data_t keydata, t_game **game)
 {
 	char	*steps;
-
+	
 	if (keydata.action == MLX_PRESS)
 	{
 		if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W) \
@@ -37,6 +37,10 @@ void	ft_move(mlx_key_data_t keydata, t_game **game)
 			ft_left(game);
 		check_bolts(game);
 	}
+	steps = ft_itoa((*game)->count->steps);
+	mlx_key_hook((*game)->mlx, (void *)mlx_put_string, (void *)game);
+	// mlx_put_string((*game)->mlx, "steps = 0", ft_strlen((*game)->map[0]) * WALL_SIZE - 150,  20);
+	mlx_put_string((*game)->mlx, steps, ft_strlen((*game)->map[0]) * WALL_SIZE - 150,  20);
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window((*game)->mlx);
 }
