@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assets_handler_bonus.c                             :+:      :+:    :+:   */
+/*   assets_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/20 08:15:47 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/20 08:04:25 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,13 @@ void	ft_load_assets(t_game **game)
 	(*game)->load->portal = mlx_texture_to_image((*game)->mlx, \
 		(*game)->load->t_portal);
 	(*game)->load->t_icon = mlx_load_png("./assets/icon.png");
-	(*game)->load->t_enemy = mlx_load_png("./assets/enemy.png");
-	(*game)->load->enemy = mlx_texture_to_image((*game)->mlx, \
-		(*game)->load->t_enemy);
+
 }
 
 void	ft_place_assets(t_game **game, int x, int y)
 {
 	mlx_image_to_window((*game)->mlx, (*game)->load->bg, y, x);
 	ft_check_place(game, (*game)->load, x, y);
-	ft_check_place2(game, (*game)->load, x, y);
 	(*game)->load->portal->enabled = false;
 	mlx_set_icon((*game)->mlx, (*game)->load->t_icon);
 }
@@ -70,27 +67,6 @@ void	ft_check_place(t_game **game, t_assets *load, int y, int x)
 			else if ((*game)->map[(*game)->i][(*game)->j] == 'C')
 				mlx_image_to_window((*game)->mlx, \
 				(*game)->load->bolt, y + 13, x + 15);
-			(*game)->j++;
-			y += 75;
-		}
-		(*game)->i++;
-		x += 75;
-	}
-}
-
-void	ft_check_place2(t_game **game, t_assets *load, int y, int x)
-{
-	(*game)->i = 0;
-	x = 0;
-	while ((*game)->i < (*game)->len)
-	{
-		y = 0;
-		(*game)->j = 0;
-		while ((*game)->j <= ft_strlen((*game)->map[(*game)->i]))
-		{
-			if ((*game)->map[(*game)->i][(*game)->j] == 'M')
-				mlx_image_to_window((*game)->mlx, \
-				(*game)->load->enemy,  y + 13, x + 15);
 			(*game)->j++;
 			y += 75;
 		}

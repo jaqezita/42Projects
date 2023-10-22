@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 05:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/20 08:18:55 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/20 08:21:00 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_validate_characteres(t_game **game, int x, int y)
 		x = 0;
 		while (x < ft_strlen((*game)->map[0]))
 		{
-			if (!ft_strchr("PEC10M", (*game)->map[y][x]))
+			if (!ft_strchr("PEC10", (*game)->map[y][x]))
 			{
 				ft_printf("Error\n%s", "INVALID MAP");
 				exit(EXIT_FAILURE);

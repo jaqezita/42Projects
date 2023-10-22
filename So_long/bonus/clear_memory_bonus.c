@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_memory.c                                     :+:      :+:    :+:   */
+/*   clear_memory_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:09:18 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/15 03:55:06 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/22 18:00:53 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_free_load(t_game **game)
 {
@@ -26,6 +26,7 @@ void	ft_free_load(t_game **game)
 	mlx_delete_image((*game)->mlx, (*game)->load->bg);
 	mlx_delete_texture((*game)->load->t_portal);
 	mlx_delete_image((*game)->mlx, (*game)->load->portal);
+	mlx_delete_texture((*game)->load->t_icon);
 }
 
 void	ft_free_struct(t_game **game)

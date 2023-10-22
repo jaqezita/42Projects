@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   map_checker_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 05:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/18 20:09:28 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/22 18:00:57 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_create_matrix(char *path, t_game **game)
 {
@@ -81,7 +81,7 @@ int	ft_validate_characteres(t_game **game, int x, int y)
 		x = 0;
 		while (x < ft_strlen((*game)->map[0]))
 		{
-			if (!ft_strchr("PEC10", (*game)->map[y][x]))
+			if (!ft_strchr("PEC10M", (*game)->map[y][x]))
 			{
 				ft_printf("Error\n%s", "INVALID MAP");
 				exit(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/18 20:49:44 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/22 17:26:43 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
+# include "MLX42.h"
+# include "libft.h"
 
 # define WALL_SIZE 75
 
@@ -35,6 +35,7 @@ typedef struct s_assets
 	mlx_image_t		*enemy;	
 	mlx_texture_t	*t_bg;
 	mlx_image_t		*bg;
+	mlx_texture_t	*t_icon;
 }					t_assets;
 
 typedef struct s_count
@@ -87,7 +88,9 @@ void	ft_down(t_game **game);
 void	ft_left(t_game **game);
 void	ft_right(t_game **game);
 void	ft_check_place(t_game **game, t_assets *load, int y, int x);
+void	ft_check_place2(t_game **game, t_assets *load, int y, int x);
 void	ft_flood_fill(t_game **game, int x, int y);
 void	ft_conditions(t_game **game, int x, int y);
+void	enemy_hit(t_game **game);
 
 #endif
