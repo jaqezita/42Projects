@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 13:14:23 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/23 00:55:38 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/23 19:40:18 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ BONUS_NAME = so_long_bonus
 
 HEADER = solong.h
 
-CC = cc
+CC = cc -Wall -Wextra -Werror
 
 FLAGS = -g3
 
@@ -25,16 +25,17 @@ LIBX = MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 INCLUDES = -I MLX42/include/MLX42/ -I ./libft/ 
 
 SRC = $(addprefix ./mandatory/,  so_long.c map_checker.c assets_handler.c \
-	clear_memory.c mechanisms.c map_validation.c) 
+	clear_memory.c mechanisms.c map_validation.c utils.c) 
 
 SRC_OBJ = $(SRC:%.c=%.o)
 
 BONUS = $(addprefix ./bonus/,  so_long_bonus.c map_checker_bonus.c \
-	assets_handler_bonus.c clear_memory_bonus.c mechanisms_bonus.c map_validation_bonus.c) 
+	assets_handler_bonus.c clear_memory_bonus.c mechanisms_bonus.c \
+	map_validation_bonus.c utils_bonus.c) 
 
 BONUS_OBJ = $(BONUS:%.c=%.o)
 
-all: $(NAME)
+all: libft $(NAME)
 
 $(NAME): $(SRC_OBJ)
 	$(CC) $(FLAGS) $(SRC_OBJ) $(LIBX) ./libft/libft.a -o $(NAME)
@@ -42,7 +43,7 @@ $(NAME): $(SRC_OBJ)
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@ $(INCLUDES)
 
-bonus: $(BONUS_NAME)
+bonus: libft $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_OBJ)
 	$(CC) $(FLAGS) $(BONUS_OBJ) $(LIBX) ./libft/libft.a -o $(BONUS_NAME)
@@ -52,10 +53,11 @@ libft:
 
 clean:
 	rm -f $(SRC_OBJ) $(BONUS_OBJ)
+	@make clean -C ./libft
 
 fclean: clean
-	rm -f $(NAME) $(BONUS_NAME)
+	rm -f $(NAME) $(BONUS_NAME) libft/libft.a
 
-re: fclean all
+re: fclean all 
 
 .PHONY: all libft bonus clean fclean re

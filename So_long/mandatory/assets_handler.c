@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/22 23:24:44 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:34:33 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void	ft_load_assets(t_game **game)
 void	ft_place_assets(t_game **game, int x, int y)
 {
 	mlx_image_to_window((*game)->mlx, (*game)->load->bg, y, x);
-	ft_check_place(game, (*game)->load, x, y);
+	ft_check_place(game, x, y);
 	(*game)->load->portal->enabled = false;
 	mlx_set_icon((*game)->mlx, (*game)->load->t_icon);
 }
 
-void	ft_check_place(t_game **game, t_assets *load, int y, int x)
+void	ft_check_place(t_game **game, int y, int x)
 {
 	(*game)->i = 0;
 	x = 0;
@@ -53,7 +53,7 @@ void	ft_check_place(t_game **game, t_assets *load, int y, int x)
 	{
 		y = 0;
 		(*game)->j = 0;
-		while ((*game)->j <= ft_strlen((*game)->map[(*game)->i]))
+		while ((size_t)(*game)->j <= ft_strlen((*game)->map[(*game)->i]))
 		{
 			if ((*game)->map[(*game)->i][(*game)->j] == '1')
 				mlx_image_to_window((*game)->mlx, (*game)->load->tree, y, x);
@@ -76,16 +76,16 @@ void	ft_check_place(t_game **game, t_assets *load, int y, int x)
 
 void	exit_game(t_game **game)
 {
-	int	percy_x;
-	int	percy_y;
-	int	portal_x;
-	int	portal_y;
+	unsigned int	percy_x;
+	unsigned int	percy_y;
+	unsigned int	portal_x;
+	unsigned int	portal_y;
 
 	percy_x = (*game)->load->percy->instances->x;
 	percy_y = (*game)->load->percy->instances->y;
 	portal_y = (*game)->load->portal->instances->y;
 	portal_x = (*game)->load->portal->instances->x;
-	if ((*game)->count->collected == (*game)->load->bolt->count)
+	if ((size_t)(*game)->count->collected == (*game)->load->bolt->count)
 		(*game)->load->portal->enabled = true;
 	if ((*game)->load->portal->enabled == true \
 		&& (percy_x > portal_x && percy_y > portal_y) \
@@ -93,6 +93,9 @@ void	exit_game(t_game **game)
 		&& percy_y < portal_y + (*game)->load->portal->height))
 	{
 		ft_printf("You won!\n");
+		ft_free_load(game);
+		mlx_terminate((*game)->mlx);
+		ft_free_struct(game);
 		exit(EXIT_SUCCESS);
 	}
 }

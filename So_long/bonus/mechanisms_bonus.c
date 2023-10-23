@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:07:59 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 00:36:03 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:55:33 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	ft_move(mlx_key_data_t keydata, t_game **game)
 
 int	validate_horizontal(t_game **game, int offset)
 {
-	int	i;
-	int	percy_x;
-	int	percy_y;
-	int	tree_x;
-	int	tree_y;
+	unsigned int	i;
+	unsigned int	percy_x;
+	unsigned int	percy_y;
+	unsigned int	tree_x;
+	unsigned int	tree_y;
 
 	i = 0;
 	percy_y = (*game)->load->percy->instances[0].y;
@@ -72,11 +72,11 @@ int	validate_horizontal(t_game **game, int offset)
 
 int	validate_vertical(t_game **game, int offset)
 {
-	int	i;
-	int	percy_x;
-	int	percy_y;
-	int	tree_x;
-	int	tree_y;
+	unsigned int	i;
+	unsigned int	percy_x;
+	unsigned int	percy_y;
+	unsigned int	tree_x;
+	unsigned int	tree_y;
 
 	i = 0;
 	percy_y = (*game)->load->percy->instances[0].y + offset;
@@ -96,11 +96,11 @@ int	validate_vertical(t_game **game, int offset)
 
 void	check_bolts(t_game **game)
 {
-	int	i;
-	int	bolt_x;
-	int	bolt_y;
-	int	percy_x;
-	int	percy_y;
+	unsigned int	i;
+	unsigned int	bolt_x;
+	unsigned int	bolt_y;
+	unsigned int	percy_x;
+	unsigned int	percy_y;
 
 	i = 0;
 	percy_x = (*game)->load->percy->instances[0].x;

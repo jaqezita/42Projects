@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:35:48 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/20 00:38:18 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:06:23 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	map_ok(t_game **game)
 	count_characters(game, 0, 0);
 	ft_flood_fill(game, (*game)->pos_x1, (*game)->pos_y1);
 	if ((*game)->count->coin > 0)
+	{
+		ft_free_struct(game);
 		exit(ft_printf("Error\n%s", "INVALID MAP"));
+	}
 }
 
 void	ft_up(t_game **game)

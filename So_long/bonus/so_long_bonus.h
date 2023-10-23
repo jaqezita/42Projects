@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 01:12:48 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:51:46 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ typedef struct s_game
 	mlx_t		*mlx;
 	t_assets	*load;
 	t_count		*count;
-	size_t		len;
+	int			len;
 	size_t		x;
 	size_t		y;
 	int			screen_numbers;
 	int			pos_x1;
 	int			pos_y1;
-	int			i;
-	int			j;
+	size_t		i;
+	size_t		j;
 }				t_game;
 
 void	ft_create_matrix(char *path, t_game **game);
@@ -89,10 +89,12 @@ void	ft_up(t_game **game);
 void	ft_down(t_game **game);
 void	ft_left(t_game **game);
 void	ft_right(t_game **game);
-void	ft_check_place(t_game **game, t_assets *load, int y, int x);
-void	ft_check_place2(t_game **game, t_assets *load, int y, int x);
+void	ft_check_place(t_game **game, int y, int x);
+void	ft_check_place2(t_game **game, int y, int x);
 void	ft_flood_fill(t_game **game, int x, int y);
 void	ft_conditions(t_game **game, int x, int y);
 void	collision(t_game **game);
+void	ft_invalid_type(char *path, t_game **game);
+void	ft_message(t_game **game);
 
 #endif

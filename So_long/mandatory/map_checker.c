@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 05:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/20 08:21:00 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:48:45 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	ft_create_matrix(char *path, t_game **game)
 	char	*temp;
 	char	*temp2;
 
-	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 4) != 0)
-		exit(ft_printf("Error:\n%s", mlx_strerror(MLX_INVEXT)));
+	ft_invalid_type(path, game);
 	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		ft_message(game);
 	lines = get_next_line(fd);
 	temp = " ";
 	(*game)->len = 0;
@@ -45,19 +46,19 @@ int	validate_map(t_game **game, int x, int y)
 	while (y < (*game)->len)
 	{
 		x = 0;
-		while (x < ft_strlen((*game)->map[0]))
+		while ((size_t)x < ft_strlen((*game)->map[0]))
 		{
-			if ((x >= 0 && x < ft_strlen((*game)->map[0])) \
+			if ((x >= 0 && (size_t)x < ft_strlen((*game)->map[0])) \
 			&& (y == 0 || y == (*game)->len - 1))
 			{
 				if ((*game)->map[y][x] != '1')
-					exit(ft_printf("Error\n%s", "INVALID MAP"));
+					ft_message(game);
 			}
-			else if ((x == 0 || x == ft_strlen((*game)->map[0]) - 1) \
+			else if ((x == 0 || (size_t)x == ft_strlen((*game)->map[0]) - 1) \
 			&& (y > 0 || y < (*game)->len - 1))
 			{
 				if ((*game)->map[y][x] != '1')
-					exit(ft_printf("Error\n%s", "INVALID MAP"));
+					ft_message(game);
 			}
 			x++;
 		}
@@ -68,8 +69,8 @@ int	validate_map(t_game **game, int x, int y)
 
 int	validate_square_map(t_game **game)
 {
-	if (ft_strlen((*game)->map[0]) == (*game)->len)
-		exit(ft_printf("Error\n%s", "INVALID MAP"));
+	if ((int)ft_strlen((*game)->map[0]) == (*game)->len)
+		ft_message(game);
 	return (1);
 }
 
@@ -79,13 +80,10 @@ int	ft_validate_characteres(t_game **game, int x, int y)
 	while (y < (*game)->len)
 	{
 		x = 0;
-		while (x < ft_strlen((*game)->map[0]))
+		while ((size_t)x < ft_strlen((*game)->map[0]))
 		{
 			if (!ft_strchr("PEC10", (*game)->map[y][x]))
-			{
-				ft_printf("Error\n%s", "INVALID MAP");
-				exit(EXIT_FAILURE);
-			}
+				ft_message(game);
 			x++;
 		}
 		y++;
@@ -99,7 +97,7 @@ void	count_characters(t_game **game, int x, int y)
 	while (y < (*game)->len)
 	{
 		x = 0;
-		while (x < ft_strlen((*game)->map[0]))
+		while ((size_t)x < ft_strlen((*game)->map[0]))
 		{
 			if ((*game)->map[y][x] == 'P')
 			{
@@ -117,5 +115,5 @@ void	count_characters(t_game **game, int x, int y)
 	}
 	if ((*game)->count->player != 1 || (*game)->count->exit != 1 \
 	|| (*game)->count->coin < 1)
-		exit((ft_printf("Error\n%s", "INVALID MAP")));
+		ft_message(game);
 }
