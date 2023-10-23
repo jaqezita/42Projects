@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 00:32:35 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 01:24:59 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ void	ft_load_assets(t_game **game)
 	(*game)->load->portal = mlx_texture_to_image((*game)->mlx, \
 		(*game)->load->t_portal);
 	(*game)->load->t_icon = mlx_load_png("./assets/icon.png");
-	(*game)->load->t_enemy = mlx_load_png("./assets/enemy.png");
-	(*game)->load->enemy = mlx_texture_to_image((*game)->mlx, \
-		(*game)->load->t_enemy);
 }
 
 void	ft_place_assets(t_game **game, int x, int y)
@@ -100,10 +97,8 @@ void	ft_check_place2(t_game **game, t_assets *load, int y, int x)
 		x += 75;
 	}
 	steps = ft_itoa((*game)->count->steps);
-	(*game)->load->str = mlx_put_string((*game)->mlx, \
-		steps, 95, 10);
-	mlx_put_string((*game)->mlx, "Steps: ", \
-	30, 10);
+	(*game)->load->str = mlx_put_string((*game)->mlx, steps, 95, 10);
+	(*game)->load->label = mlx_put_string((*game)->mlx, "Steps: ", 30, 10);
 	free(steps);
 }
 

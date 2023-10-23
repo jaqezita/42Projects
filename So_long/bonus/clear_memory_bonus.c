@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:09:18 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/22 23:23:55 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 01:10:31 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_free_load(t_game **game)
 	mlx_delete_texture((*game)->load->t_portal);
 	mlx_delete_image((*game)->mlx, (*game)->load->portal);
 	mlx_delete_texture((*game)->load->t_icon);
+	mlx_delete_image((*game)->mlx, (*game)->load->str);
+	mlx_delete_image((*game)->mlx, (*game)->load->label);
 }
 
 void	ft_free_struct(t_game **game)
