@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 19:34:33 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 20:09:41 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	ft_flood_fill(t_game **game, int x, int y)
 {
 	if ((*game)->map_copy[y][x] == 'C')
 		(*game)->count->coin--;
+	if ((*game)->map_copy[y][x] == 'E')
+		(*game)->count->exit--;
 	if ((*game)->map_copy[y][x] == '1' || (*game)->map_copy[y][x] == '#')
 		return ;
 	(*game)->map_copy[y][x] = '#';
