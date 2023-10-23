@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/22 18:21:07 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 00:32:35 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	ft_check_place(t_game **game, t_assets *load, int y, int x)
 
 void	ft_check_place2(t_game **game, t_assets *load, int y, int x)
 {
+	char	*steps;
+
 	(*game)->i = 0;
 	x = 0;
 	while ((*game)->i < (*game)->len)
@@ -90,13 +92,19 @@ void	ft_check_place2(t_game **game, t_assets *load, int y, int x)
 		{
 			if ((*game)->map[(*game)->i][(*game)->j] == 'M')
 				mlx_image_to_window((*game)->mlx, \
-				(*game)->load->enemy,  y + 3, x + 15);
+				(*game)->load->enemy, y + 5, x + 5);
 			(*game)->j++;
 			y += 75;
 		}
 		(*game)->i++;
 		x += 75;
 	}
+	steps = ft_itoa((*game)->count->steps);
+	(*game)->load->str = mlx_put_string((*game)->mlx, \
+		steps, 95, 10);
+	mlx_put_string((*game)->mlx, "Steps: ", \
+	30, 10);
+	free(steps);
 }
 
 void	exit_game(t_game **game)
@@ -120,17 +128,4 @@ void	exit_game(t_game **game)
 		ft_printf("You won!\n");
 		exit(EXIT_SUCCESS);
 	}
-}
-
-void	ft_flood_fill(t_game **game, int x, int y)
-{
-	if ((*game)->map_copy[y][x] == 'C')
-		(*game)->count->coin--;
-	if ((*game)->map_copy[y][x] == '1' || (*game)->map_copy[y][x] == '#')
-		return ;
-	(*game)->map_copy[y][x] = '#';
-	ft_flood_fill(game, x + 1, y);
-	ft_flood_fill(game, x - 1, y);
-	ft_flood_fill(game, x, y + 1);
-	ft_flood_fill(game, x, y - 1);
 }

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:09:18 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/22 18:00:53 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/22 23:23:55 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,17 @@ void	ft_free_struct(t_game **game)
 	free((*game)->map);
 	free((*game)->map_copy);
 	free(*game);
+}
+
+void	ft_flood_fill(t_game **game, int x, int y)
+{
+	if ((*game)->map_copy[y][x] == 'C')
+		(*game)->count->coin--;
+	if ((*game)->map_copy[y][x] == '1' || (*game)->map_copy[y][x] == '#')
+		return ;
+	(*game)->map_copy[y][x] = '#';
+	ft_flood_fill(game, x + 1, y);
+	ft_flood_fill(game, x - 1, y);
+	ft_flood_fill(game, x, y + 1);
+	ft_flood_fill(game, x, y - 1);
 }

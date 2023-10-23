@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/20 08:04:25 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/22 23:24:44 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_load_assets(t_game **game)
 	(*game)->load->portal = mlx_texture_to_image((*game)->mlx, \
 		(*game)->load->t_portal);
 	(*game)->load->t_icon = mlx_load_png("./assets/icon.png");
-
 }
 
 void	ft_place_assets(t_game **game, int x, int y)

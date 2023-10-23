@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:07:59 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/22 18:21:53 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 00:32:40 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	ft_walk(t_game **game)
 
 void	ft_move(mlx_key_data_t keydata, t_game **game)
 {
-	char	*steps;
-
+	char *steps;
+	
 	if (keydata.action == MLX_PRESS)
-	{
+	{	
 		if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W) \
 			&& validate_vertical(game, -75) == 0)
 			ft_up(game);
@@ -35,7 +35,12 @@ void	ft_move(mlx_key_data_t keydata, t_game **game)
 		if ((keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A) \
 			&& validate_horizontal(game, -75) == 0)
 			ft_left(game);
+		collision(game);
 		check_bolts(game);
+		(*game)->load->str->instances->enabled = false;
+		steps = ft_itoa((*game)->count->steps);
+		(*game)->load->str = mlx_put_string((*game)->mlx, steps, 95, 10);
+		free(steps);
 	}
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window((*game)->mlx);
@@ -116,27 +121,4 @@ void	check_bolts(t_game **game)
 		i++;
 	}
 	exit_game(game);
-}
-
-void	enemy_hit(t_game **game)
-{
-	int	i;
-	int	enemy_x;
-	int	enemy_y;
-	int	percy_x;
-	int	percy_y;
-
-	i = 0;
-	percy_x = (*game)->load->percy->instances[0].x;
-	percy_y = (*game)->load->percy->instances[0].y;
-	while (i < (*game)->load->enemy->count)
-	{
-		enemy_x = (*game)->load->enemy->instances[i].x;
-		enemy_y = (*game)->load->enemy->instances[i].y;
-		if (enemy_x > percy_x && enemy_y < percy_y && enemy_x < percy_x \
-			+ (*game)->load->percy->width && enemy_y < percy_y \
-			+ (*game)->load->percy->height)
-				exit_game(game);
-		i++;
-	}
 }

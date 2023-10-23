@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/22 18:00:17 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/22 23:42:39 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_assets
 	mlx_texture_t	*t_bg;
 	mlx_image_t		*bg;
 	mlx_texture_t	*t_icon;
+	mlx_image_t		*str;
 }					t_assets;
 
 typedef struct s_count
@@ -91,6 +92,6 @@ void	ft_check_place(t_game **game, t_assets *load, int y, int x);
 void	ft_check_place2(t_game **game, t_assets *load, int y, int x);
 void	ft_flood_fill(t_game **game, int x, int y);
 void	ft_conditions(t_game **game, int x, int y);
-void	enemy_hit(t_game **game);
+void	collision(t_game **game);
 
 #endif
