@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 21:07:59 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 00:32:40 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 00:36:03 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_walk(t_game **game)
 
 void	ft_move(mlx_key_data_t keydata, t_game **game)
 {
-	char *steps;
-	
+	char	*steps;
+
 	if (keydata.action == MLX_PRESS)
 	{	
 		if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W) \

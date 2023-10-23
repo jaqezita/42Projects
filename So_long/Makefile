@@ -6,11 +6,13 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 13:14:23 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/22 21:29:42 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/23 00:53:33 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
+
+BONUS_NAME = so_long_bonus
 
 HEADER = solong.h
 
@@ -32,25 +34,27 @@ BONUS = $(addprefix ./bonus/,  so_long_bonus.c map_checker_bonus.c \
 
 BONUS_OBJ = $(BONUS:%.c=%.o)
 
-all: libft $(NAME)
+all: $(NAME)
 
 $(NAME): $(SRC_OBJ)
 	$(CC) $(FLAGS) $(SRC_OBJ) $(LIBX) ./libft/libft.a -o $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@ $(INCLUDES)
+	@$(CC) $(FLAGS) -c $< -o $@ $(INCLUDES)
 
-bonus: libft $(BONUS_OBJ)
-	$(CC) $(FLAGS) $(BONUS_OBJ) $(LIBX) ./libft/libft.a -o $(NAME)
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(BONUS_OBJ)
+	$(CC) $(FLAGS) $(BONUS_OBJ) $(LIBX) ./libft/libft.a -o $(BONUS_NAME)
 
 libft:
-	make -C ./libft
+	@make -C ./libft
 
 clean:
 	rm -f $(SRC_OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	rm -f $(NAME) 
+	rm -f $(NAME) $(BONUS_NAME)
 
 re: fclean all
 
