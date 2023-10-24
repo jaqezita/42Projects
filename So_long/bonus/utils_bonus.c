@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:29:40 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 19:59:49 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 21:29:16 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ void	ft_invalid_type(char *path, t_game **game)
 {
 	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 4) != 0)
 	{
-		ft_free_struct(game);
-		exit(ft_printf("Error\n%s", "INVALID MAP"));
+		ft_message(game);
 	}
 }
 
 void	ft_message(t_game **game)
 {
 	ft_free_struct(game);
-	exit(ft_printf("Error\n%s", "INVALID MAP"));
+	exit(ft_printf("Error\n%s\n", "INVALID MAP"));
 }
 
 void	collision(t_game **game)
@@ -53,4 +52,19 @@ void	collision(t_game **game)
 		}
 		i++;
 	}
+}
+
+void	ft_flood_fill(t_game **game, int x, int y)
+{
+	if ((*game)->map_copy[y][x] == 'C')
+		(*game)->count->coin--;
+	if ((*game)->map_copy[y][x] == 'E')
+		(*game)->count->exit--;
+	if ((*game)->map_copy[y][x] == '1' || (*game)->map_copy[y][x] == '#')
+		return ;
+	(*game)->map_copy[y][x] = '#';
+	ft_flood_fill(game, x + 1, y);
+	ft_flood_fill(game, x - 1, y);
+	ft_flood_fill(game, x, y + 1);
+	ft_flood_fill(game, x, y - 1);
 }
