@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 13:14:23 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/23 19:40:18 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/23 21:43:17 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ BONUS_NAME = so_long_bonus
 
 HEADER = solong.h
 
-CC = cc -Wall -Wextra -Werror
+CC = cc 
 
-FLAGS = -g3
+FLAGS = -g3 -Wall -Wextra -Werror
 
 LIBX = MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 
