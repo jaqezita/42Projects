@@ -6,15 +6,13 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 13:14:23 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/23 21:43:17 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/24 05:51:57 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 BONUS_NAME = so_long_bonus
-
-HEADER = solong.h
 
 CC = cc 
 
@@ -35,7 +33,7 @@ BONUS = $(addprefix ./bonus/,  so_long_bonus.c map_checker_bonus.c \
 
 BONUS_OBJ = $(BONUS:%.c=%.o)
 
-all: libft $(NAME)
+all: norm libft $(NAME)
 
 $(NAME): $(SRC_OBJ)
 	$(CC) $(FLAGS) $(SRC_OBJ) $(LIBX) ./libft/libft.a -o $(NAME)
@@ -59,5 +57,8 @@ fclean: clean
 	rm -f $(NAME) $(BONUS_NAME) libft/libft.a
 
 re: fclean all 
+
+norm:
+	@norminette $(SRC) $(BONUS) $(HEADER) ./libft/
 
 .PHONY: all libft bonus clean fclean re

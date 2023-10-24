@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:07:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 20:09:41 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/24 05:34:34 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_load_assets(t_game **game)
 {
-	(*game)->mlx = mlx_init(ft_strlen((*game)->map[0]) * WALL_SIZE, \
-		(*game)->len * WALL_SIZE, "The Lightning Thief", 0);
 	(*game)->load->t_bolt = mlx_load_png("./assets/bolt/4.png");
 	(*game)->load->bolt = mlx_texture_to_image((*game)->mlx, \
 		(*game)->load->t_bolt);

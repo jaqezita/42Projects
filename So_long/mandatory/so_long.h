@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:05:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 19:31:45 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/24 05:34:15 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ void	ft_flood_fill(t_game **game, int x, int y);
 void	ft_conditions(t_game **game, int x, int y);
 void	ft_invalid_type(char *path, t_game **game);
 void	ft_message(t_game **game);
+void	ft_window(t_game **game);
 
 #endif
