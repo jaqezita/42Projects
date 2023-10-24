@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 05:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/23 19:57:43 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/23 21:58:38 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	ft_create_matrix(char *path, t_game **game)
 	char	*temp2;
 
 	ft_invalid_type(path, game);
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		ft_message(game);
+	fd = open(path, O_RDONLY);;
 	lines = get_next_line(fd);
+	if (!lines)
+		ft_message(game);
 	temp = " ";
 	(*game)->len = 0;
 	while (ft_strchr(lines, '\0') && temp != NULL)
