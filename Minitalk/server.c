@@ -6,18 +6,18 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 02:47:19 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/20 07:35:35 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/26 08:35:37 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-#include <signal.h>
+#include "minitalk.h"
 
-void	receive_signal(int signal)
+void	receive_signal(int signal, siginfo_t *info, void *context)
 {
 	static unsigned char	c;
 	static int				index;
 
+	(void)context;
 	if (signal == SIGUSR1)
 		c |= 1;
 	index++;
@@ -27,16 +27,28 @@ void	receive_signal(int signal)
 		index = 0;
 		c = 0;
 	}
-	else
-		c = c << 1;
+	c = c << 1;
+	if (signal == SIGUSR1)
+		kill(info->si_pid, SIGUSR1);
+	else if (signal == SIGUSR2)
+		kill(info->si_pid, SIGUSR2);
 }
 
 int	main(void)
 {
+	struct sigaction	lead;
+	sigset_t			set;
+
+	sigemptyset(&set);
+	sigaddset(&set, SIGUSR1);
+	sigaddset(&set, SIGUSR2);
+	lead.sa_handler = NULL;
+	lead.sa_mask = set;
+	lead.sa_flags = SA_SIGINFO;
+	lead.sa_sigaction = receive_signal;
+	sigaction(SIGUSR1, &lead, NULL);
+	sigaction(SIGUSR2, &lead, NULL);
 	ft_printf("%d\n", getpid());
-	signal(SIGUSR1, receive_signal);
-	signal(SIGUSR2, receive_signal);
 	while (1)
-		;
-	return (0);
+		pause();
 }

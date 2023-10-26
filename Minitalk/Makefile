@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 02:47:29 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/20 04:11:44 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/24 22:35:05 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ S_OBJ = $(S_SRC:.c=.o)
 
 C_OBJ = $(C_SRC:.c=.o)
 
-all: $(S_NAME) $(C_NAME)
+all: libft $(S_NAME) $(C_NAME)
 
 $(S_NAME): libft $(S_OBJ)
 	@$(CC) $(FLAGS) $(S_OBJ) $(header) -o $(S_NAME)
