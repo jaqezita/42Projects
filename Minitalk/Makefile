@@ -6,34 +6,42 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 02:47:29 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/24 22:35:05 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/26 23:50:28 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#+++++++++ COLORS +++++++++
+CYAN = \033[1;36m
+RESET = \033[0m
+#+++++++++ COLORS +++++++++
+
 S_NAME = server
 C_NAME = client
-
-header = ./libft/libft.a -I ./libft/libft.h
 
 CC = cc
 
 FLAGS = -Wall -Wextra -Werror -g3
 
+INCLUDES = -I ./libft/
+
 S_SRC = server.c
+
+S_OBJ = $(S_SRC:%.c=%.o)
 
 C_SRC = client.c
 
-S_OBJ = $(S_SRC:.c=.o)
+C_OBJ = $(C_SRC:%.c=%.o)
 
-C_OBJ = $(C_SRC:.c=.o)
+all: norm libft $(S_NAME) $(C_NAME)
 
-all: libft $(S_NAME) $(C_NAME)
+$(S_NAME): $(S_OBJ) | libft
+	$(CC) $(FLAGS) $(S_OBJ) ./libft/libft.a -o $(S_NAME)
 
-$(S_NAME): libft $(S_OBJ)
-	@$(CC) $(FLAGS) $(S_OBJ) $(header) -o $(S_NAME)
+$(C_NAME): $(C_OBJ) | libft
+	$(CC) $(FLAGS) $(C_OBJ) $(header) ./libft/libft.a -o $(C_NAME)
 
-$(C_NAME): libft $(C_OBJ)
-	@$(CC) $(FLAGS) $(C_OBJ) $(header) -o $(C_NAME)
+%.o: %.c
+	@$(CC) $(FLAGS) -c $< -o $@ $(INCLUDES)
 
 libft:
 	@make -C ./libft
@@ -45,11 +53,12 @@ clean:
 fclean: clean
 	@rm -f $(S_NAME) $(C_NAME)
 	@make fclean -C ./libft
+	@echo "$(CYAN)$(S_NAME) && $(C_NAME) removed.$(RESET)"
 
 re: fclean all
 
 norm:
-	@norminette
-	@echo "Norminette done!"
+	norminette -R CheckForbiddenSource
+	@echo "$(CYAN)NORMINETTE OK $(RESET)"
 
-phony: all clean fclean re libft bonus 
+.PHONY: all clean fclean re libft bonus 

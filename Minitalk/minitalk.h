@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 04:17:10 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/26 08:35:09 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/27 00:16:46 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # include "./libft/libft.h"
 
 void	receive_signal(int signal, siginfo_t *info, void *context);
+void	ft_check_parameters(int argc, char argv1[], char argv2[]);
 
 #endif

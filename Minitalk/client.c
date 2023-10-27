@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 02:47:12 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/26 08:39:00 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/27 00:16:29 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,8 @@ int	main(int argc, char *argv[])
 	int					pid;
 	int					index;
 
-	if (argc != 3)
-		exit(ft_printf("Error: Wrong number of arguments\n"));
+	ft_check_parameters(argc, argv[1], argv[2]);
 	sigemptyset(&set);
-	sigaddset(&set, SIGUSR1);
-	sigaddset(&set, SIGUSR2);
 	action.sa_handler = NULL;
 	action.sa_mask = set;
 	action.sa_flags = SA_SIGINFO;
@@ -78,4 +75,23 @@ int	main(int argc, char *argv[])
 		index++;
 	}
 	g_confirmation_received = 0;
+}
+
+void	ft_check_parameters(int argc, char argv1[], char argv2[])
+{
+	int	index;
+
+	if (argc != 3)
+		exit(ft_printf("Error: Wrong number of arguments\n"));
+	index = 0;
+	while (argv1[index] != '\0')
+	{
+		if (!ft_isdigit(argv1[index]))
+			exit(ft_printf("Error: Invalid PID\n"));
+		index++;
+	}
+	if (ft_atoi(argv1) < 0)
+		exit(ft_printf("Error: Invalid PID\n"));
+	else if (!argv2)
+		exit(ft_printf("Error: Empty string\n"));
 }
