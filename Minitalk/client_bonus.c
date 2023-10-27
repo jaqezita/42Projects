@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 02:47:12 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/27 01:47:04 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/10/27 01:46:36 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,21 @@ void	send_signal(int pid, unsigned char c)
 void	receive_signal(int signal, siginfo_t *info, void *context)
 {
 	int	pid;
+	int	sig1;
+	int	sig2;
 
+	sig1 = 1;
+	sig2 = 0;
 	(void)context;
 	pid = info->si_pid;
 	if (signal == SIGUSR1 || signal == SIGUSR2)
+	{
 		g_confirmation_received = 1;
+		if (signal == SIGUSR1)
+			ft_printf("Signal received from server: %d\n", sig1);
+		if (signal == SIGUSR2)
+			ft_printf("Signal received from server: %d\n", sig2);
+	}
 	else
 		exit(ft_printf("Error: Invalid signal received\n"));
 }
