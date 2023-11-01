@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 22:20:22 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/31 06:35:15 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/11/01 01:04:32 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror -g3
 
 INCLUDES = -I ./libft
 
-SRC = push_swap.c
+SRC = push_swap.c check_errors.c
 
 OBJ = $(SRC:.c=.o)
 

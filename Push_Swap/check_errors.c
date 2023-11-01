@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 23:13:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/01 01:01:54 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/11/01 00:58:55 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/11/01 01:09:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft.h"
+#include "push_swap.h"
 
-void	check_errors(int argc, char *argv[]);
+void	check_errors(int argc, char *argv[])
+{
+	int	i;
+	int	j;
 
-#endif
+	if (argc < 2 || argv == NULL)
+		exit(ft_printf("Error\n"));
+	i = 1;
+	while (i < argc)
+	{
+		j = i + 1;
+		while (j < argc)
+		{
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+				exit(ft_printf("Error\nDuplicate arguments detected.\n"));
+			j++;
+		}
+		i++;
+	}
+}

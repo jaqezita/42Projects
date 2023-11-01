@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 05:34:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/31 07:54:19 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/01 01:11:04 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,19 @@ int	main(int argc, char *argv[])
 {
 	int		index;
 	t_list	*stack_a;
-	t_list	*node;
-	t_list	*stack_b;
+	t_list	*new_node;
 	t_list	*current;
-	int		*teste;
+	int		*arg_value;
 
 	stack_a = NULL;
-	stack_b = NULL;
-	if (argc < 2)
-		return (0);
-	if (argv == NULL)
-		return (0);
+	check_errors(argc, argv);
 	index = 1;
 	while (index < argc)
 	{
-		teste = (int *)malloc(sizeof(int));
-		*teste = ft_atoi(argv[index]);
-		node = ft_lstnew(teste);
-		ft_lstadd_back(&stack_a, node);
+		arg_value = (int *)malloc(sizeof(int));
+		*arg_value = ft_atoi(argv[index]);
+		new_node = ft_lstnew(arg_value);
+		ft_lstadd_back(&stack_a, new_node);
 		index++;
 	}
 	current = stack_a;
@@ -42,5 +37,6 @@ int	main(int argc, char *argv[])
 		ft_printf("%d\n", *(int *)(current->content));
 		current = current->next;
 	}
+	ft_lstclear(&stack_a, free);
 	return (0);
 }

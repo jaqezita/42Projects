@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 19:30:18 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/26 21:03:01 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/31 20:24:05 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ 
-	ar rcs $(NAME) $@
+	@$(CC) $(CFLAGS) -c $< -o $@ 
+	@ar rcs $(NAME) $@
 
 norm:
 	norminette $(SRC) 
@@ -48,9 +48,5 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
-
-so:
-	gcc -nostartfiles -fPIC $(CFLAGS) $(SRC) $(BONUS_SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ) $(BONUS_OBJ)
 
 .PHONY: all clean fclean re bonus
