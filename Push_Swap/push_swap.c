@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 05:34:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/02 20:33:22 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:21:53 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,20 @@ int	main(int argc, char *argv[])
 	
 	// rotate a
 	temp_node = stack_a;
-	stack_a = ft_lstlast(stack_a);
-	temp_node->next = NULL; 
-	
+	stack_a = stack_a->next;
+	temp_node->next = NULL;
+	ft_lstlast(stack_a)->next = temp_node;
 
 	// rotate b
+	temp_node = stack_b;
+	stack_b = stack_b->next;
+	temp_node->next = NULL;
+	ft_lstlast(stack_b)->next = temp_node;
 
 	// reverse rotate a
-
+	temp_node = ft_lstlast(stack_a);
+	temp_node->next = stack_a;
+	
 	// reverse rotate b
 
 	ft_lstclear(&stack_a, free);
