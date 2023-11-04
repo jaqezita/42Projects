@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 23:44:34 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 05:18:48 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/11/04 19:17:01 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/11/04 19:17:54 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_node **stack_a)
+t_node	*populate_stack(int argc, char *argv[])
 {
-	t_node	*current;
+	int		index;
+	int		*arg_value;
+	t_node	*stack_a;
+	t_node	*new_node;
 
-	current = *stack_a;
-	while (current)
+	stack_a = NULL;
+	index = 1;
+	while (index < argc)
 	{
-		ft_printf("%d\n", *(int *)(current->content));
-		current = current->next;
+		arg_value = (int *)malloc(sizeof(int));
+		*arg_value = ft_atoi(argv[index]);
+		new_node = ft_lstnew(arg_value);
+		ft_lstadd_back(&stack_a, new_node);
+		index++;
 	}
+	return (stack_a);
 }

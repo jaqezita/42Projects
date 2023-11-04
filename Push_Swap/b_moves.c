@@ -6,15 +6,15 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:28 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 11:18:04 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:37:12 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_b(t_list **stack_a, t_list **stack_b)
+void	push_b(t_node **stack_a, t_node **stack_b)
 {
-	t_list	*temp_node;
+	t_node	*temp_node;
 
 	// pb
 		temp_node = *stack_a;
@@ -23,9 +23,9 @@ void	push_b(t_list **stack_a, t_list **stack_b)
 		*stack_b = temp_node;
 }
 
-void	swap_b(t_list **stack_b)
+void	swap_b(t_node **stack_b)
 {
-	t_list	*temp_node;
+	t_node	*temp_node;
 
 	//sb
 	if (*stack_b && (*stack_b)->next)
@@ -37,9 +37,9 @@ void	swap_b(t_list **stack_b)
 	}
 }
 
-void	rotate_b(t_list **stack_b)
+void	rotate_b(t_node **stack_b)
 {
-	t_list	*temp_node;
+	t_node	*temp_node;
 
 	//rb
 	if (*stack_b && (*stack_b)->next)
@@ -51,12 +51,12 @@ void	rotate_b(t_list **stack_b)
 	}
 }
 
-void	reverse_rotate_b(t_list **stack_b)
+void	reverse_rotate_b(t_node **stack_b)
 {
-	t_list	*temp_node;
-	t_list	*aux;
+	t_node	*temp_node;
+	t_node	*aux;
 	
-	//rra?
+	//rra
 	temp_node = ft_lstlast(*stack_b);
 	aux	= *stack_b;
 	while (aux->next != temp_node)

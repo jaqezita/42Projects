@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 23:13:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 10:47:57 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:50:22 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,27 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
+typedef struct s_node
+{
+	int				content;
+	struct s_node	*next;
+	unsigned int	index;
+}					t_node;
+
 void	check_errors(int argc, char *argv[]);
-void	print_stack(t_list **stack_a);
-void	push_a(t_list **stack_a, t_list **stack_b);
-void	push_b(t_list **stack_a, t_list **stack_b);
-void	swap_a(t_list **stack_a);
-void	swap_b(t_list **stack_b);
-void	swap_ss(t_list **stack_a, t_list **stack_b);
-void	rotate_a(t_list **stack_a);
-void	rotate_b(t_list **stack_b);
-void	rotate_rr(t_list **stack_a, t_list **stack_b);
-void	reverse_rotate_a(t_list **stack_a);
-void	reverse_rotate_b(t_list **stack_b);
-void	reverse_rotate_rrr(t_list *stack_a, t_list *stack_b);
-void	check_duplicate_arguments(int argc, char *argv[]);
-void	check_integer_overflow(int argc, char *argv[]);
+void	print_stack(t_node **stack_a);
+void	push_a(t_node **stack_a, t_node **stack_b);
+void	push_b(t_node **stack_a, t_node **stack_b);
+void	swap_a(t_node **stack_a);
+void	swap_b(t_node **stack_b);
+void	swap_ss(t_node **stack_a, t_node **stack_b);
+void	rotate_a(t_node **stack_a);
+void	rotate_b(t_node **stack_b);
+void	rotate_rr(t_node **stack_a, t_node **stack_b);
+void	reverse_rotate_a(t_node **stack_a);
+void	reverse_rotate_b(t_node **stack_b);
+void	reverse_rotate_rrr(t_node **stack_a, t_node **stack_b);
+void	check_argument_errors(int argc, char *argv[]);
+t_node	*populate_stack(int argc, char *argv[]);
 
 #endif

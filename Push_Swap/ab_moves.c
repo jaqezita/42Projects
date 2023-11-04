@@ -6,15 +6,15 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:55 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 10:48:20 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:37:46 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_ss(t_list **stack_a, t_list **stack_b)
+void	swap_ss(t_node **stack_a, t_node **stack_b)
 {
-	t_list	*temp_node;
+	t_node	*temp_node;
 
 	// swap a - sa
 	if (*stack_a && (*stack_a)->next)
@@ -34,9 +34,9 @@ void	swap_ss(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-void	rotate_rr(t_list **stack_a, t_list **stack_b)
+void	rotate_rr(t_node **stack_a, t_node **stack_b)
 {
-	t_list	*temp_node;
+	t_node	*temp_node;
 
 	// rotate a - ra
 	if (*stack_a && (*stack_a)->next)
@@ -56,7 +56,31 @@ void	rotate_rr(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-// void	reverse_rotate_rrr(t_list *stack_a, t_list *stack_b)
-// {
-// 	t_list	*temp_node;
-// }
+void	reverse_rotate_rrr(t_node **stack_a, t_node **stack_b)
+{
+	t_node	*temp_node;
+	t_node	*aux;
+
+	//rra
+	temp_node = ft_lstlast(*stack_a);
+	aux	= *stack_a;
+	while (aux->next != temp_node)
+	{
+		aux = aux->next;
+	}
+	aux->next = NULL;
+	temp_node->next = *stack_a;
+	(*stack_a) = temp_node;
+
+	//rra
+	temp_node = ft_lstlast(*stack_b);
+	aux	= *stack_b;
+	while (aux->next != temp_node)
+	{
+		aux = aux->next;
+	}
+	aux->next = NULL;
+	temp_node->next = *stack_b;
+	(*stack_b) = temp_node;
+}
+
