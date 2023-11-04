@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:36:33 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/31 06:16:21 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:45:33 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+long	ft_atol(const char *nptr);
+int		ft_strcmp(char *s1, char *s2);
 
 // -*- get_next_line -*-
 char	*get_next_line(int fd);

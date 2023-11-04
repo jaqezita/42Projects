@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 22:20:22 by jaqribei          #+#    #+#              #
-#    Updated: 2023/11/04 07:57:07 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/11/04 10:49:37 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 CC = cc
 
-FLAGS = -g3
+FLAGS = -Wall -Werror -Wextra -g3
 
 INCLUDES = -I ./libft
 

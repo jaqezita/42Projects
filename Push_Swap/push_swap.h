@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 23:13:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 07:41:45 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:47:57 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	rotate_a(t_list **stack_a);
 void	rotate_b(t_list **stack_b);
 void	rotate_rr(t_list **stack_a, t_list **stack_b);
 void	reverse_rotate_a(t_list **stack_a);
-void	reverse_rotate_b(t_list *stack_a, t_list *stack_b);
+void	reverse_rotate_b(t_list **stack_b);
 void	reverse_rotate_rrr(t_list *stack_a, t_list *stack_b);
 void	check_duplicate_arguments(int argc, char *argv[]);
 void	check_integer_overflow(int argc, char *argv[]);
