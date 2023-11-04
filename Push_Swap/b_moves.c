@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:28 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 10:47:50 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 11:18:04 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@ void	push_b(t_list **stack_a, t_list **stack_b)
 	t_list	*temp_node;
 
 	// pb
-	if (*stack_b)
-	{
-		temp_node = *stack_b;
-		*stack_b = (*stack_b)->next;
-		temp_node->next = *stack_a;
-		*stack_a = temp_node;
-	}
+		temp_node = *stack_a;
+		*stack_a = (*stack_a)->next;
+		temp_node->next = *stack_b;
+		*stack_b = temp_node;
 }
 
 void	swap_b(t_list **stack_b)
