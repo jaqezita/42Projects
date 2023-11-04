@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 00:58:55 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 08:12:00 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 08:14:35 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	check_integer_overflow(int argc, char *argv[])
 	i = 1;
 	while (i < argc)
 	{
-		if ((argv[i][0] != '-' && ft_strncmp(argv[i], ft_itoa(INT_MAX), INT_MAX)) == 0 \
-			|| (argv[i][0] == '-' && ft_strncmp(argv[i], ft_itoa(INT_MIN), INT_MIN)) == 0)
+		if ((argv[i][0] != '-' && ft_strcmp(argv[i], ft_itoa(INT_MAX))) == 0 \
+			|| (argv[i][0] == '-' && ft_strcmp(argv[i], ft_itoa(INT_MIN))) == 0)
 			exit(ft_printf("Error\nInteger overflow.\n"));
 		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
 			exit(ft_printf("Error\nInteger overflow.\n"));
