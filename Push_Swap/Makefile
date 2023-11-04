@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 22:20:22 by jaqribei          #+#    #+#              #
-#    Updated: 2023/11/04 05:16:57 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/11/04 07:57:07 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,5 +47,9 @@ fclean: clean
 norm:
 	norminette -R CheckForbiddenSourceHeader
 	@echo "\033[32m[✓] \033[0m\033[1mNorminette done\033[0m"
-	
+
+re:
+	@make fclean
+	@make all
+
 .PHONY: all clean fclean re norm libft

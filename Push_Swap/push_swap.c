@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 05:34:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 05:16:29 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 06:26:32 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	main(int argc, char *argv[])
 	int		*arg_value;
 	t_list	*stack_a;
 	t_list	*new_node;
-	t_list	*temp_node;
-	
 
 	stack_a = NULL;
 	check_errors(argc, argv);
@@ -34,12 +32,7 @@ int	main(int argc, char *argv[])
 	}
 	print_stack(&stack_a);
 	if (stack_a && stack_a->next && *(int *)stack_a->content > *(int *)stack_a->next->content)
-	{
-		temp_node = stack_a;
-		stack_a = stack_a->next;
-		temp_node->next = stack_a->next;
-		stack_a->next = temp_node;
-	}
+		swap_a(&stack_a);
 	write (1, "\n", 1);
 	print_stack(&stack_a);
 	ft_lstclear(&stack_a, free);
