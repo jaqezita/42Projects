@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 22:20:22 by jaqribei          #+#    #+#              #
-#    Updated: 2023/11/01 01:04:32 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/11/04 05:16:57 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = push_swap
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -g3
+FLAGS = -g3
 
 INCLUDES = -I ./libft
 
-SRC = push_swap.c check_errors.c
+SRC = push_swap.c check_errors.c a_moves.c b_moves.c ab_moves.c print.c
 
 OBJ = $(SRC:.c=.o)
 
