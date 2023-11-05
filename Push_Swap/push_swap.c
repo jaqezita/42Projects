@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 05:34:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 20:07:12 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/05 03:27:35 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int	main(int argc, char *argv[])
 	
 	index = 0;
 	i = 0; 
-	len = ft_lstsize(stack_a);
-	while (stack_a->index < len)
+	len = ft_size(stack_a);
+	// bits = calculate qtd bits of bigest number
+	while (i < bits)
 	{	
 		while (index < len)
 		{
@@ -41,18 +42,36 @@ int	main(int argc, char *argv[])
 		}
 		
 		index = 0;
-		len = ft_lstsize(stack_b);
+		len = ft_size(stack_b);
 		while (index < len)
 		{
 			push_a(&stack_a, &stack_b);
 			index++;
 		}
+		i++;
 	}
 	write (1, "\n", 1);
 	print_stack(&stack_a);
 	write (1, "\n", 1);
 	print_stack(&stack_b);
-	ft_lstclear(&stack_a, free);
-	ft_lstclear(&stack_a, free);
+	ft_clear(&stack_a, free);
+	ft_clear(&stack_a, free);
 	return (0);
+}
+
+void	bigger_number(t_node **stack_a)
+{
+	unsigned int	len;
+	unsigned int	index;
+	unsigned int	numbers;
+
+	len = ft_size(stack_a);
+	while(index < len) 
+	{
+		while (stack_a->next != NULL)
+		{
+			
+		}
+		
+	}
 }

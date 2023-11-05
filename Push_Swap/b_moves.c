@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:28 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 19:37:12 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/04 20:52:34 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	rotate_b(t_node **stack_b)
 		temp_node = *stack_b;
 		*stack_b = (*stack_b)->next;
 		temp_node->next = NULL;
-		ft_lstlast(*stack_b)->next = temp_node;
+		ft_last(*stack_b)->next = temp_node;
 	}
 }
 
@@ -57,7 +57,7 @@ void	reverse_rotate_b(t_node **stack_b)
 	t_node	*aux;
 	
 	//rra
-	temp_node = ft_lstlast(*stack_b);
+	temp_node = ft_last(*stack_b);
 	aux	= *stack_b;
 	while (aux->next != temp_node)
 	{
