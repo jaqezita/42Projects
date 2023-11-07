@@ -1,25 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   normalize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 23:44:34 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/07 20:48:42 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/11/07 18:31:43 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/11/07 20:50:19 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_node **stack_a)
+void	max_index(t_node **stack_a)
 {
-	t_node	*current;
+	unsigned int	index;
+	t_node			*current;
+	t_node			*aux;
 
 	current = *stack_a;
-	while (current)
+	index = 0;
+	while(current) 
 	{
-		ft_printf("%d : index %d \n", (current->content), current->index);
+		aux	= *stack_a;
+		while (aux)
+		{
+			if (current->content > aux->content)
+				current->index++;
+			aux = aux->next;
+		}
 		current = current->next;
 	}
+}
+
+int	number_bits(int argc)
+{
+	unsigned int	number_bits;
+	int				number;
+	
+	number = argc - 2;
+	number_bits = 0;
+	while (number > 0)
+	{
+		number_bits++;
+		number = number / 2;
+	}
+	return (number_bits);
 }

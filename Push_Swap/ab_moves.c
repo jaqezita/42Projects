@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:55 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 20:53:12 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:14:35 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ void	reverse_rotate_rrr(t_node **stack_a, t_node **stack_b)
 	temp_node = ft_last(*stack_a);
 	aux	= *stack_a;
 	while (aux->next != temp_node)
-	{
 		aux = aux->next;
-	}
 	aux->next = NULL;
 	temp_node->next = *stack_a;
 	(*stack_a) = temp_node;
@@ -76,9 +74,7 @@ void	reverse_rotate_rrr(t_node **stack_a, t_node **stack_b)
 	temp_node = ft_last(*stack_b);
 	aux	= *stack_b;
 	while (aux->next != temp_node)
-	{
 		aux = aux->next;
-	}
 	aux->next = NULL;
 	temp_node->next = *stack_b;
 	(*stack_b) = temp_node;

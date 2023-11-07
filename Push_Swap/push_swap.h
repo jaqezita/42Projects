@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 23:13:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 20:56:12 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:37:21 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ void	reverse_rotate_a(t_node **stack_a);
 void	reverse_rotate_b(t_node **stack_b);
 void	reverse_rotate_rrr(t_node **stack_a, t_node **stack_b);
 void	check_argument_errors(int argc, char *argv[]);
-t_node	*populate_stack(int argc, char *argv[]);
 void	ft_clear(t_node **lst, void (*del)(void *));
-int		ft_size(t_node *lst);
-t_node	*ft_last(t_node *lst);
 void	ft_add_back(t_node **lst, t_node *new);
-t_node	*ft_new(void *content);
+t_node	*populate_stack(int argc, char *argv[]);
+t_node	*ft_last(t_node *lst);
+t_node	*ft_new(int content);
+int		ft_size(t_node *lst);
+int		number_bits(int argc);
+void		max_index(t_node **stack_a);
 
 #endif

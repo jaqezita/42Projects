@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:17:01 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/04 21:00:25 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:36:04 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_node	*populate_stack(int argc, char *argv[])
 {
 	int		index;
-	int		*arg_value;
 	t_node	*stack_a;
 	t_node	*new_node;
 
@@ -23,9 +22,7 @@ t_node	*populate_stack(int argc, char *argv[])
 	index = 1;
 	while (index < argc)
 	{
-		arg_value = (int *)malloc(sizeof(int));
-		*arg_value = ft_atoi(argv[index]);
-		new_node = ft_new(arg_value);
+		new_node = ft_new(ft_atoi(argv[index]));
 		ft_add_back(&stack_a, new_node);
 		index++;
 	}
@@ -36,14 +33,13 @@ void	ft_clear(t_node **lst, void (*del)(void *))
 {
 	t_node	*aux;
 	t_node	*current;
-
+	
 	if (lst == NULL || del == NULL)
 		return ;
 	current = *lst;
 	while (current != NULL)
 	{	
 		aux = current->next;
-		del(current->content);
 		free(current);
 		current = aux;
 	}
@@ -85,7 +81,7 @@ void	ft_add_back(t_node **lst, t_node *new)
 	}
 }
 
-t_node	*ft_new(void *content)
+t_node	*ft_new(int content)
 {
 	t_node	*ptr;
 
@@ -93,6 +89,7 @@ t_node	*ft_new(void *content)
 	if (!ptr)
 		return (NULL);
 	ptr->content = content;
+	ptr->index = 0;
 	ptr->next = NULL;
 	return (ptr);
 }
