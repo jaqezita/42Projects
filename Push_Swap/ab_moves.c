@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:55 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/07 18:14:35 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:09:14 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	swap_ss(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*temp_node;
 
-	// swap a - sa
 	if (*stack_a && (*stack_a)->next)
 	{
 		temp_node = *stack_a;
@@ -24,7 +23,6 @@ void	swap_ss(t_node **stack_a, t_node **stack_b)
 		temp_node->next = (*stack_a)->next;
 		(*stack_a)->next = temp_node;
 	}
-	// swap b - sb
 	if (*stack_b && (*stack_b)->next)
 	{
 		temp_node = *stack_b;
@@ -38,7 +36,6 @@ void	rotate_rr(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*temp_node;
 
-	// rotate a - ra
 	if (*stack_a && (*stack_a)->next)
 	{
 		temp_node = *stack_a;
@@ -46,7 +43,6 @@ void	rotate_rr(t_node **stack_a, t_node **stack_b)
 		ft_last(*stack_a)->next = temp_node;
 		temp_node->next = NULL;
 	}
-	// rotate b - rb
 	if (*stack_b && (*stack_b)->next)
 	{
 		temp_node = *stack_b;
@@ -61,22 +57,18 @@ void	reverse_rotate_rrr(t_node **stack_a, t_node **stack_b)
 	t_node	*temp_node;
 	t_node	*aux;
 
-	//rra
 	temp_node = ft_last(*stack_a);
-	aux	= *stack_a;
+	aux = *stack_a;
 	while (aux->next != temp_node)
 		aux = aux->next;
 	aux->next = NULL;
 	temp_node->next = *stack_a;
 	(*stack_a) = temp_node;
-
-	//rra
 	temp_node = ft_last(*stack_b);
-	aux	= *stack_b;
+	aux = *stack_b;
 	while (aux->next != temp_node)
 		aux = aux->next;
 	aux->next = NULL;
 	temp_node->next = *stack_b;
 	(*stack_b) = temp_node;
 }
-

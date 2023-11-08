@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:17:01 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/07 20:36:04 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:07:13 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_clear(t_node **lst, void (*del)(void *))
 {
 	t_node	*aux;
 	t_node	*current;
-	
+
 	if (lst == NULL || del == NULL)
 		return ;
 	current = *lst;

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:31:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/07 20:50:19 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:06:24 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	max_index(t_node **stack_a)
 
 	current = *stack_a;
 	index = 0;
-	while(current) 
+	while (current)
 	{
-		aux	= *stack_a;
+		aux = *stack_a;
 		while (aux)
 		{
 			if (current->content > aux->content)
@@ -37,7 +37,7 @@ int	number_bits(int argc)
 {
 	unsigned int	number_bits;
 	int				number;
-	
+
 	number = argc - 2;
 	number_bits = 0;
 	while (number > 0)

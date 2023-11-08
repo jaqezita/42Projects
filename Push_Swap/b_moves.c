@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:28 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/07 18:14:10 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:05:00 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	push_b(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*temp_node;
 
-	// pb
 		temp_node = *stack_a;
 		*stack_a = (*stack_a)->next;
 		temp_node->next = *stack_b;
@@ -27,7 +26,6 @@ void	swap_b(t_node **stack_b)
 {
 	t_node	*temp_node;
 
-	//sb
 	if (*stack_b && (*stack_b)->next)
 	{
 		temp_node = *stack_b;
@@ -41,7 +39,6 @@ void	rotate_b(t_node **stack_b)
 {
 	t_node	*temp_node;
 
-	//rb
 	if (*stack_b && (*stack_b)->next)
 	{
 		temp_node = *stack_b;
@@ -55,10 +52,9 @@ void	reverse_rotate_b(t_node **stack_b)
 {
 	t_node	*temp_node;
 	t_node	*aux;
-	
-	//rra
+
 	temp_node = ft_last(*stack_b);
-	aux	= *stack_b;
+	aux = *stack_b;
 	while (aux->next != temp_node)
 		aux = aux->next;
 	aux->next = NULL;
