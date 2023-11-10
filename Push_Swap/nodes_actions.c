@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   nodes_actions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:17:01 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/07 21:07:13 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:20:19 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_node	*populate_stack(int argc, char *argv[])
-{
-	int		index;
-	t_node	*stack_a;
-	t_node	*new_node;
-
-	stack_a = NULL;
-	index = 1;
-	while (index < argc)
-	{
-		new_node = ft_new(ft_atoi(argv[index]));
-		ft_add_back(&stack_a, new_node);
-		index++;
-	}
-	return (stack_a);
-}
 
 void	ft_clear(t_node **lst, void (*del)(void *))
 {
