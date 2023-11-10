@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 00:58:55 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/07 21:01:20 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:54:40 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	check_errors(int argc, char *argv[])
 		while (argv[i][k] != '\0')
 		{
 			if (!ft_isdigit(argv[i][k]) && !(k == 0 && argv[i][k] == '-'))
+				exit(ft_printf("Error\nInvalid argument.\n"));
+			if (k == 0 && argv[i][k] == '-' && argv[i][k + 1] == '\0')
 				exit(ft_printf("Error\nInvalid argument.\n"));
 			k++;
 		}
@@ -60,3 +62,4 @@ void	check_argument_errors(int argc, char *argv[])
 		i++;
 	}
 }
+
