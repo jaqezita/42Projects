@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 23:44:34 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/09 21:16:16 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:39:09 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	radix_sort_binary(t_node **stack_a, t_node **stack_b, int bits)
 {
 	unsigned int	index;
 	unsigned int	len_a;
-	// unsigned int	len_b;
 	int				i;
 
 	i = 0;
@@ -62,28 +61,20 @@ void	radix_sort_binary(t_node **stack_a, t_node **stack_b, int bits)
 			index++;
 		}
 		push_back(stack_a, stack_b);
-
-		// index = 0;
-		// len_b = ft_size(*stack_b);
-		// while (index < len_b)
-		// {
-		// 	push_a(stack_a, stack_b);
-		// 	index++;
-		// }
 		i++;
 	}
 }
 
 void	push_back(t_node **stack_a, t_node **stack_b)
 {
-		unsigned int	index;
-		unsigned int	len_b;
+	unsigned int	index;
+	unsigned int	len_b;
 
-		index = 0;
-		len_b = ft_size(*stack_b);
-		while (index < len_b)
-		{
-			push_a(stack_a, stack_b);
-			index++;
-		}
+	index = 0;
+	len_b = ft_size(*stack_b);
+	while (index < len_b)
+	{
+		push_a(stack_a, stack_b);
+		index++;
+	}
 }

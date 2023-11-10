@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 05:34:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/09 21:06:53 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:41:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char *argv[])
 	radix_sort_binary(&stack_a, &stack_b, bits);
 	write (1, "\n", 1);
 	print_stack(&stack_b);
+	write (1, "\n", 1);
 	print_stack(&stack_a);
 	write (1, "\n", 1);
 	ft_clear(&stack_a, free);
