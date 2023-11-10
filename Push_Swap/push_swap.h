@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 23:13:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/09 21:06:24 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/09 21:14:13 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int		ft_size(t_node *lst);
 int		number_bits(int argc);
 void	max_index(t_node **stack_a);
 void	radix_sort_binary(t_node **stack_a, t_node **stack_b, int bits);
+void	push_back(t_node **stack_a, t_node **stack_b);
 
 #endif
