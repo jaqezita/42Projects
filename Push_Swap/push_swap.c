@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 05:34:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/10 11:41:26 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/10 22:47:00 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,24 @@
 
 int	main(int argc, char *argv[])
 {
-	t_node			*stack_a;
-	t_node			*stack_b;
-	int				bits;
+	t_node	*stack_a;
+	t_node	*stack_b;
+	int		bits;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	check_errors(argc, argv);
+	error_check(argc, argv);
 	stack_a = populate_stack(argc, argv);
+	if (!is_stack_sorted(&stack_a))
+	{
+		ft_clear(&stack_a, free);
+		exit (0);
+	}
+	rank_nodes(&stack_a);
 	print_stack(&stack_a);
-	max_index(&stack_a);
+	write (1, "\n", 1);
+	if (ft_size(stack_a) == 3)
+		handle_three_number_stack(&stack_a);
 	bits = number_bits(argc);
 	radix_sort_binary(&stack_a, &stack_b, bits);
 	write (1, "\n", 1);

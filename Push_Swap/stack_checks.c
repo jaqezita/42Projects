@@ -1,49 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utilities.c                                  :+:      :+:    :+:   */
+/*   stack_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 18:31:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/10 22:25:00 by jaqribei         ###   ########.fr       */
+/*   Created: 2023/11/10 22:28:13 by jaqribei          #+#    #+#             */
+/*   Updated: 2023/11/10 22:40:19 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rank_nodes(t_node **stack_a)
+int	is_stack_sorted(t_node **stack_a)
 {
-	unsigned int	index;
-	t_node			*current;
-	t_node			*aux;
+	t_node	*current;
 
 	current = *stack_a;
-	index = 0;
-	while (current)
+	while (current->next != NULL)
 	{
-		aux = *stack_a;
-		while (aux)
-		{
-			if (current->content > aux->content)
-				current->index++;
-			aux = aux->next;
-		}
+		if (current->index > current->next->index)
+			return (0);
 		current = current->next;
 	}
+	return (1);
 }
 
-int	number_bits(int argc)
-{
-	unsigned int	number_bits;
-	int				number;
-
-	number = argc - 2;
-	number_bits = 0;
-	while (number > 0)
-	{
-		number_bits++;
-		number = number / 2;
-	}
-	return (number_bits);
-}

@@ -6,13 +6,20 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 00:58:55 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/10 12:54:40 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/10 22:16:52 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_errors(int argc, char *argv[])
+void	error_check(int argc, char *argv[])
+{
+	check_argument_errors(argc, argv);
+	check_interger_overflow(argc, argv);
+	check_duplicate_arguments(argc, argv);
+}
+
+void	check_argument_errors(int argc, char *argv[])
 {
 	int	i;
 	int	j;
@@ -35,10 +42,9 @@ void	check_errors(int argc, char *argv[])
 		}
 		i++;
 	}
-	check_argument_errors(argc, argv);
 }
 
-void	check_argument_errors(int argc, char *argv[])
+void	check_duplicate_arguments(int argc, char *argv[])
 {
 	int	i;
 	int	j;
@@ -46,16 +52,10 @@ void	check_argument_errors(int argc, char *argv[])
 	i = 1;
 	while (i < argc)
 	{
-		while (i < argc)
-		{
-			if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
-				exit(ft_printf("Error\nInteger overflow.\n"));
-			i++;
-		}
 		j = i + 1;
 		while (j < argc)
 		{
-			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+			if (i != j && (ft_atoi(argv[i]) == ft_atoi(argv[j])))
 				exit(ft_printf("Error\nDuplicate arguments detected.\n"));
 			j++;
 		}
@@ -63,3 +63,15 @@ void	check_argument_errors(int argc, char *argv[])
 	}
 }
 
+void	check_interger_overflow(int argc, char *argv[])
+{
+	int	i;
+	
+	i = 1;
+	while (i < argc)
+	{
+		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
+			exit(ft_printf("Error\nInteger overflow.\n"));
+		i++;
+	}
+}
