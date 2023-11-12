@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:34:01 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/12 16:32:17 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:15:58 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void	smallest_to_stack_b(t_node **stack_a, t_node **stack_b)
 	}
 	if (pos < len / 2)
 	{
-		while(pos != 0)
+		while(pos > 0)
 		{	
 			rotate_a(stack_a);
 			ft_printf("ra\n");
-			pos++;
+			pos--;
 		}
 		push_b(stack_a, stack_b);
 		ft_printf("pb\n");
@@ -87,11 +87,37 @@ void	smallest_to_stack_b(t_node **stack_a, t_node **stack_b)
 		{
 			reverse_rotate_a(stack_a);
 			ft_printf("rra\n");
-			pos--;
+			pos++;
 		}
 		push_b(stack_a, stack_b);
 		ft_printf("pb\n");
 		push_b(stack_a, stack_b);
 		ft_printf("pb\n");
 	}
+}
+
+int	min_node(t_node **stack_a)
+{
+	t_node	*current;
+	t_node	*min_node;
+	int		len;
+	int		i;
+	int		pos;
+	
+	len = ft_size(*stack_a);
+	current = *stack_a;
+	min_node = current;
+	i = 0;
+	pos = 0;
+	while (i < len)
+	{
+		if (current->content < min_node->content)
+		{	
+			min_node = current; 
+			pos = i;
+		}
+		i++;
+		current = current->next;
+	}
+	return (pos);
 }

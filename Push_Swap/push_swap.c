@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 05:34:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/12 16:37:09 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:04:06 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 	if (ft_size(stack_a) == 5)
 		handle_five_number_stack(&stack_a, &stack_b);
 	else
-	radix_sort_binary(&stack_a, &stack_b, bits);
+		radix_sort_binary(&stack_a, &stack_b, bits);
 	write (1, "\n", 1);
 	print_stack(&stack_b);
 	write (1, "\n", 1);
