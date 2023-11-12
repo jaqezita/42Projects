@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 23:13:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/10 22:42:05 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:47:24 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	radix_sort_binary(t_node **stack_a, t_node **stack_b, int bits);
 void	push_back(t_node **stack_a, t_node **stack_b);
 void	handle_two_number_stack(t_node **stack_a);
 void	handle_three_number_stack(t_node **stack_a);
-void	case_one(t_node **stack_a, int first, int middle, int last);
-void	case_two(t_node **stack_a, int first, int middle, int last);
+void	handle_top_lt_middle(t_node **stack_a, int top, int middle, int last);
+void	handle_top_gt_middle(t_node **stack_a, int top, int middle, int last);
+void	handle_five_number_stack(t_node **stack_a, t_node **stack_b);
+void	smallest_to_stack_b(t_node **stack_a, t_node **stack_b);
 
 #endif

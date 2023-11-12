@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:31:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/10 22:25:00 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/11 14:40:55 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,41 @@ int	number_bits(int argc)
 		number = number / 2;
 	}
 	return (number_bits);
+}
+
+void	handle_top_lt_middle(t_node **stack_a, int top, int middle, int last)
+{
+	if (top < last && middle > last)
+	{
+		reverse_rotate_a(stack_a);
+		ft_printf("rra\n");
+		swap_a(stack_a);
+		ft_printf("sa\n");
+	}
+	else if (top > last && middle > last)
+	{
+		reverse_rotate_a(stack_a);
+		ft_printf("rra\n");
+	}
+}
+
+void	handle_top_gt_middle(t_node **stack_a, int top, int middle, int last)
+{
+	if (top < last && middle < last)
+	{
+		swap_a(stack_a);
+		ft_printf("sa\n");
+	}
+	else if (top > last && middle < last)
+	{
+		rotate_a(stack_a);
+		ft_printf("ra\n");
+	}
+	else if (top > last && middle > last)
+	{
+		rotate_a(stack_a);
+		ft_printf("ra\n");
+		swap_a(stack_a);
+		ft_printf("sa\n");
+	}
 }

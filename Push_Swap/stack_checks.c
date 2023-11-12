@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 22:28:13 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/10 22:40:19 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:21:29 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int	is_stack_sorted(t_node **stack_a)
 	current = *stack_a;
 	while (current->next != NULL)
 	{
-		if (current->index > current->next->index)
+		if (current->content > current->next->content)
 			return (0);
 		current = current->next;
 	}
 	return (1);
 }
-

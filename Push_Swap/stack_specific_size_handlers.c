@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_determinate_size_handlers.c                  :+:      :+:    :+:   */
+/*   stack_specific_size_handlers.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:34:01 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/10 20:41:12 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:32:17 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,54 +20,78 @@ void	handle_two_number_stack(t_node **stack_a)
 void	handle_three_number_stack(t_node **stack_a)
 {
 	t_node	*current;
-	int		first;
+	int		top;
 	int		middle;
 	int		last;
 
 	current = *stack_a;
 	last = ft_last(current)->index;
-	first = current->index;
+	top = current->index;
 	middle = current->next->index;
-
-	if (first < middle)
-		case_one(stack_a, first, middle, last);
-	if (first > middle)
-		case_two(stack_a, first, middle, last);
+	if (top < middle)
+		handle_top_lt_middle(stack_a, top, middle, last);
+	if (top > middle)
+		handle_top_gt_middle(stack_a, top, middle, last);
 }
 
-void	case_one(t_node **stack_a, int first, int middle, int last)
+void	handle_five_number_stack(t_node **stack_a, t_node **stack_b)
 {
-	if (first < last && middle > last)
-	{
-		reverse_rotate_a(stack_a);
-		ft_printf("rra\n");
-		swap_a(stack_a);
-		ft_printf("sa\n");
-	}
-	else if (first > last && middle > last)
-	{
-		reverse_rotate_a(stack_a);
-		ft_printf("rra\n");
-	}
+	smallest_to_stack_b(stack_a, stack_b);
+	print_stack(stack_b);
+	handle_three_number_stack(stack_a);
+	push_a(stack_a, stack_b);
+	ft_printf("pa\n");
+	push_a(stack_a, stack_b);
+	ft_printf("pa\n");
 }
 
-void	case_two(t_node **stack_a, int first, int middle, int last)
+void	smallest_to_stack_b(t_node **stack_a, t_node **stack_b)
 {
-	if (first < last && middle < last)
+	t_node	*current;
+	t_node	*min_node;
+	int		len;
+	int		i;
+	int		pos;
+	
+	len = ft_size(*stack_a);
+	current = *stack_a;
+	min_node = current;
+	i = 0;
+	pos = 0;
+	while (i < len)
 	{
-		swap_a(stack_a);
-		ft_printf("sa\n");
+		if (current->content < min_node->content)
+		{	
+			min_node = current; 
+			pos = i;
+		}
+		i++;
+		current = current->next;
 	}
-	else if (first > last && middle < last)
+	if (pos < len / 2)
 	{
-		rotate_a(stack_a);
-		ft_printf("ra\n");
+		while(pos != 0)
+		{	
+			rotate_a(stack_a);
+			ft_printf("ra\n");
+			pos++;
+		}
+		push_b(stack_a, stack_b);
+		ft_printf("pb\n");
+		push_b(stack_a, stack_b);
+		ft_printf("pb\n");
 	}
-	else if (first > last && middle > last)
+	else
 	{
-		rotate_a(stack_a);
-		ft_printf("ra\n");
-		swap_a(stack_a);
-		ft_printf("sa\n");
+		while(pos != 0)
+		{
+			reverse_rotate_a(stack_a);
+			ft_printf("rra\n");
+			pos--;
+		}
+		push_b(stack_a, stack_b);
+		ft_printf("pb\n");
+		push_b(stack_a, stack_b);
+		ft_printf("pb\n");
 	}
 }
