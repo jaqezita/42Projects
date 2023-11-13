@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/13 16:35:56 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:15:03 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	push_a(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*temp_node;
 
+	if (stack_b == NULL || *stack_b == NULL)
+		return ;
 	temp_node = *stack_b;
 	*stack_b = (*stack_b)->next;
 	temp_node->next = *stack_a;
 	*stack_a = temp_node;
 	ft_printf("pa\n");
-		
 }
 
 void	swap_a(t_node **stack_a)

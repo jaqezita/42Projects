@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:31:43 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/11 14:40:55 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:32:06 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,11 @@ void	handle_top_lt_middle(t_node **stack_a, int top, int middle, int last)
 	if (top < last && middle > last)
 	{
 		reverse_rotate_a(stack_a);
-		ft_printf("rra\n");
 		swap_a(stack_a);
-		ft_printf("sa\n");
 	}
 	else if (top > last && middle > last)
 	{
 		reverse_rotate_a(stack_a);
-		ft_printf("rra\n");
 	}
 }
 
@@ -69,18 +66,39 @@ void	handle_top_gt_middle(t_node **stack_a, int top, int middle, int last)
 	if (top < last && middle < last)
 	{
 		swap_a(stack_a);
-		ft_printf("sa\n");
 	}
 	else if (top > last && middle < last)
 	{
 		rotate_a(stack_a);
-		ft_printf("ra\n");
 	}
 	else if (top > last && middle > last)
 	{
 		rotate_a(stack_a);
-		ft_printf("ra\n");
 		swap_a(stack_a);
-		ft_printf("sa\n");
+	}
+}
+
+void	process_half_stack(t_node **stack_a, t_node **stack_b, int pos)
+{
+	int		len;
+
+	len = ft_size(*stack_a);
+	if (pos <= len / 2)
+	{
+		while (pos > 0)
+		{
+			rotate_a(stack_a);
+			pos--;
+		}
+		push_b(stack_a, stack_b);
+	}
+	else
+	{
+		while (pos < len)
+		{
+			reverse_rotate_a(stack_a);
+			pos++;
+		}
+		push_b(stack_a, stack_b);
 	}
 }

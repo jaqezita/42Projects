@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 23:44:34 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/13 16:36:22 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:31:03 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,19 @@ void	push_back(t_node **stack_a, t_node **stack_b)
 	while (index < len_b)
 	{
 		push_a(stack_a, stack_b);
-		ft_printf("pa\n");
 		index++;
 	}
+}
+
+void	small_stack_sort_handler(t_node **stack_a, t_node **stack_b)
+{
+	int	len_a;
+
+	len_a = ft_size(*stack_a);
+	if (len_a == 2)
+		handle_two_number_stack(stack_a);
+	else if (len_a == 3)
+		handle_three_number_stack(stack_a);
+	else if (len_a == 4 || len_a == 5)
+		handle_five_number_stack(stack_a, stack_b);
 }

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 05:34:39 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/13 16:45:06 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:05:29 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,11 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	rank_nodes(&stack_a);
-	print_stack(&stack_a);
-	write (1, "\n", 1);
 	bits = number_bits(argc);
-	if (ft_size(stack_a) == 2)
-		handle_two_number_stack(&stack_a);
-	else if (ft_size(stack_a) == 3)
-		handle_three_number_stack(&stack_a);
-	else if (ft_size(stack_a) == 4 || ft_size(stack_a) == 5)
-		handle_five_number_stack(&stack_a, &stack_b);
+	if (ft_size(stack_a) < 6)
+		small_stack_sort_handler(&stack_a, &stack_b);
 	else
 		radix_sort_binary(&stack_a, &stack_b, bits);
-	write (1, "\n", 1);
-	print_stack(&stack_b);
-	write (1, "\n", 1);
-	print_stack(&stack_a);
-	write (1, "\n", 1);
 	ft_clear(&stack_a, free);
 	ft_clear(&stack_b, free);
 	return (0);

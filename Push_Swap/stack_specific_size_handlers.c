@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:34:01 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/13 16:47:44 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:29:48 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	handle_three_number_stack(t_node **stack_a)
 	middle = current->next->index;
 	if (top < middle)
 		handle_top_lt_middle(stack_a, top, middle, last);
-	if (top > middle)
+	else if (top > middle)
 		handle_top_gt_middle(stack_a, top, middle, last);
 }
 
 void	handle_five_number_stack(t_node **stack_a, t_node **stack_b)
 {
 	int	len_a;
-	
+
 	len_a = ft_size(*stack_a);
 	while (len_a > 3)
 	{
@@ -53,33 +53,12 @@ void	smallest_to_stack_b(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*current;
 	t_node	*min_node;
-	int		len;
-	int		i;
 	int		pos;
-	
-	len = ft_size(*stack_a);
+
 	current = *stack_a;
 	min_node = current;
-	i = 0;
 	pos = find_min_node(stack_a);
-	if (pos <= len / 2)
-	{
-		while(pos > 0)
-		{
-			rotate_a(stack_a);
-			pos--;
-		}
-		push_b(stack_a, stack_b);
-	}
-	else
-	{
-		while(pos < len) // pos < len (pos sempre vai ser positivo)
-		{
-			reverse_rotate_a(stack_a);
-			pos++;
-		}
-	push_b(stack_a, stack_b);
-	}
+	process_half_stack(stack_a, stack_b, pos);
 }
 
 int	find_min_node(t_node **stack_a)
@@ -89,7 +68,7 @@ int	find_min_node(t_node **stack_a)
 	int		len;
 	int		i;
 	int		pos;
-	
+
 	len = ft_size(*stack_a);
 	current = *stack_a;
 	min_node = current;
@@ -99,7 +78,7 @@ int	find_min_node(t_node **stack_a)
 	{
 		if (current->content < min_node->content)
 		{	
-			min_node = current; 
+			min_node = current;
 			pos = i;
 		}
 		i++;
