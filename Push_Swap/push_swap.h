@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 23:13:52 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/12 15:47:24 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:35:22 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	handle_top_lt_middle(t_node **stack_a, int top, int middle, int last);
 void	handle_top_gt_middle(t_node **stack_a, int top, int middle, int last);
 void	handle_five_number_stack(t_node **stack_a, t_node **stack_b);
 void	smallest_to_stack_b(t_node **stack_a, t_node **stack_b);
+int		find_min_node(t_node **stack_a);
 
 #endif

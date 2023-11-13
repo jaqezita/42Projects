@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:34:01 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/12 17:15:58 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:47:44 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,17 @@ void	handle_three_number_stack(t_node **stack_a)
 
 void	handle_five_number_stack(t_node **stack_a, t_node **stack_b)
 {
-	smallest_to_stack_b(stack_a, stack_b);
-	print_stack(stack_b);
+	int	len_a;
+	
+	len_a = ft_size(*stack_a);
+	while (len_a > 3)
+	{
+		smallest_to_stack_b(stack_a, stack_b);
+		len_a--;
+	}
 	handle_three_number_stack(stack_a);
 	push_a(stack_a, stack_b);
-	ft_printf("pa\n");
 	push_a(stack_a, stack_b);
-	ft_printf("pa\n");
 }
 
 void	smallest_to_stack_b(t_node **stack_a, t_node **stack_b)
@@ -57,46 +61,28 @@ void	smallest_to_stack_b(t_node **stack_a, t_node **stack_b)
 	current = *stack_a;
 	min_node = current;
 	i = 0;
-	pos = 0;
-	while (i < len)
-	{
-		if (current->content < min_node->content)
-		{	
-			min_node = current; 
-			pos = i;
-		}
-		i++;
-		current = current->next;
-	}
-	if (pos < len / 2)
+	pos = find_min_node(stack_a);
+	if (pos <= len / 2)
 	{
 		while(pos > 0)
-		{	
+		{
 			rotate_a(stack_a);
-			ft_printf("ra\n");
 			pos--;
 		}
 		push_b(stack_a, stack_b);
-		ft_printf("pb\n");
-		push_b(stack_a, stack_b);
-		ft_printf("pb\n");
 	}
 	else
 	{
-		while(pos != 0)
+		while(pos < len) // pos < len (pos sempre vai ser positivo)
 		{
 			reverse_rotate_a(stack_a);
-			ft_printf("rra\n");
 			pos++;
 		}
-		push_b(stack_a, stack_b);
-		ft_printf("pb\n");
-		push_b(stack_a, stack_b);
-		ft_printf("pb\n");
+	push_b(stack_a, stack_b);
 	}
 }
 
-int	min_node(t_node **stack_a)
+int	find_min_node(t_node **stack_a)
 {
 	t_node	*current;
 	t_node	*min_node;

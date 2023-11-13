@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 23:44:34 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/10 23:17:46 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:36:22 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,9 @@ void	radix_sort_binary(t_node **stack_a, t_node **stack_b, int bits)
 		while (index < len_a)
 		{
 			if (((*stack_a)->index >> i) % 2 == 1)
-			{
 				rotate_a(stack_a);
-				ft_printf("ra\n");
-			}
 			else
-			{
 				push_b(stack_a, stack_b);
-				ft_printf("pb\n");
-			}
 			index++;
 		}
 		push_back(stack_a, stack_b);

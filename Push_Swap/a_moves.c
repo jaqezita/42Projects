@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:57:17 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/11/07 21:08:03 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:35:56 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	push_a(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*temp_node;
 
-		temp_node = *stack_b;
-		*stack_b = (*stack_b)->next;
-		temp_node->next = *stack_a;
-		*stack_a = temp_node;
+	temp_node = *stack_b;
+	*stack_b = (*stack_b)->next;
+	temp_node->next = *stack_a;
+	*stack_a = temp_node;
+	ft_printf("pa\n");
+		
 }
 
 void	swap_a(t_node **stack_a)
@@ -33,6 +35,7 @@ void	swap_a(t_node **stack_a)
 		temp_node->next = (*stack_a)->next;
 		(*stack_a)->next = temp_node;
 	}
+	ft_printf("sa\n");
 }
 
 void	rotate_a(t_node **stack_a)
@@ -46,6 +49,7 @@ void	rotate_a(t_node **stack_a)
 		ft_last(*stack_a)->next = temp_node;
 		temp_node->next = NULL;
 	}
+	ft_printf("ra\n");
 }
 
 void	reverse_rotate_a(t_node **stack_a)
@@ -60,4 +64,5 @@ void	reverse_rotate_a(t_node **stack_a)
 	aux->next = NULL;
 	temp_node->next = *stack_a;
 	(*stack_a) = temp_node;
+	ft_printf("rra\n");
 }
