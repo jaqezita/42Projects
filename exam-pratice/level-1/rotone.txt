@@ -23,6 +23,6 @@ BlkiA aMLJKa , 23z $
 $>./rotone | cat -e
 $
 $>
-$>./rotone "" | cat -e
+$>./rotone | cat -e
 $
 $>

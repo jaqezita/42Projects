@@ -24,6 +24,6 @@ abbacccaddddabba 42!$
 $>./repeat_alpha | cat -e
 $
 $>
-$>./repeat_alpha "" | cat -e
+$>./repeat_alpha | cat -e
 $
 $>
