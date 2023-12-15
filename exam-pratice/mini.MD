@@ -125,7 +125,7 @@ This is a simplified version of the original code, which manually allocated memo
 char *read_user_input(void)
 {
 	char	*buffer = get_next_line(STDIN_FILENO);
-	
+
 	if (!buffer)
 	{
 		fprintf(stderr, "read_user_input: memory allocation error\n");
@@ -153,4 +153,60 @@ char *read_user_input(void)
 //	}
 //	return line;
 //}
+```
+
+# Parsing the line
+
+Looking back at the loop, we have implemented `read_user_input`, and we have the line of input. The next step is to parse that line into a list of arguments. For simplicity, we won't allow quoting or backslash escaping in our command line arguments. Instead, we will use whitespace to separate arguments from each other. For instance, the command `echo "this message"` would not call `echo` with a single argument `this message`, but rather it would call `echo` with two arguments: `this` and `message`.
+
+With these simplifications, our task is to "tokenize" the string using whitespace as delimiters. This means we need to split the string into a series of tokens, each of which is separated by whitespace. We can accomplish this by iterating over the characters in the string, and whenever we encounter a whitespace character, we treat it as the end of the current token and the start of the next one.
+
+#
+> 1. Initialize an empty list to store the tokens (arguments).
+> 2. Initialize an empty string to store the current token.
+> 3. Iterate over each character in the input string:
+>    - If the character is not a whitespace character, append it to the current token.
+>    - If the character is a whitespace character and the current token is not empty, add the current token to the list of tokens and clear the current token.
+> 4. After the loop, if the current token is not empty, add it to the list of tokens.
+> 5. Return the list of tokens.
+#
+
+```c
+#define INITIAL_TOKEN_BUFFER_SIZE 64
+#define TOKEN_DELIMITERS " \t\r\n\a"
+
+char	**split_input_into_tokens(char *line)
+{
+	int		bufsize = INITIAL_TOKEN_BUFFER_SIZE, position = 0;
+	char	**tokens = malloc(bufsize * sizeof(char*));
+	char	*token;
+
+	if (!tokens)
+	{
+		fprintf(stderr, "memory allocation error\n");
+		exit(EXIT_FAILURE);
+	}
+
+	token = strtok(line, TOKEN_DELIMITERS);
+	while (token != NULL)
+	{
+		tokens[position] = token;
+		position++;
+
+		if (position >= bufsize)
+		{
+			bufsize += INITIAL_TOKEN_BUFFER_SIZE;
+			tokens = realloc(tokens, bufsize * sizeof(char*));
+			if (!tokens)
+			{
+				fprintf(stderr, "memory allocation error\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		token = strtok(NULL, TOKEN_DELIMITERS);
+	}
+	tokens[position] = NULL;
+	return tokens;
+}
 ```
