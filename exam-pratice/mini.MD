@@ -161,16 +161,6 @@ Looking back at the loop, we have implemented `read_user_input`, and we have the
 
 With these simplifications, our task is to "tokenize" the string using whitespace as delimiters. This means we need to split the string into a series of tokens, each of which is separated by whitespace. We can accomplish this by iterating over the characters in the string, and whenever we encounter a whitespace character, we treat it as the end of the current token and the start of the next one.
 
-#
-> 1. Initialize an empty list to store the tokens (arguments).
-> 2. Initialize an empty string to store the current token.
-> 3. Iterate over each character in the input string:
->    - If the character is not a whitespace character, append it to the current token.
->    - If the character is a whitespace character and the current token is not empty, add the current token to the list of tokens and clear the current token.
-> 4. After the loop, if the current token is not empty, add it to the list of tokens.
-> 5. Return the list of tokens.
-#
-
 ```c
 #define INITIAL_TOKEN_BUFFER_SIZE 64
 #define TOKEN_DELIMITERS " \t\r\n\a"
@@ -210,3 +200,14 @@ char	**split_input_into_tokens(char *line)
 	return tokens;
 }
 ```
+
+#
+> # Steps : without using the `strtok()`: 
+> 1. Initialize an empty list to store the tokens (arguments).
+> 2. Initialize an empty string to store the current token.
+> 3. Iterate over each character in the input string:
+>    - If the character is not a whitespace character, append it to the current token.
+>    - If the character is a whitespace character and the current token is not empty, add the current token to the list of tokens and clear the current token.
+> 4. After the loop, if the current token is not empty, add it to the list of tokens.
+> 5. Return the list of tokens.
+#
