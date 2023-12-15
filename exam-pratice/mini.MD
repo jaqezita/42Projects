@@ -200,6 +200,13 @@ char	**split_input_into_tokens(char *line)
 	return tokens;
 }
 ```
+This code might seem familiar because it uses the same strategy as `read_user_input()`: it starts with a buffer and dynamically expands it as needed. However, in this case, we're dealing with a null-terminated array of pointers, not characters.
+
+At the start of the `split_input_into_tokens` function, we begin tokenizing by calling `strtok`. This function returns a pointer to the first token. What `strtok()` actually does is return pointers to within the string you give it, and place `\0` bytes at the end of each token. We store each pointer in an array (buffer) of character pointers.
+
+Finally, we reallocate the array of pointers if necessary. This process repeats until `strtok` returns no token, at which point we null-terminate the list of tokens.
+
+So, when all is done, we have an array of tokens, ready to execute. This leads us to the next question: how do we execute these tokens?
 
 #
 > # Steps : without using the `strtok()`: 
@@ -210,4 +217,60 @@ char	**split_input_into_tokens(char *line)
 >    - If the character is a whitespace character and the current token is not empty, add the current token to the list of tokens and clear the current token.
 > 4. After the loop, if the current token is not empty, add it to the list of tokens.
 > 5. Return the list of tokens.
-#
+> #
+
+```c
+#include <ctype.h>
+
+char	**split_input_into_tokens(char *line)
+{
+	int		bufsize = INITIAL_TOKEN_BUFFER_SIZE, position = 0;
+	char	**tokens = malloc(bufsize * sizeof(char*));
+	char	*token = malloc((INITIAL_TOKEN_BUFFER_SIZE + 1) * sizeof(char));
+	int		token_length = 0;
+
+	if (!tokens || !token) {
+		fprintf(stderr, "memory allocation error\n");
+		exit(EXIT_FAILURE);
+	}
+
+	for (int i = 0; line[i] != '\0'; i++)
+	{
+		if (strchr(TOKEN_DELIMITERS, line[i]) != NULL)
+		{	// If the character is a delimiter
+			if (token_length > 0)
+			{	// If there's a token to add
+				token[token_length] = '\0';
+				tokens[position++] = strdup(token);
+				token_length = 0;
+
+				if (position >= bufsize)
+				{
+					bufsize += INITIAL_TOKEN_BUFFER_SIZE;
+					tokens = realloc(tokens, bufsize * sizeof(char*));
+					if (!tokens)
+					{
+						fprintf(stderr, "memory allocation error\n");
+						exit(EXIT_FAILURE);
+					}
+				}
+			}
+		}
+		else 
+		{  // If the character is not a delimiter
+			token[token_length++] = line[i];
+		}
+	}
+
+	// Add the last token if there is one
+	if (token_length > 0)
+	{
+		token[token_length] = '\0';
+		tokens[position++] = strdup(token);
+	}
+
+	tokens[position] = NULL;
+	free(token);
+	return tokens;
+}
+```
