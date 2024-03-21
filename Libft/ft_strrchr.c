@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:17:24 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/07/27 20:10:41 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/30 04:41:43 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strrchr(const char *s, int c)
 	char	*s_copy;
 
 	s_copy = (char *)s;
-	index = (ft_strlen(s_copy));
+	index = ft_strlen(s_copy);
 	while (index >= 0)
 	{
 		if (s_copy[index] == (char)c)

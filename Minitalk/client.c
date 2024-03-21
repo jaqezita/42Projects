@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 02:47:12 by jaqribei          #+#    #+#             */
-/*   Updated: 2023/10/27 01:47:04 by jaqribei         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:06:58 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,26 @@ int	main(int argc, char *argv[])
 	int					index;
 
 	ft_check_parameters(argc, argv[1], argv[2]);
+	
 	sigemptyset(&set);
-	action.sa_handler = NULL;
-	action.sa_mask = set;
-	action.sa_flags = SA_SIGINFO;
-	action.sa_sigaction = receive_signal;
+	action.sa_handler = NULL; // This means that no specific signal handler function is associated with the signals being handled.
+	action.sa_mask = set; // This defines a set of signals that should be blocked while the signal handler is executing.
+	action.sa_flags = SA_SIGINFO;	 // indicating that the sa_sigaction function, not sa_handler, should be used as the signal handler.
+	action.sa_sigaction = receive_signal; // This is the signal handler function.
+	
 	sigaction(SIGUSR1, &action, NULL);
-	sigaction(SIGUSR2, &action, NULL);
+	sigaction(SIGUSR2, &action, NULL); // The previously defined action struct is used, which specifies the receive_signal function as the handler for these signals.
+	
 	pid = atoi(argv[1]);
+	
 	index = 0;
+	
 	while (argv[2][index] != '\0')
 	{
 		send_signal(pid, argv[2][index]);
 		index++;
 	}
-	g_confirmation_received = 0;
+	g_confirmation_received = 0; // This is to avoid the client from exiting before the server has received the last signal.
 }
 
 void	ft_check_parameters(int argc, char argv1[], char argv2[])

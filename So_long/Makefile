@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 13:14:23 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/24 05:51:57 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/25 04:37:38 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ BONUS_NAME = so_long_bonus
 CC = cc 
 
 FLAGS = -g3 -Wall -Wextra -Werror
+
+BUILD_MLX = ./MLX42 -B MLX42/build 
 
 LIBX = MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 
@@ -50,11 +52,11 @@ libft:
 	@make -C ./libft
 
 clean:
-	rm -f $(SRC_OBJ) $(BONUS_OBJ)
+	@rm -f $(SRC_OBJ) $(BONUS_OBJ)
 	@make clean -C ./libft
 
 fclean: clean
-	rm -f $(NAME) $(BONUS_NAME) libft/libft.a
+	@rm -f $(NAME) $(BONUS_NAME) libft/libft.a
 
 re: fclean all 
 

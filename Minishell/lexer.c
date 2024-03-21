@@ -28,7 +28,7 @@ void	add_token(char *str, int type, t_minishell *mini)
 void	lexer(const char *prompt, t_minishell *mini)
 {
 	check_operator(prompt, mini);
-	check_quotes(prompt, mini);
+	check_quotes(prompt);
 	check_space(prompt);
 }
 
@@ -40,27 +40,21 @@ int	check_operator(const char *input, t_minishell *mini)
 	while (input[i])
 	{
 		if (input[i] == '>' && input[i + 1] == '>')
-		{
-			add_token(">>", DOUBLE_GREAT, mini);
-			i++;
-		}
+			return (APPEND);
 		else if (input[i] == '<' && input[i + 1] == '<')
-		{
-			add_token("<<", DOUBLE_LESS, mini);
-			i++;
-		}
+			return (HEREDOC);
 		else if (input[i] == '>' && input[i + 1] != '>')
-			add_token(">", GREAT, mini);
+			return (REDIRECT_OUT);
 		else if (input[i] == '<' && input[i + 1] != '<')
-			add_token("<", LESS, mini);
+			return (REDIRECT_IN);
 		else if (input[i] == '|')
-			add_token("|", PIPE, mini);
+			return (PIPE);
 		i++;
 	}
 	return (1);
 }
 
-void	check_quotes(const char *prompt, t_minishell *mini)
+void	check_quotes(const char *prompt)
 {
 	int	quote;
 	int	double_quote;
@@ -93,10 +87,12 @@ int	check_space(const char *prompt)
 void	get_words(const char *input, t_minishell *mini)
 {
 	int		i;
+	int		j;
 	int		start;
 	char	*arg;
 
 	i = 0;
+	j = 0;
 	if (!input)
 		return ;
 	while (input[i] != '\0')
@@ -104,10 +100,10 @@ void	get_words(const char *input, t_minishell *mini)
 		if (ft_isalpha(input[i]) == 1 || ft_isalpha(input[i]) == '-')
 		{
 			start = i;
-			while (input[i] != ' ' && check_operator(input[i]) != 1)
+			while (input[i] != ' ' && check_operator(&input[i], mini) != 1)
 				i++;
 			arg = ft_substr(input, start, i-start);
-			add_token(arg, UNDEF, mini);
+			mini->args[j] = arg;
 		}
 		if (input[i] == ' ')
 			i++;
@@ -115,25 +111,75 @@ void	get_words(const char *input, t_minishell *mini)
 }
 
 
-void	print_tokens(t_minishell *mini)
-{
-    t_token *current_token = mini->token;
-    while (current_token != NULL)
-    {
-        printf("Content: %s, Type: %d\n", current_token->content, current_token->type);
-        current_token = current_token->next;
-    }
-}
 
-int main()
-{
-    t_minishell mini = {NULL};
+// #include "../include/minishell.h"
 
-    add_token("token1", 1, &mini);
-    add_token("token2", 2, &mini);
-    add_token("token3", 3, &mini);
+// int	check_operator(char *input, t_minishell *mini)
+// {
+// 	int	i;
 
-    print_tokens(&mini);
+// 	i = 0;
+// 	if (!input)
+// 		return (0);
+// 	while (input[i])
+// 	{
+// 		if (input[i] == '>' && input[i + 1] == '>')
+// 			return (DOUBLE_GREAT);
+// 		else if (input[i] == '<' && input[i + 1] == '<')
+// 			return (DOUBLE_LESS);
+// 		else if (input[i] == '>' && input[i + 1] != '>')
+// 			return (GREAT);
+// 		else if (input[i] == '<' && input[i + 1] != '<')
+// 			return (LESS);
+// 		else if (input[i] == '|')
+// 			return (PIPE);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
-    return 0;
-}
+// int	is_word(const char *input, t_minishell *mini)
+// {
+// 	int		i;
+// 	// int		start;
+// 	// char	*word;
+
+// 	i = 0;
+// 	if (!input)
+// 		return (0);
+// 	while (input[i] != '\0')
+// 	{
+// 		if (ft_isalpha(input[i]) == 1 || input[i] == '-')
+// 		{
+// 			// start = i;
+// 			while (input[i] != ' ' && input[i] != '\0')
+// 				i++;
+// 			// word = ft_substr(input, start, i-start);
+// 			return (WORD);
+// 		}
+// 	}
+// 	return (1);
+// }
+
+// int	is_arg(const char *input, t_minishell *mini)
+// {
+// 	int		i;
+// 	// int		start;
+// 	// char	*arg;
+
+// 	i = 0;
+// 	if (!input)
+// 		return (0);
+// 	while (input[i] != '\0')
+// 	{
+// 		if (input[i] == '-' && ft_isalpha(input[i + 1]) == 1 )
+// 		{
+// 			// start = i;
+// 			while (input[i] != ' ' && input[i] != '\0')
+// 				i++;
+// 			// arg = ft_substr(input, start, i-start);
+// 			return (ARG);
+// 		}
+// 	}
+// 	return (1);
+// }

@@ -6,13 +6,14 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 02:47:29 by jaqribei          #+#    #+#              #
-#    Updated: 2023/10/27 01:39:45 by jaqribei         ###   ########.fr        #
+#    Updated: 2023/10/31 09:15:04 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #+++++++++ COLORS +++++++++
 CYAN = \033[1;36m
 RESET = \033[0m
+GREEN = \033[1;32m
 #+++++++++ COLORS +++++++++
 
 S_NAME = server
@@ -39,28 +40,33 @@ C_SRC_BONUS = client_bonus.c
 C_OBJ = $(C_SRC:%.c=%.o)
 C_OBJ_BONUS = $(C_SRC_BONUS:%.c=%.o)
 
-all: norm libft $(S_NAME) $(C_NAME)
+all: libft $(S_NAME) $(C_NAME)
 
 $(S_NAME): $(S_OBJ) | libft
-	$(CC) $(FLAGS) $(S_OBJ) ./libft/libft.a -o $(S_NAME)
+	@$(CC) $(FLAGS) $(S_OBJ) ./libft/libft.a -o $(S_NAME)
+	@echo "$(GREEN)[✓] $(RESET)$(CYAN)$(S_NAME) created$(RESET)"
 
 $(C_NAME): $(C_OBJ) | libft
-	$(CC) $(FLAGS) $(C_OBJ) ./libft/libft.a -o $(C_NAME)
+	@$(CC) $(FLAGS) $(C_OBJ) ./libft/libft.a -o $(C_NAME)
+	@echo "$(GREEN)[✓] $(RESET)$(CYAN)$(C_NAME) created$(RESET)"
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@ $(INCLUDES)
 
-bonus: norm libft $(S_NAME_BONUS) $(C_NAME_BONUS) 
-	@echo "$(CYAN)BONUS MODE ACTIVATED$(RESET)"
+bonus: libft $(S_NAME_BONUS) $(C_NAME_BONUS) 
+	@echo "$(CYAN)\nBONUS MODE ACTIVATED$(RESET)"
 	
 $(S_NAME_BONUS): $(S_OBJ_BONUS)
-	$(CC) $(FLAGS) $(S_OBJ_BONUS) ./libft/libft.a -o $(S_NAME_BONUS)
+	@$(CC) $(FLAGS) $(S_OBJ_BONUS) ./libft/libft.a -o $(S_NAME_BONUS)
+	@echo "$(GREEN)[✓] $(RESET)$(CYAN)$(S_NAME_BONUS) created$(RESET)"
 
 $(C_NAME_BONUS): $(C_OBJ_BONUS)
-	$(CC) $(FLAGS) $(C_OBJ_BONUS) ./libft/libft.a -o $(C_NAME_BONUS)
+	@$(CC) $(FLAGS) $(C_OBJ_BONUS) ./libft/libft.a -o $(C_NAME_BONUS)
+	echo "$(GREEN)[✓] $(RESET)$(CYAN)$(C_NAME_BONUS) created$(RESET)"
 
 libft:
 	@make -C ./libft
+	echo "$(GREEN)[✓] $(RESET)$(CYAN)libft created$(RESET)"
 
 clean:
 	@rm -f $(S_OBJ) $(C_OBJ) $(S_OBJ_BONUS) $(C_OBJ_BONUS)
@@ -75,6 +81,6 @@ re: fclean all
 
 norm:
 	norminette -R CheckForbiddenSource
-	@echo "$(CYAN)NORMINETTE OK $(RESET)"
+	echo "$(CYAN)NORMINETTE OK $(RESET)"
 
 .PHONY: all clean fclean re libft bonus 
