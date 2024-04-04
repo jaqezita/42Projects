@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/03 18:27:21 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:07:20 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,13 @@ t_tuple		add_tuples(t_tuple a, t_tuple b);
 t_tuple		subtract_tuples(t_tuple a, t_tuple b);
 t_tuple		deny_tuples(t_tuple a);
 t_tuple		multiply_tuples(t_tuple a, double number);
-bool		check_tuple_equality(t_tuple a, t_tuple b);
 t_tuple		divide_tuple(t_tuple a, double number);
+bool		check_tuple_equality(t_tuple a, t_tuple b);
+double		vector_magnitude(t_tuple a);
+t_tuple		vector_norm(t_tuple a);
+double		dot_product(t_tuple a, t_tuple b);
+t_tuple		cross_product(t_tuple a, t_tuple b);
+
 
 
 

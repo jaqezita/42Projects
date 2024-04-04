@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/03 18:27:21 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:14:02 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,129 @@ int	main(void)
 		printf("\33[1;32mOK\n");
 	else
 		printf("\33[1;31mFAIL\n");
+	
+	printf("\n\033[1;35mComputing the magnitude of vector\033[0m\n");
+	
+	t_tuple mag0 = {1, 0, 0, 0};
+	t_tuple mag1 = {0, 1, 0, 0};
+	t_tuple mag2 = {0, 0, 1, 0};
+	t_tuple mag3 = {1, 2, 3, 0};
+	t_tuple mag4 = {-1, -2, -3, 0};
+	
+	double	expect_mag0 = 1;
+	double	mag0_v = vector_magnitude(mag0);
+	printf ("expect: %.1f\n", expect_mag0);
+	printf ("result: %.1f\n", mag0_v);
+	if (fabs(expect_mag0 - mag0_v ) < EPSILON)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+	double	expect_mag1 = 1;
+	double	mag1_v = vector_magnitude(mag1);
+	printf ("expect: %.1f\n", expect_mag1);
+	printf ("result: %.1f\n", mag1_v);
+	if (fabs(expect_mag1 - mag1_v ) < EPSILON)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+	double	expect_mag2 = 1;
+	double	mag2_v = vector_magnitude(mag2);
+	printf ("expect: %.1f\n", expect_mag2);
+	printf ("result: %.1f\n", mag2_v);
+	if (fabs(expect_mag2 - mag2_v ) < EPSILON)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+	double	expect_mag3 = sqrt(14);
+	double	mag3_v = vector_magnitude(mag3);
+	printf ("expect: %.1f\n", expect_mag3);
+	printf ("result: %.1f\n", mag3_v);
+	if (fabs(expect_mag3 - mag3_v ) < EPSILON)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+	double	expect_mag4 = sqrt(14);
+	double	mag4_v = vector_magnitude(mag4);
+	printf ("expect: %.1f\n", expect_mag4);
+	printf ("result: %.1f\n", mag4_v);
+	if (fabs(expect_mag4 - mag4_v ) < EPSILON)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");	
+
+
+	printf("\n\033[1;35mNormalizing vector\033[0m\n");
+	t_tuple	vec_n = {4, 0, 0, 0};
+	t_tuple	expec_n = {1, 0, 0, 0};
+	t_tuple	res_n = vector_norm(vec_n);
+	printf ("expect: %.1f, %.1f, %.1f, %.1f\n", expec_n.x, expec_n.y, expec_n.z, expec_n.w);
+	printf ("result: %.1f, %.1f, %.1f, %.1f\n", res_n.x, res_n.y, res_n.z, res_n.w);
+	if (check_tuple_equality(expec_n, res_n))
+		printf("\33[1;32mOK\033[0m\n\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n\n");
+
+	t_tuple	vec_n1 = {1, 2, 3, 0};
+	t_tuple	expec_n1 = {1/sqrt(14), 2/sqrt(14), 3/sqrt(14), 0};
+	t_tuple	res_n1 = vector_norm(vec_n1);
+	printf ("expect: %f, %f, %f, %f\n", expec_n1.x, expec_n1.y, expec_n1.z, expec_n1.w);
+	printf ("result: %f, %f, %f, %f\n", res_n1.x, res_n1.y, res_n1.z, res_n1.w);
+	if (check_tuple_equality(expec_n1, res_n1))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+	
+	
+	printf("\n\033[1;35mThe magnitude of a normalized vector\033[0m\n");
+	t_tuple	vec_nm = {1, 2, 3, 0};
+	t_tuple	norm = vector_norm(vec_nm);
+	double	expec_norm_m = 1;
+	double	res_norm_m = vector_magnitude(norm);
+	printf ("expect: %.1f\n", expec_norm_m);
+	printf ("result: %.1f\n", res_norm_m);
+	if (fabs(expec_norm_m - res_norm_m) < EPSILON)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+	printf("\n\033[1;35mThe dot product of two tuples\033[0m\n");
+	t_tuple	d1 = {1, 2, 3, 0};
+	t_tuple	d2 = {2, 3, 4, 0};
+	double	expec_dp = 20;
+	double	res_dp = dot_product(d1, d2);
+	printf ("expect: %.1f\n", expec_dp);
+	printf ("result: %.1f\n", res_dp);
+	if (fabs(expec_dp - res_dp) < EPSILON)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+	printf("\n\033[1;35mThe cross product of two vectors\033[0m\n");
+	t_tuple	v_cp = {1, 2, 3, 0};
+	t_tuple	v_cp1 = {2, 3, 4, 0};
+	t_tuple	expec_cp_ab = {-1, 2, -1, 0};
+	t_tuple	res_cp_ab = cross_product(v_cp, v_cp1);
+	printf ("expect: %.1f, %.1f, %.1f, %.1f\n", expec_cp_ab.x, expec_cp_ab.y, expec_cp_ab.z, expec_cp_ab.w);
+	printf ("result: %.1f, %.1f, %.1f, %.1f\n", res_cp_ab.x, res_cp_ab.y, res_cp_ab.z, res_cp_ab.w);
+	if (check_tuple_equality(expec_cp_ab, res_cp_ab))
+		printf("\33[1;32mOK\033[0m\n\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n\n");
+
+	t_tuple	expec_cp_ba = {1, -2, 1, 0};
+	t_tuple	res_cp_ba = cross_product(v_cp1, v_cp);
+	printf ("expect: %.1f, %.1f, %.1f, %.1f\n", expec_cp_ba.x, expec_cp_ba.y, expec_cp_ba.z, expec_cp_ba.w);
+	printf ("result: %.1f, %.1f, %.1f, %.1f\n", res_cp_ba.x, res_cp_ba.y, res_cp_ba.z, res_cp_ba.w);
+	if (check_tuple_equality(expec_cp_ba, res_cp_ba))
+		printf("\33[1;32mOK\033[0m\n\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n\n");
+
 	return (0);
+
 }

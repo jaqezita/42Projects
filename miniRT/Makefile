@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/02 14:10:02 by jaqribei          #+#    #+#              #
-#    Updated: 2024/04/03 15:31:44 by jaqribei         ###   ########.fr        #
+#    Updated: 2024/04/04 17:17:55 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ run: re all
 	@./$(NAME)
 
 gdb: re all
-	@gdb ./$(NAME)
+	@gdb --tui ./$(NAME)
 
 clean:
 	@rm -f $(OBJ)
