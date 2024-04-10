@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/02 14:10:02 by jaqribei          #+#    #+#              #
-#    Updated: 2024/04/04 17:17:55 by jaqribei         ###   ########.fr        #
+#    Updated: 2024/04/09 14:15:03 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ FLAGS = -g3
 
 INCLUDES = tests.h
 
-SRC = tests.c tuples.c
+SRC = tests.c tuples.c matrices.c
 
 OBJ = $(SRC:%.c=%.o)
 

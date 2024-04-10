@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 13:36:12 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/04 19:07:20 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:28:35 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_tuple	create_vector(double x, double y, double z)
 	return (t);
 }
 
-bool	check_tuple_equality(t_tuple a, t_tuple b)
+int	check_tuple_equality(t_tuple a, t_tuple b)
 {
 	double	x;
 	double	y;
@@ -57,9 +57,10 @@ bool	check_tuple_equality(t_tuple a, t_tuple b)
 	z = fabs(a.z - b.z);
 	w = fabs(a.w - b.w);
 	if ((x < EPSILON) && (y < EPSILON) && (z < EPSILON) && (w < EPSILON))
-		return (true);
-	return (false);
+		return (1);
+	return (0);
 }
+// classic arithmetic operations
 
 t_tuple	add_tuples(t_tuple a, t_tuple b)
 {
@@ -72,7 +73,6 @@ t_tuple	add_tuples(t_tuple a, t_tuple b)
 	return (result);
 }
 
-// classic arithmetic operations
 
 t_tuple	subtract_tuples(t_tuple a, t_tuple b)
 {
@@ -96,7 +96,7 @@ t_tuple	deny_tuples(t_tuple a)
 	return (result);
 }
 
-t_tuple	multiply_tuples(t_tuple a, double number)
+t_tuple	multiply_tuples_scalar(t_tuple a, double number)
 {
 	t_tuple	result;
 
@@ -107,7 +107,7 @@ t_tuple	multiply_tuples(t_tuple a, double number)
 	return (result);
 }
 
-t_tuple	divide_tuple(t_tuple a, double number)
+t_tuple	divide_tuple_scalar(t_tuple a, double number)
 {
 	t_tuple	result;
 
