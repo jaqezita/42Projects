@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/10 17:00:49 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:40:56 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	main(void)
 	if (is_point(a))
 		printf("t_tuple a = {4.3, -4.2, 3.1, 1.0} is a point\n");
 	if (is_point(b))
-		printf("t_tuple b = {4.3, -4.2, 3.1, 0.0} is a point\n");
+		printf("t_tuple b = {4.3, -4.2, 3.1, 0.0} is not a point\n");
 	if (is_vector(a))
-		printf("t_tuple a = {4.3, -4.2, 3.1, 1.0} is a point\n");
+		printf("t_tuple a = {4.3, -4.2, 3.1, 1.0} is not a vector\n");
 	if (is_vector(b))
 		printf("t_tuple b = {4.3, -4.2, 3.1, 0.0} is a vector\n");
 	
@@ -281,12 +281,8 @@ int	main(void)
 
 	
 	printf("\n\033[1;35mConstructing and inspecting a 4x4 matrix\033[0m\n");
+	double mat_result[] = {1.0, 2.0, 3.0, 4.0, 5.5, 6.5, 7.5, 8.5 , 9.0, 10.0, 11.0, 12.0, 13.5, 14.5, 15.5, 16.5};
 	double mat_expect[4][4] = {
-	{1.0, 2.0, 3.0, 4.0},
-	{5.5, 6.5, 7.5, 8.5},
-	{9.0, 10.0, 11.0, 12.0},
-	{13.5, 14.5, 15.5, 16.5}};
-	double mat_result[4][4] = {
 	{1.0, 2.0, 3.0, 4.0},
 	{5.5, 6.5, 7.5, 8.5},
 	{9.0, 10.0, 11.0, 12.0},
@@ -340,10 +336,7 @@ int	main(void)
 	{-3, 5,},
 	{1, -2}
 	};
-	double mat_res[2][2] = {
-	{-3, 5,},
-	{1, -2}
-	};
+	double mat_res[] = {-3, 5, 1, -2};
 	t_matrix matrix1 = create_matrix(2, mat_res);
 	printf("expect: matrix[0][0]: %.2f\n", mat_expec[0][0]);
 	printf("result: matrix[0][0]: %.2f\n", matrix1.grid[0][0]);
@@ -370,18 +363,14 @@ int	main(void)
 	else
 		printf("\33[1;31mFAIL\033[0m\n\n");
 	
-	
+
 	printf("\n\033[1;35mA 3x3 matrix ought to be representable\033[0m\n");
 	double mat_e[3][3] = {
 	{-3, 5, 0},
 	{1, -2, -7},
 	{0, 1, 1}
 	};
-	double mat_r[3][3] = {
-	{-3, 5, 0},
-	{1, -2, -7},
-	{0, 1, 1}
-	};
+	double mat_r[] = {-3, 5, 0, 1, -2, -7, 0, 1, 1};
 	t_matrix matrix2 = create_matrix(3, mat_r);
 	printf("expect: matrix[0][0]: %.2f\n", mat_e[0][0]);
 	printf("result: matrix[0][0]: %.2f\n", matrix2.grid[0][0]);
@@ -404,18 +393,8 @@ int	main(void)
 	
 
 	printf("\n\033[1;35mMatrix equality with identical matrices\033[0m\n");
-	double mat_a[4][4] = {
-	{1, 2, 3, 4},
-	{5, 6, 7, 8},
-	{9, 8, 7, 6},
-	{5, 4, 3, 2}
-	};
-	double mat_b[4][4] = {
-	{1, 2, 3, 4},
-	{5, 6, 7, 8},
-	{9, 8, 7, 6},
-	{5, 4, 3, 2}
-	};
+	double mat_a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2};
+	double mat_b[] = {1, 2, 3, 4 ,5, 6, 7, 8 ,9, 8, 7, 6 ,5, 4, 3, 2};
 	t_matrix matrix_a = create_matrix(4, mat_a);
 	t_matrix matrix_b = create_matrix(4, mat_b);
 	if (matrix_equality(matrix_a, matrix_b))
@@ -424,18 +403,8 @@ int	main(void)
 		printf("\33[1;31mFAIL\nA != B\033[0m\n");
 
 	printf("\n\033[1;35mMatrix equality with different matrices\033[0m\n");
-	double mat_a1[4][4] = {
-	{1, 2, 3, 4},
-	{5, 6, 7, 8},
-	{9, 8, 7, 6},
-	{5, 4, 3, 2}
-	};
-	double mat_b1[4][4] = {
-	{2, 3, 4, 5},
-	{6, 7, 8, 9},
-	{8, 7, 6, 5},
-	{4, 3, 2, 1}
-	};
+	double mat_a1[] = {1, 2, 3, 4,5, 6, 7, 8,9, 8, 7, 6,5, 4, 3, 2};
+	double mat_b1[] = {2, 3, 4, 5,6, 7, 8, 9,8, 7, 6, 5,4, 3, 2, 1};
 	t_matrix matrix_a1 = create_matrix(4, mat_a1);
 	t_matrix matrix_b1 = create_matrix(4, mat_b1);
 	if (!matrix_equality(matrix_a1, matrix_b1))
@@ -444,27 +413,12 @@ int	main(void)
 		printf("\33[1;31mFAIL\nA = B\033[0m\n");
 
 	printf("\n\033[1;35mMultiplying two matrices\033[0m\n");
-	double mat_m1[4][4] = {
-	{1, 2, 3, 4},
-	{5, 6, 7, 8},
-	{9, 8, 7, 6},
-	{5, 4, 3, 2}
-	};
-	double mat_m2[4][4] = {
-	{-2, 1, 2, 3},
-	{3, 2, 1, -1},
-	{4, 3, 6, 5},
-	{1, 2, 7, 8}
-	};
+	double mat_m1[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2};
+	double mat_m2[] = {-2, 1, 2, 3, 3, 2, 1, -1, 4, 3, 6, 5, 1, 2, 7, 8};
 	t_matrix	matrix_m1 = create_matrix(4,mat_m1);
 	t_matrix	matrix_m2 = create_matrix(4,mat_m2);
 	t_matrix	result_mm = multiply_matrices(matrix_m1, matrix_m2);
-	double		expec_mm[4][4] = {
-	{20, 22, 50, 48},
-	{44, 54, 114, 108},
-	{40, 58, 110, 102},
-	{16, 26, 46, 42}
-	};
+	double		expec_mm[] = {20, 22, 50, 48, 44, 54, 114, 108 , 40, 58, 110, 102, 16, 26, 46, 42};
 	t_matrix	expect_mm = create_matrix(4, expec_mm);
 	if (matrix_equality(result_mm, expect_mm))
 		printf("\33[1;32mOK\nA = B \033[0m\n");
@@ -473,27 +427,12 @@ int	main(void)
 
 
 	printf("\n\033[1;35mMultiplying two matrices- exemple 2\033[0m\n");
-	double exp1[4][4] = {
-	{1, 2, 3, 4},
-	{2, 3, 4, 5},
-	{3, 4, 5, 6},
-	{4, 5, 6, 7}
-	};
-	double exp2[4][4] = {
-	{0, 1, 2, 4},
-	{1, 2, 4, 8},
-	{2, 4, 8, 16},
-	{4, 8, 16, 32}
-	};
+	double exp1[] = {1, 2, 3, 4, 2, 3, 4, 5, 3, 4, 5, 6, 4, 5, 6, 7};
+	double exp2[] = {0, 1, 2, 4, 1, 2, 4, 8, 2, 4, 8, 16, 4, 8, 16, 32};
 	t_matrix	matrix_exp1 = create_matrix(4, exp1);
 	t_matrix	matrix_exp2 = create_matrix(4, exp2);
 	t_matrix	result_exp = multiply_matrices(matrix_exp1, matrix_exp2);
-	double		expec_exp[4][4] = {
-	{24, 49, 98, 196},
-	{31, 64, 128, 256},
-	{38, 79, 158, 316},
-	{45, 94, 188, 376}
-	};
+	double		expec_exp[] = {24, 49, 98, 196, 31, 64, 128, 256, 38, 79, 158, 316, 45, 94, 188, 376};
 	t_matrix	expect_exp = create_matrix(4, expec_exp);
 	printf("expect: matrix[1][0]: %.2f\n", expect_exp.grid[1][0]);
 	printf("result: matrix[1][0]: %.2f\n", result_exp.grid[1][0]);
@@ -503,12 +442,7 @@ int	main(void)
 		printf("\33[1;31mFAIL\nA != B\033[0m\n");
 
 	printf("\n\033[1;35mA matrix multiplied by a tuple\033[0m\n");
-	double mp[4][4] = {
-	{1, 2, 3, 4},
-	{2, 4, 4, 2},
-	{8, 6, 4, 1},
-	{0, 0, 0, 1}
-	};
+	double mp[] = {1, 2, 3, 4, 2, 4, 4, 2, 8, 6, 4, 1, 0, 0, 0, 1};
 	t_tuple	tup = {1, 2, 3, 1};
 	t_matrix	matrix_mp = create_matrix(4, mp);
 	t_tuple	result_mp = multiply_matrix_by_tuple(matrix_mp, tup);
@@ -522,12 +456,7 @@ int	main(void)
 
 
 	printf("\n\033[1;35mMultiplying a matrix by the identity matrix\033[0m\n");
-	double id[4][4] = {
-	{0, 1, 2, 4},
-	{1, 2, 4, 8},
-	{2, 4, 8, 16},
-	{4, 8, 16, 32}
-	};
+	double id[] = {0, 1, 2, 4, 1, 2, 4, 8, 2, 4, 8, 16, 4, 8, 16, 32};
 	t_matrix	matrix_id = create_matrix(4, id);
 	t_matrix	matrix_identity = create_matrix_identity(4);
 	t_matrix	result_id = multiply_matrices(matrix_id, matrix_identity);
@@ -549,6 +478,164 @@ int	main(void)
 	else
 		printf("\33[1;31mFAIL\033[0m\n");
 
-		
-return (0);
+
+	printf("\n\033[1;35mTransposing a matrix\033[0m\n");
+	double tr1[] = {0, 9, 3, 0, 9, 8, 0, 8, 1, 8, 5, 3, 0, 0, 5, 8};
+	double expec_tr2[] = {0, 9, 1, 0, 9, 8, 8, 0, 3, 0, 5, 5, 0, 8, 3, 8};
+	t_matrix	matrix_tr1 = create_matrix(4, tr1);
+	t_matrix	matrix_expec_tr2 = create_matrix(4, expec_tr2);
+	t_matrix	result_tr2 = transpose_matrix(matrix_tr1);
+	if (matrix_equality(result_tr2, matrix_expec_tr2))
+		printf("\33[1;32mOK\nA = B \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\nA != B\033[0m\n");
+
+
+	printf("\n\033[1;35mTransposing the identity matrix\033[0m\n");
+	t_matrix	matrix_tr_id = create_matrix_identity(4);
+	t_matrix	result_tr_id = transpose_matrix(matrix_tr_id);
+	if (matrix_equality(result_tr_id, matrix_tr_id))
+		printf("\33[1;32mOK\nA = B \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\nA != B\033[0m\n");
+
+
+	printf("\n\033[1;35mCalculating the determinant of a 2x2 matrix\033[0m\n");
+	double det2[] = {1, 5, -3, 2};
+	t_matrix	matrix_det2 = create_matrix(2, det2);
+	double	result_det2 = calc_basic_determinant(2, matrix_det2);
+	double	expect_det2 = 17.0;
+	if (fabs(result_det2 - expect_det2) < EPSILON)
+		printf("\33[1;32mOK\nA = B \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\nA != B\033[0m\n");
+
+
+	printf("\n\033[1;35mA submatrix of a 3x3 matrix is a 2x2 matrix\033[0m\n");
+	double sub1[] = {1, 5, 0, -3, 2, 7, 0, 6, -3};
+	double expec_sub[] = {-3, 2, 0, 6};
+	t_matrix	matrix_sub1 = create_matrix(3, sub1);
+	t_matrix	matrix_expec_sub = create_matrix(2, expec_sub);
+	t_matrix	result_sub = create_submatrix(matrix_sub1, 0, 2);
+	if (matrix_equality(result_sub, matrix_expec_sub ))
+		printf("\33[1;32mOK\nA = B \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\nA != B\033[0m\n");
+	
+	printf("\n\033[1;35mA submatrix of a 4x4 matrix is a 3x3 matrix\033[0m\n");
+	double sub2[] = {-6, 1, 1, 6, -8, 5, 8, 6, -1, 0, 8, 2, -7, 1, -1, 1};
+	double expec_sub1[] = {-6, 1, 6, -8, 8, 6, -7, -1, 1};
+	t_matrix	matrix_sub2 = create_matrix(4, sub2);
+	t_matrix	matrix_expec_sub1= create_matrix(3, expec_sub1);
+	t_matrix	result_sub1 = create_submatrix(matrix_sub2, 2, 1);
+	if (matrix_equality(result_sub1, matrix_expec_sub1))
+		printf("\33[1;32mOK\nA = B \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\nA != B\033[0m\n");
+	
+
+
+	printf("\n\033[1;35mCalculating a minor of a 3x3 matrix\033[0m\n");
+	double		minor_a[] = {3, 5, 0, 2, -1, -7, 6, -1, 5};
+	t_matrix	matrix_minor_a = create_matrix(3, minor_a);
+	t_matrix	sub_minor_a = create_submatrix(matrix_minor_a, 1, 0);
+	double		det_minor_a = calc_basic_determinant(2, sub_minor_a);
+	double	result_minor_a = calc_minor(matrix_minor_a.size, matrix_minor_a, 1, 0);
+	printf("expect: %.1f\n", det_minor_a);
+	printf("result: %.1f\n", result_minor_a);
+	if (fabs(det_minor_a - result_minor_a) < EPSILON)
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+
+
+	printf("\n\033[1;35mCalculating a cofactor of a 3x3 matrix\033[0m\n");
+	double		cof_a[] = {3, 5, 0, 2, -1, -7, 6, -1, 5};
+	t_matrix	matrix_cof_a = create_matrix(3, cof_a);
+	double		expect_minor_cof_a = -12;
+	double		minor_cof_a = calc_minor(matrix_cof_a.size, matrix_cof_a, 0, 0);
+	
+	double		expect_cof_a = -12;
+	double		result_cof_a = cofactor(matrix_cof_a.size, matrix_cof_a, 0, 0);	
+	
+	double		expect_minor_cof_a1 = 25;
+	double		minor_cof_a1 = calc_minor(matrix_cof_a.size, matrix_cof_a, 1, 0);
+	double		expect_cof_a1 = -25;
+	double		result_cof_a1 = cofactor(matrix_cof_a.size, matrix_cof_a, 1, 0);
+	printf("expect minor (A, 0, 0): %.1f\n", expect_minor_cof_a);
+	printf("result minor (A, 0, 0): %.1f\n", minor_cof_a);
+	printf("expect cofactor (A, 0, 0): %.1f\n", expect_cof_a);
+	printf("result cofactor (A, 0, 0): %.1f\n", result_cof_a);
+	printf("expect minor (A, 1, 0): %.1f\n", expect_minor_cof_a1);
+	printf("result minor (A, 1, 0): %.1f\n", minor_cof_a1);
+	printf("expect cofactor (A, 1, 0): %.1f\n", expect_cof_a1);
+	printf("result cofactor (A, 1, 0): %.1f\n", result_cof_a1);
+
+	if (fabs(expect_minor_cof_a - result_cof_a) < EPSILON && fabs(expect_minor_cof_a1 - minor_cof_a1) < EPSILON && fabs(expect_cof_a1 - result_cof_a1) < EPSILON && fabs(expect_cof_a - result_cof_a) < EPSILON)
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+
+
+	printf("\n\033[1;35mCalculating the determinant of a 3x3 matrix\033[0m\n");
+	double		det_3[] = {1, 2, 6, -5, 8, -4, 2, 6, 4};
+	t_matrix	matrix_det_3 = create_matrix(3, det_3);
+	double		cof_3_0 = cofactor(matrix_det_3.size, matrix_det_3, 0, 0);
+	double		expec_cof_3_0 = 56;
+	double		cof_3_1 = cofactor(matrix_det_3.size, matrix_det_3, 0, 1);
+	double		expec_cof_3_1 = 12;
+	double		cof_3_2 = cofactor(matrix_det_3.size, matrix_det_3, 0, 2);
+	double		expec_cof_3_2 = -46;
+	double		det_3_0 = calc_basic_determinant(3, matrix_det_3);
+	double		expec_det_3_0 = -196;
+
+	printf("expect cofactor (A, 0, 0): %.1f\n", expec_cof_3_0);
+	printf("result cofactor (A, 0, 0): %.1f\n", cof_3_0);
+	printf("expect cofactor (A, 0, 1): %.1f\n", expec_cof_3_1);
+	printf("result cofactor (A, 0, 1): %.1f\n", cof_3_1);
+	printf("expect cofactor (A, 0, 2): %.1f\n", expec_cof_3_2);
+	printf("result cofactor (A, 0, 2): %.1f\n", cof_3_2);
+	printf("expect determinant A: %.1f\n", expec_det_3_0);
+	printf("result determinant A: %.1f\n", det_3_0);
+
+	if (fabs(expec_cof_3_0 - cof_3_0) < EPSILON && fabs(expec_cof_3_1 - cof_3_1) < EPSILON && fabs(expec_cof_3_2 - cof_3_2) < EPSILON && fabs(expec_det_3_0 - det_3_0) < EPSILON)
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+	
+
+
+	printf("\n\033[1;35mCalculating the determinant of a 4x4 matrix\033[0m\n");
+	double		det_4[] = {-2, -8, 3, 5, -3, 1, 7, 3, 1, 2, -9, 6, -6, 7, 7, -9};
+	t_matrix	matrix_det_4 = create_matrix(4, det_4);
+	double		cof_4_0 = cofactor(matrix_det_4.size, matrix_det_4, 0, 0);
+	double		expec_cof_4_0 = 690;
+	double		cof_4_1 = cofactor(matrix_det_4.size, matrix_det_4, 0, 1);
+	double		expec_cof_4_1 = 447;
+	double		cof_4_2 = cofactor(matrix_det_4.size, matrix_det_4, 0, 2);
+	double		expec_cof_4_2 = 210;
+	double		cof_4_3 = cofactor(matrix_det_4.size, matrix_det_4, 0, 3);
+	double		expec_cof_4_3 = 51;
+	double		det_4_0 = calc_basic_determinant(4, matrix_det_4);
+	double		expec_det_4_0 = -4071;
+
+	printf("expect cofactor (A, 0, 0): %.1f\n", expec_cof_4_0);
+	printf("result cofactor (A, 0, 0): %.1f\n", cof_4_0);
+	printf("expect cofactor (A, 0, 1): %.1f\n", expec_cof_4_1);
+	printf("result cofactor (A, 0, 1): %.1f\n", cof_4_1);
+	printf("expect cofactor (A, 0, 2): %.1f\n", expec_cof_4_2);
+	printf("result cofactor (A, 0, 2): %.1f\n", cof_4_2);
+	printf("expect cofactor (A, 0, 3): %.1f\n", expec_cof_4_3);
+	printf("result cofactor (A, 0, 3): %.1f\n", cof_4_3);
+	printf("expect determinant A: %.1f\n", expec_det_4_0);
+	printf("result determinant A: %.1f\n", det_4_0);
+	
+
+	if (fabs(expec_cof_4_0 - cof_4_0) < EPSILON && fabs(expec_cof_4_1 - cof_4_1) < EPSILON && fabs(expec_cof_4_2 - cof_4_2) < EPSILON && fabs(expec_cof_4_3 - cof_4_3) < EPSILON && fabs(expec_det_4_0 - det_4_0) < EPSILON)
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+	
+	return (0);
 }
+

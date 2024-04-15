@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/10 16:51:58 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:46:44 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,21 @@ double		vector_magnitude(t_tuple a);
 t_tuple		vector_norm(t_tuple a);
 double		dot_product(t_tuple a, t_tuple b);
 t_tuple		cross_product(t_tuple a, t_tuple b);
-t_matrix	create_matrix(int size, double numbers[size][size]);
+t_matrix	create_matrix(int size, double numbers[]);
 void		free_matrix(t_matrix m);
 int			matrix_equality(t_matrix a, t_matrix b);
 t_matrix	multiply_matrices(t_matrix a, t_matrix b);
-t_tuple	multiply_matrix_by_tuple(t_matrix m, t_tuple p);
+t_tuple		multiply_matrix_by_tuple(t_matrix m, t_tuple p);
 t_matrix	create_matrix_identity(int size);
-t_tuple	multiply_matrix_id_by_tuple(t_tuple p);
+t_tuple		multiply_matrix_id_by_tuple(t_tuple p);
+t_matrix	transpose_matrix(t_matrix m);
+// double		determinant(int	size, t_matrix m);
+t_matrix	create_submatrix(t_matrix m, int row, int col);
+// double		determinant_2(int size, t_matrix m);
+double		calc_basic_determinant(int size, t_matrix m);
+
+double		calc_minor(int size, t_matrix m, int row, int col);
+double		cofactor(int size, t_matrix m, int row, int col);
 
 
 

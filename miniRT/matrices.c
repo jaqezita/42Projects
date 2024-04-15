@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:59:42 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/10 16:57:38 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:27:01 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,22 @@ void	free_matrix(t_matrix m)
 	free(m.grid);
 }
 
-t_matrix	create_matrix(int size, double numbers[size][size])
+t_matrix	create_matrix(int size, double numbers[])
 {
 	int			i;
 	int			j;
-	int			index;
+	int			k;
 	t_matrix	m;
 
 	m.size = size;
 	i = 0;
+	k = -1;
 	while (i < size)
 	{
 		j = 0;
 		while (j < size)
 		{
-			m.grid[i][j] = numbers[i][j];
+			m.grid[i][j] = numbers[++k];
 			j++;
 		}
 		i++;
@@ -96,19 +97,20 @@ t_matrix	multiply_matrices(t_matrix a, t_matrix b)
 t_tuple	multiply_matrix_by_tuple(t_matrix m, t_tuple p)
 {
 	t_tuple	result;
-	t_tuple	x;
-	t_tuple	y;
-	t_tuple	z;
-	t_tuple	w;
+	t_tuple	tuples[m.size];
+	int		i;
 
-	x = create_tuple(m.grid[0][0], m.grid[0][1], m.grid[0][2], m.grid[0][3]);
-	y = create_tuple(m.grid[1][0], m.grid[1][1], m.grid[1][2], m.grid[1][3]);
-	z = create_tuple(m.grid[2][0], m.grid[2][1], m.grid[2][2], m.grid[2][3]);
-	w = create_tuple(m.grid[3][0], m.grid[3][1], m.grid[3][2], m.grid[3][3]);
-	result.x = dot_product(x, p);
-	result.y = dot_product(y, p);
-	result.z = dot_product(z, p);
-	result.w = dot_product(w, p);
+	i = 0;
+	while (i < m.size)
+	{
+		tuples[i] = create_tuple(m.grid[i][0], m.grid[i][1], m.grid[i][2], \
+								m.grid[i][3]);
+		i++;
+	}
+	result.x = dot_product(tuples[0], p);
+	result.y = dot_product(tuples[1], p);
+	result.z = dot_product(tuples[2], p);
+	result.w = dot_product(tuples[3], p);
 	return (result);
 }
 
@@ -116,7 +118,6 @@ t_matrix	create_matrix_identity(int size)
 {
 	int			i;
 	int			j;
-	int			index;
 	t_matrix	m;
 
 	m.size = size;
@@ -141,19 +142,157 @@ t_tuple	multiply_matrix_id_by_tuple(t_tuple p)
 {
 	t_matrix	m;
 	t_tuple		result;
-	t_tuple		x;
-	t_tuple		y;
-	t_tuple		z;
-	t_tuple		w;
+	t_tuple		tuples[4];
+	int			i;
 
+	i = 0;
 	m = create_matrix_identity(4);
-	x = create_tuple(m.grid[0][0], m.grid[0][1], m.grid[0][2], m.grid[0][3]);
-	y = create_tuple(m.grid[1][0], m.grid[1][1], m.grid[1][2], m.grid[1][3]);
-	z = create_tuple(m.grid[2][0], m.grid[2][1], m.grid[2][2], m.grid[2][3]);
-	w = create_tuple(m.grid[3][0], m.grid[3][1], m.grid[3][2], m.grid[3][3]);
-	result.x = dot_product(x, p);
-	result.y = dot_product(y, p);
-	result.z = dot_product(z, p);
-	result.w = dot_product(w, p);
+	while (i < 4)
+	{
+		tuples[i] = create_tuple(m.grid[i][0], m.grid[i][1], m.grid[i][2], \
+								m.grid[i][3]);
+		i++;
+	}
+	result.x = dot_product(tuples[0], p);
+	result.y = dot_product(tuples[1], p);
+	result.z = dot_product(tuples[2], p);
+	result.w = dot_product(tuples[3], p);
 	return (result);
 }
+
+t_matrix	transpose_matrix(t_matrix m)
+{
+	int			i;
+	int			j;
+	t_matrix	result;
+
+	result.size = m.size;
+	i = 0;
+	while (i < m.size)
+	{
+		j = 0;
+		while (j < m.size)
+		{
+			result.grid[j][i] = m.grid[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (result);
+}
+
+void	fill_submatrix(t_matrix m, t_matrix *sub, int del_row, int del_col)
+{
+	int	row;
+	int	col;
+	int	x;
+	int	y;
+
+	x = 0;
+	row = 0;
+	while (row < m.size)
+	{
+		if (row != del_row)
+		{
+			y = 0;
+			col = 0;
+			while (col < m.size)
+			{	
+				if (col != del_col)
+					sub->grid[x][y++] = m.grid[row][col];
+				col++;
+			}
+			x++;
+		}
+		row++;
+	}
+}
+
+t_matrix	create_submatrix(t_matrix m, int del_row, int del_col)
+{
+	t_matrix	submatrix;
+
+	submatrix.size = m.size - 1;
+	fill_submatrix(m, &submatrix, del_row, del_col);
+	return (submatrix);
+}
+
+void	fill_loop(int size, t_matrix m, t_matrix *sub, int i, int *sub_index)
+{
+	int	j;
+	int	k;
+
+	j = 1;
+	while (j < size)
+	{
+		*sub_index = 0;
+		k = 0;
+		while (k < size)
+		{
+			if (k != i)
+				sub->grid[(*sub_index)++][j - 1] = m.grid[k][j];
+			k++;
+		}
+		j++;
+	}
+}
+
+double	calc_determinant(int size, t_matrix m, double det, t_matrix sub)
+{
+	int		i;
+	int		sub_index;
+	double	sign;
+
+	sign = 1;
+	i = 0;
+	while (i < size)
+	{
+		sub.size = size - 1;
+		fill_loop(size, m, &sub, i, &sub_index);
+		det += sign * m.grid[0][i] * calc_basic_determinant(size - 1, sub);
+		sign = -sign;
+		i++;
+	}
+	return (det);
+}
+
+double	calc_basic_determinant(int size, t_matrix m)
+{
+	t_matrix	submatrix;
+	double		determinant;
+
+	determinant = 0;
+	if (size == 1)
+		return (m.grid[0][0]);
+	else if (size == 2)
+		return (m.grid[0][0] * m.grid[1][1] - m.grid[0][1] * m.grid[1][0]);
+	else
+		return (calc_determinant(size, m, determinant, submatrix));
+}
+
+double	calc_minor(int size, t_matrix m, int row, int col)
+{
+	t_matrix	submatrix;
+	double		minor;
+	double		determinant;
+
+	submatrix = create_submatrix(m, row, col);
+	determinant = calc_basic_determinant(submatrix.size, submatrix);
+	minor = determinant;
+	return (minor);
+}
+
+double	cofactor(int size, t_matrix m, int row, int col)
+{
+	double	minor;
+	double	cofactor;
+
+	minor = calc_minor(size, m, row, col);
+	if ((row + col) % 2 != 0)
+		cofactor = -minor;
+	else
+		cofactor = minor;
+	return (cofactor);
+}
+
+
