@@ -6,24 +6,11 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:59:42 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/15 18:27:01 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:13:02 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
-
-void	free_matrix(t_matrix m)
-{
-	int		i;
-
-	i = 0;
-	while (i < m.size)
-	{
-		free(m.grid[i]);
-		i++;
-	}
-	free(m.grid);
-}
 
 t_matrix	create_matrix(int size, double numbers[])
 {
@@ -97,7 +84,7 @@ t_matrix	multiply_matrices(t_matrix a, t_matrix b)
 t_tuple	multiply_matrix_by_tuple(t_matrix m, t_tuple p)
 {
 	t_tuple	result;
-	t_tuple	tuples[m.size];
+	t_tuple	tuples[4];
 	int		i;
 
 	i = 0;
@@ -217,57 +204,26 @@ t_matrix	create_submatrix(t_matrix m, int del_row, int del_col)
 	return (submatrix);
 }
 
-void	fill_loop(int size, t_matrix m, t_matrix *sub, int i, int *sub_index)
+double	calc_determinant(int size, t_matrix m)
 {
-	int	j;
-	int	k;
+	t_matrix	submatrix;
+	double		det;
+	int			i;
 
-	j = 1;
-	while (j < size)
-	{
-		*sub_index = 0;
-		k = 0;
-		while (k < size)
-		{
-			if (k != i)
-				sub->grid[(*sub_index)++][j - 1] = m.grid[k][j];
-			k++;
-		}
-		j++;
-	}
-}
-
-double	calc_determinant(int size, t_matrix m, double det, t_matrix sub)
-{
-	int		i;
-	int		sub_index;
-	double	sign;
-
-	sign = 1;
+	det = 0;
 	i = 0;
+	if (size == 2)
+		return (m.grid[0][0] * m.grid[1][1] - m.grid[0][1] * m.grid[1][0]);
 	while (i < size)
 	{
-		sub.size = size - 1;
-		fill_loop(size, m, &sub, i, &sub_index);
-		det += sign * m.grid[0][i] * calc_basic_determinant(size - 1, sub);
-		sign = -sign;
+		submatrix = create_submatrix(m, 0, i);
+		if (i % 2 == 0)
+			det += m.grid[0][i] * calc_determinant(submatrix.size, submatrix);
+		else
+			det -= m.grid[0][i] * calc_determinant(submatrix.size, submatrix);
 		i++;
 	}
 	return (det);
-}
-
-double	calc_basic_determinant(int size, t_matrix m)
-{
-	t_matrix	submatrix;
-	double		determinant;
-
-	determinant = 0;
-	if (size == 1)
-		return (m.grid[0][0]);
-	else if (size == 2)
-		return (m.grid[0][0] * m.grid[1][1] - m.grid[0][1] * m.grid[1][0]);
-	else
-		return (calc_determinant(size, m, determinant, submatrix));
 }
 
 double	calc_minor(int size, t_matrix m, int row, int col)
@@ -277,7 +233,7 @@ double	calc_minor(int size, t_matrix m, int row, int col)
 	double		determinant;
 
 	submatrix = create_submatrix(m, row, col);
-	determinant = calc_basic_determinant(submatrix.size, submatrix);
+	determinant = calc_determinant(submatrix.size, submatrix);
 	minor = determinant;
 	return (minor);
 }
@@ -295,4 +251,72 @@ double	cofactor(int size, t_matrix m, int row, int col)
 	return (cofactor);
 }
 
+t_matrix	create_cof_matrix(t_matrix m)
+{
+	t_matrix	cof_matrix;
+	int			i;
+	int			j;
 
+	i = 0;
+	cof_matrix.size = m.size;
+	while (i < m.size)
+	{
+		j = 0;
+		while (j < m.size)
+		{
+			cof_matrix.grid[i][j] = cofactor(m.size, m, i, j);
+			j++;
+		}
+		i++;
+	}
+	return (cof_matrix);
+}
+
+t_matrix	multiply_matrix_by_scalar(t_matrix m, double scalar)
+{
+	t_matrix	result;
+	int			i;
+	int			j;
+
+	result.size = m.size;
+	i = 0;
+	while (i < m.size)
+	{
+		j = 0;
+		while (j < m.size)
+		{
+			result.grid[i][j] = m.grid[i][j] * scalar;
+			j++;
+		}
+		i++;
+	}
+	return (result);
+}
+
+t_matrix	calc_inverse_matrix(t_matrix m)
+{
+	t_matrix	cof_transpose;
+	t_matrix	inv;
+	t_matrix	cof_matrix;
+	double		det;
+
+	inv.size = m.size;
+	det = calc_determinant(m.size, m);
+	if (det == 0)
+		exit(printf("Determinant is 0, matrix is not invertible\n"));
+	cof_matrix = create_cof_matrix(m);
+	cof_transpose = transpose_matrix(cof_matrix);
+	inv = multiply_matrix_by_scalar(cof_transpose, 1 / det);
+	return (inv);
+}
+
+t_matrix	create_translation_matrix(double x, double y, double z)
+{
+	t_matrix	translation;
+
+	translation = create_matrix_identity(4);
+	translation.grid[0][3] = x;
+	translation.grid[1][3] = y;
+	translation.grid[2][3] = z;
+	return (translation);
+}

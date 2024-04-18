@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/15 17:46:44 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:51:45 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ t_tuple		multiply_matrix_by_tuple(t_matrix m, t_tuple p);
 t_matrix	create_matrix_identity(int size);
 t_tuple		multiply_matrix_id_by_tuple(t_tuple p);
 t_matrix	transpose_matrix(t_matrix m);
-// double		determinant(int	size, t_matrix m);
 t_matrix	create_submatrix(t_matrix m, int row, int col);
-// double		determinant_2(int size, t_matrix m);
-double		calc_basic_determinant(int size, t_matrix m);
-
+double		calc_determinant(int size, t_matrix m);
 double		calc_minor(int size, t_matrix m, int row, int col);
 double		cofactor(int size, t_matrix m, int row, int col);
+t_matrix	calc_inverse_matrix(t_matrix m);
+t_matrix	create_translation_matrix(double x, double y, double z);
 
 
 

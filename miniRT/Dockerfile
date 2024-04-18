@@ -17,9 +17,16 @@ RUN apt-get update && \
     libgit2-dev \
     meson python3-pip \
     nano vim \
-    zsh 
-
-
+    zsh \
+    libxext-dev \
+    libxmu-dev \
+    libxi-dev \
+    libgl1-mesa-dev \
+    libx11-dev \
+    libglfw3-dev \
+    libglfw3 \
+    xorg-dev \
+    wget
 
 # Install criterion.h
 
@@ -43,8 +50,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 RUN echo "alias gcc='clang'" >> ~/.bashrc
 RUN echo "alias gcc='clang'" >> ~/.zshrc
 RUN chsh -s $(which zsh)
-
-
 
 # Copy the files
 

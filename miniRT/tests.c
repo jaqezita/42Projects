@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/15 18:40:56 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:13:12 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ bool	is_vector(t_tuple t)
 	return (t.w == 0.0);
 }
 
+
+void round_matrix(t_matrix *m)
+{
+	int i, j;
+	for (i = 0; i < m->size; i++) 
+	{
+		for (j = 0; j < m->size; j++) 
+		{
+			m->grid[i][j] = roundf(m->grid[i][j] * 1e5) / 1e5;
+		}
+	}
+}
+
+	
 int	main(void)
 {
 	// t_tuple a = {atof(argv[1]), atof(argv[2]), atof(argv[3]), atof(argv[4])};
@@ -503,7 +517,7 @@ int	main(void)
 	printf("\n\033[1;35mCalculating the determinant of a 2x2 matrix\033[0m\n");
 	double det2[] = {1, 5, -3, 2};
 	t_matrix	matrix_det2 = create_matrix(2, det2);
-	double	result_det2 = calc_basic_determinant(2, matrix_det2);
+	double	result_det2 = calc_determinant(2, matrix_det2);
 	double	expect_det2 = 17.0;
 	if (fabs(result_det2 - expect_det2) < EPSILON)
 		printf("\33[1;32mOK\nA = B \033[0m\n");
@@ -539,7 +553,7 @@ int	main(void)
 	double		minor_a[] = {3, 5, 0, 2, -1, -7, 6, -1, 5};
 	t_matrix	matrix_minor_a = create_matrix(3, minor_a);
 	t_matrix	sub_minor_a = create_submatrix(matrix_minor_a, 1, 0);
-	double		det_minor_a = calc_basic_determinant(2, sub_minor_a);
+	double		det_minor_a = calc_determinant(2, sub_minor_a);
 	double	result_minor_a = calc_minor(matrix_minor_a.size, matrix_minor_a, 1, 0);
 	printf("expect: %.1f\n", det_minor_a);
 	printf("result: %.1f\n", result_minor_a);
@@ -586,7 +600,7 @@ int	main(void)
 	double		expec_cof_3_1 = 12;
 	double		cof_3_2 = cofactor(matrix_det_3.size, matrix_det_3, 0, 2);
 	double		expec_cof_3_2 = -46;
-	double		det_3_0 = calc_basic_determinant(3, matrix_det_3);
+	double		det_3_0 = calc_determinant(3, matrix_det_3);
 	double		expec_det_3_0 = -196;
 
 	printf("expect cofactor (A, 0, 0): %.1f\n", expec_cof_3_0);
@@ -606,7 +620,7 @@ int	main(void)
 
 
 	printf("\n\033[1;35mCalculating the determinant of a 4x4 matrix\033[0m\n");
-	double		det_4[] = {-2, -8, 3, 5, -3, 1, 7, 3, 1, 2, -9, 6, -6, 7, 7, -9};
+	double	det_4[] = {-2, -8, 3, 5, -3, 1, 7, 3, 1, 2, -9, 6, -6, 7, 7, -9};
 	t_matrix	matrix_det_4 = create_matrix(4, det_4);
 	double		cof_4_0 = cofactor(matrix_det_4.size, matrix_det_4, 0, 0);
 	double		expec_cof_4_0 = 690;
@@ -616,7 +630,7 @@ int	main(void)
 	double		expec_cof_4_2 = 210;
 	double		cof_4_3 = cofactor(matrix_det_4.size, matrix_det_4, 0, 3);
 	double		expec_cof_4_3 = 51;
-	double		det_4_0 = calc_basic_determinant(4, matrix_det_4);
+	double		det_4_0 = calc_determinant(4, matrix_det_4);
 	double		expec_det_4_0 = -4071;
 
 	printf("expect cofactor (A, 0, 0): %.1f\n", expec_cof_4_0);
@@ -635,7 +649,192 @@ int	main(void)
 		printf("\33[1;32mOK\n \033[0m\n");
 	else
 		printf("\33[1;31mFAIL\n\033[0m\n");
+
+
+	printf("\n\033[1;35mTesting an invertible matrix for invertibility\033[0m\n");
+	double	inv[] = {6, 4, 4, 4, 5, 5, 7, 6, 4, -9, 3, -7, 9, 1, 7, -6};
+	t_matrix	matrix_inv = create_matrix(4, inv);
+	double	det_inv = calc_determinant(4, matrix_inv);
+	double	expec_det_inv = -2120;
+	printf("expect determinant A: %.1f\n", expec_det_inv);
+	printf("result determinant A: %.1f\n", det_inv);
+	printf("\33[1;32mA is invertible\n\033[0m");
+	if (fabs(det_inv - expec_det_inv) < EPSILON)
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+
+	printf("\n\033[1;35mTesting a noninvertible matrix for invertibility\033[0m\n");
+	double	noninv[] = {-4, 2, -2, -3, 9, 6, 2, 6, 0, -5, 1, -5, 0, 0, 0, 0};
+	t_matrix	matrix_noninv = create_matrix(4, noninv);
+	double	det_noninv = calc_determinant(4, matrix_noninv);
+	double	expec_det_noninv = 0;
+	printf("expect determinant A: %.1f\n", expec_det_noninv);
+	printf("result determinant A: %.1f\n", det_noninv);
+	printf("\33[1;32mA is not invertible\n\033[0m");
+	if (fabs(det_noninv - expec_det_noninv) < EPSILON)
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+
+	printf("\033[1;33m\033[4mDeterminant != 0: matrix is invertible\nDeterminant == 0: matrix is not invertible\n\033[0m");
+
+
+	printf("\n\033[1;35mCalculating the inverse of a matrix\033[0m\n");
+	double	inv1[] = {-5, 2, 6, -8, 1, -5, 1, 8, 7, 7, -6, -7, 1, -3, 7, 4};
+	t_matrix	matrix_inv1 = create_matrix(4, inv1);
+	t_matrix	inverse_inv1 = calc_inverse_matrix(matrix_inv1);
+	round_matrix(&inverse_inv1);
+	double		det_inv1 = calc_determinant(4, matrix_inv1);
+	double		expec_det_inv1 = 532;
+	printf("expect determinant A: %.1f\n", expec_det_inv1);
+	printf("result determinant A: %.1f\n", det_inv1);
+	double		cof_inv1_0 = cofactor(matrix_inv1.size, matrix_inv1, 2, 3);
+	double		expec_cof_inv1_0 = -160;
+	printf("Expect cofactor A[2,3] = %.1f\n", expec_cof_inv1_0);
+	printf("Result cofactor A[2,3] = %.1f\n", cof_inv1_0);
+	printf("Expect B[3,2] = %.1f\n", -160.0 / 532.0);
+	printf("Result B[3,2] = %.1f\n", inverse_inv1.grid[3][2]);
+	double		cof_inv1_1 = cofactor(matrix_inv1.size, matrix_inv1, 3, 2);
+	double		expec_cof_inv1_1 = 105;
+	printf("Expect cofactor A[3,2] = %.1f\n", expec_cof_inv1_1);
+	printf("Result cofactor A[3,2] = %.1f\n", cof_inv1_1);
+	printf("Expect B[2,3] = %.1f\n", 105.0 / 532.0);
+	printf("Result B[2,3] = %.1f\n", inverse_inv1.grid[2][3]);
+	double		expect_inverse_inv1[] = {0.21805, 0.45113, 0.24060, -0.04511, -0.80827, -1.45677, -0.44361, 0.52068, -0.07895, -0.22368, -0.05263, 0.19737, -0.52256, -0.81391, -0.30075, 0.30639};
+	t_matrix	expect_inv_inv1 = create_matrix(4, expect_inverse_inv1);
+	printf("expect line 0: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv1.grid[0][0], expect_inv_inv1.grid[0][1], expect_inv_inv1.grid[0][2], expect_inv_inv1.grid[0][3]);
+	printf("result line 0: %.5f, %.5f, %.5f, %.5f\n", inverse_inv1.grid[0][0], inverse_inv1.grid[0][1], inverse_inv1.grid[0][2], inverse_inv1.grid[0][3]);
+	printf("expect line 1: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv1.grid[1][0], expect_inv_inv1.grid[1][1], expect_inv_inv1.grid[1][2], expect_inv_inv1.grid[1][3]);
+	printf("result line 1: %.5f, %.5f, %.5f, %.5f\n", inverse_inv1.grid[1][0], inverse_inv1.grid[1][1], inverse_inv1.grid[1][2], inverse_inv1.grid[1][3]);
 	
+	printf("expect line 2: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv1.grid[2][0], expect_inv_inv1.grid[2][1], expect_inv_inv1.grid[2][2], expect_inv_inv1.grid[2][3]);
+	printf("result line 2: %.5f, %.5f, %.5f, %.5f\n", inverse_inv1.grid[2][0], inverse_inv1.grid[2][1], inverse_inv1.grid[2][2], inverse_inv1.grid[2][3]);
+
+	printf("expect line 3: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv1.grid[3][0], expect_inv_inv1.grid[3][1], expect_inv_inv1.grid[3][2], expect_inv_inv1.grid[3][3]);
+	printf("result line 3: %.5f, %.5f, %.5f, %.5f\n", inverse_inv1.grid[3][0], inverse_inv1.grid[3][1], inverse_inv1.grid[3][2], inverse_inv1.grid[3][3]);
+
+	
+	
+	if (fabs(det_inv1 - expec_det_inv1) < EPSILON && fabs(expec_cof_inv1_0 - cof_inv1_0) < EPSILON && fabs(expec_cof_inv1_1 - cof_inv1_1) < EPSILON && matrix_equality(inverse_inv1, expect_inv_inv1))
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+
+
+
+
+	printf("\n\033[1;35mCalculating the inverse of another matrix\033[0m\n");
+	double	inv2[] = {8, -5, 9, 2, 7, 5, 6, 1, -6, 0, 9, 6, -3, 0, -9, -4};
+	t_matrix	matrix_inv2 = create_matrix(4, inv2);
+	t_matrix	inverse_inv2 = calc_inverse_matrix(matrix_inv2);
+	round_matrix(&inverse_inv2);
+	double		expect_inverse_inv2[] = {-0.15385, -0.15385, -0.28205, -0.53846, -0.07692, 0.12308, 0.02564, 0.03077, 0.35897, 0.35897, 0.43590, 0.92308, -0.69231, -0.69231, -0.76923, -1.92308};
+	t_matrix	expect_inv_inv2 = create_matrix(4, expect_inverse_inv2);
+	printf("expect line 0: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv2.grid[0][0], expect_inv_inv2.grid[0][1], expect_inv_inv2.grid[0][2], expect_inv_inv2.grid[0][3]);
+	printf("result line 0: %.5f, %.5f, %.5f, %.5f\n", inverse_inv2.grid[0][0], inverse_inv2.grid[0][1], inverse_inv2.grid[0][2], inverse_inv2.grid[0][3]);
+	printf("expect line 1: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv2.grid[1][0], expect_inv_inv2.grid[1][1], expect_inv_inv2.grid[1][2], expect_inv_inv2.grid[1][3]);
+	printf("result line 1: %.5f, %.5f, %.5f, %.5f\n", inverse_inv2.grid[1][0], inverse_inv2.grid[1][1], inverse_inv2.grid[1][2], inverse_inv2.grid[1][3]);
+	printf("expect line 2: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv2.grid[2][0], expect_inv_inv2.grid[2][1], expect_inv_inv2.grid[2][2], expect_inv_inv2.grid[2][3]);
+	printf("result line 2: %.5f, %.5f, %.5f, %.5f\n", inverse_inv2.grid[2][0], inverse_inv2.grid[2][1], inverse_inv2.grid[2][2], inverse_inv2.grid[2][3]);
+	printf("expect line 3: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv2.grid[3][0], expect_inv_inv2.grid[3][1], expect_inv_inv2.grid[3][2], expect_inv_inv2.grid[3][3]);
+	printf("result line 3: %.5f, %.5f, %.5f, %.5f\n", inverse_inv2.grid[3][0], inverse_inv2.grid[3][1], inverse_inv2.grid[3][2], inverse_inv2.grid[3][3]);
+	if (matrix_equality(inverse_inv2, expect_inv_inv2))
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+	
+
+
+
+	printf("\n\033[1;35mCalculating the inverse of a third matrix\033[0m\n");
+	double	inv3[] = {9, 3, 0, 9, -5, -2, -6, -3, -4, 9, 6, 4, -7, 6, 6, 2};
+	t_matrix	matrix_inv3 = create_matrix(4, inv3);
+	t_matrix	inverse_inv3 = calc_inverse_matrix(matrix_inv3);
+	round_matrix(&inverse_inv3);
+	double		expect_inverse_inv3[] = {-0.04074, -0.07778, 0.14444, -0.22222, -0.07778, 0.03333, 0.36667, -0.33333, -0.02901, -0.14630, -0.10926, 0.12963, 0.17778, 0.06667, -0.26667, 0.33333};
+	t_matrix	expect_inv_inv3 = create_matrix(4, expect_inverse_inv3);
+	printf("expect line 0: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv3.grid[0][0], expect_inv_inv3.grid[0][1], expect_inv_inv3.grid[0][2], expect_inv_inv3.grid[0][3]);
+	printf("result line 0: %.5f, %.5f, %.5f, %.5f\n", inverse_inv3.grid[0][0], inverse_inv3.grid[0][1], inverse_inv3.grid[0][2], inverse_inv3.grid[0][3]);
+	printf("expect line 1: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv3.grid[1][0], expect_inv_inv3.grid[1][1], expect_inv_inv3.grid[1][2], expect_inv_inv3.grid[1][3]);
+	printf("result line 1: %.5f, %.5f, %.5f, %.5f\n", inverse_inv3.grid[1][0], inverse_inv3.grid[1][1], inverse_inv3.grid[1][2], inverse_inv3.grid[1][3]);
+	printf("expect line 2: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv3.grid[2][0], expect_inv_inv3.grid[2][1], expect_inv_inv3.grid[2][2], expect_inv_inv3.grid[2][3]);
+	printf("result line 2: %.5f, %.5f, %.5f, %.5f\n", inverse_inv3.grid[2][0], inverse_inv3.grid[2][1], inverse_inv3.grid[2][2], inverse_inv3.grid[2][3]);
+	printf("expect line 3: %.5f, %.5f, %.5f, %.5f\n", expect_inv_inv3.grid[3][0], expect_inv_inv3.grid[3][1], expect_inv_inv3.grid[3][2], expect_inv_inv3.grid[3][3]);
+	printf("result line 3: %.5f, %.5f, %.5f, %.5f\n", inverse_inv3.grid[3][0], inverse_inv3.grid[3][1], inverse_inv3.grid[3][2], inverse_inv3.grid[3][3]);
+	if (matrix_equality(inverse_inv3, expect_inv_inv3))
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+
+
+
+	printf("\n\033[1;35mMultiplying a product by its inverse\033[0m\n");
+	double	prod_A[] = {3, -9, 7, 3, 3, -8, 2, -9, -4, 4, 4, 1, -6, 5, -1, 1};
+	t_matrix	matrix_prod_A = create_matrix(4, prod_A);
+	double	prod_B[] = {8, 2, 2, 2, 3, -1, 7, 0, 7, 0, 5, 4, 6, -2, 0, 5};
+	t_matrix	matrix_prod_B = create_matrix(4, prod_B);
+	t_matrix	result_prod = multiply_matrices(matrix_prod_A, matrix_prod_B);
+	t_matrix	matrix_inv_prod_B = calc_inverse_matrix(matrix_prod_B);
+	t_matrix	expect_prod = multiply_matrices(result_prod, matrix_inv_prod_B);
+	round_matrix(&expect_prod);
+	printf("expect line 0: %.5f, %.5f, %.5f, %.5f\n", expect_prod.grid[0][0], expect_prod.grid[0][1], expect_prod.grid[0][2], expect_prod.grid[0][3]);
+	printf("result line 0: %.5f, %.5f, %.5f, %.5f\n", matrix_prod_A.grid[0][0], matrix_prod_A.grid[0][1], matrix_prod_A.grid[0][2], matrix_prod_A.grid[0][3]);
+	printf("expect line 1: %.5f, %.5f, %.5f, %.5f\n", expect_prod.grid[1][0], expect_prod.grid[1][1], expect_prod.grid[1][2], expect_prod.grid[1][3]);
+	printf("result line 1: %.5f, %.5f, %.5f, %.5f\n", matrix_prod_A.grid[1][0], matrix_prod_A.grid[1][1], matrix_prod_A.grid[1][2], matrix_prod_A.grid[1][3]);
+	printf("expect line 2: %.5f, %.5f, %.5f, %.5f\n", expect_prod.grid[2][0], expect_prod.grid[2][1], expect_prod.grid[2][2], expect_prod.grid[2][3]);
+	printf("result line 2: %.5f, %.5f, %.5f, %.5f\n", matrix_prod_A.grid[2][0], matrix_prod_A.grid[2][1], matrix_prod_A.grid[2][2], matrix_prod_A.grid[2][3]);
+	printf("expect line 3: %.5f, %.5f, %.5f, %.5f\n", expect_prod.grid[3][0], expect_prod.grid[3][1], expect_prod.grid[3][2], expect_prod.grid[3][3]);
+	printf("result line 3: %.5f, %.5f, %.5f, %.5f\n", matrix_prod_A.grid[3][0], matrix_prod_A.grid[3][1], matrix_prod_A.grid[3][2], matrix_prod_A.grid[3][3]);
+	
+	if (matrix_equality(matrix_prod_A, expect_prod))
+		printf("\33[1;32mOK\n \033[0m\n");
+	else
+		printf("\33[1;31mFAIL\n\033[0m\n");
+	
+
+
+
+	printf("\n\033[1;35mMultiplying by a translation matrix\033[0m\n");
+	t_matrix	transform = create_translation_matrix(5, -3, 2);
+	t_tuple		point_trans = create_point(-3, 4, 5);
+	t_tuple		result_trans = multiply_matrix_by_tuple(transform, point_trans);
+	t_tuple		expect_trans = create_point(2, 1, 7);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_trans.x, expect_trans.y, expect_trans.z, expect_trans.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_trans.x, result_trans.y, result_trans.z, result_trans.w);
+	if (check_tuple_equality(expect_trans, result_trans))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+	printf("\n\033[1;35mMultiplying by the inverse of a translation matrix\033[0m\n");
+	t_matrix	transform_inv = create_translation_matrix(5, -3, 2);
+	t_matrix	transform_inv_inv = calc_inverse_matrix(transform_inv);
+	t_tuple		point_inv = create_point(-3, 4, 5);
+	t_tuple		result_inv = multiply_matrix_by_tuple(transform_inv_inv, point_inv);
+	t_tuple		expect_inv = create_point(-8, 7, 3);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_inv.x, expect_inv.y, expect_inv.z, expect_inv.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_inv.x, result_inv.y, result_inv.z, result_inv.w);
+	if (check_tuple_equality(expect_inv, result_inv))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+	printf("\n\033[1;35mTranslation does not affect vectors\033[0m\n");
+	t_matrix	transform_vec = create_translation_matrix(5, -3, 2);
+	t_tuple		vector_trans = create_vector(-3, 4, 5);
+	t_tuple		result_vec = multiply_matrix_by_tuple(transform_vec, vector_trans);
+	t_tuple		expect_vec = create_vector(-3, 4, 5);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_vec.x, expect_vec.y, expect_vec.z, expect_vec.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_vec.x, result_vec.y, result_vec.z, result_vec.w);
+	if (check_tuple_equality(expect_vec, result_vec))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+	
+
 	return (0);
 }
 
