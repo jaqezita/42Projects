@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/19 19:05:44 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/20 01:47:42 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef struct	s_matrix
 	int			size;
 	double		grid[4][4];
 }				t_matrix;
+
+typedef struct	s_ray
+{
+	t_tuple		origin;
+	t_tuple		direction;
+}				t_ray;
+
 
 t_tuple		create_tuple(double x, double y, double z, double w);
 t_tuple		create_point(double x, double y, double z);
@@ -67,7 +74,10 @@ t_matrix	create_scaling_matrix(double x, double y, double z);
 t_matrix	create_rotation_matrix_x(double rad);
 t_matrix	create_rotation_matrix_y(double rad);
 t_matrix	create_rotation_matrix_z(double rad);
-t_matrix	create_shearing_matrix(double xy, double xz, double yx, double yz, double zx, double zy);
+t_matrix	create_shearing_matrix(double proportion[6]);
+t_ray		create_ray(t_tuple origin, t_tuple direction);
+t_tuple		position(t_ray ray, double t);
+
 
 
 

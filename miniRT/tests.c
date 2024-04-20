@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/19 22:58:31 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/20 01:43:16 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -975,7 +975,8 @@ int	main(void)
 //sheraring
 
 	printf("\n\033[1;35mA shearing transformation moves x in proportion to y\033[0m\n");
-	t_matrix	shear = create_shearing_matrix(1, 0, 0, 0, 0, 0);
+	double	proportions_xy[6] = {1, 0, 0, 0, 0, 0};
+	t_matrix	shear = create_shearing_matrix(proportions_xy);
 	t_tuple	point_shear = create_point(2, 3, 4);
 	t_tuple	result_shear = multiply_matrix_by_tuple(shear, point_shear);
 	t_tuple	expect_shear = create_point(5, 3, 4);
@@ -989,7 +990,8 @@ int	main(void)
 
 
 	printf("\n\033[1;35mA shearing transformation moves x in proportion to z\033[0m\n");
-	t_matrix	shear_z = create_shearing_matrix(0, 1, 0, 0, 0, 0);
+	double	proportions_xz[6] = {0, 1, 0, 0, 0, 0};
+	t_matrix	shear_z = create_shearing_matrix(proportions_xz);
 	t_tuple	point_shear_z = create_point(2, 3, 4);
 	t_tuple	result_shear_z = multiply_matrix_by_tuple(shear_z, point_shear_z);
 	t_tuple	expect_shear_z = create_point(6, 3, 4);
@@ -1003,7 +1005,8 @@ int	main(void)
 
 
 	printf("\n\033[1;35mA shearing transformation moves y in proportion to x\033[0m\n");
-	t_matrix	shear_y = create_shearing_matrix(0, 0, 1, 0, 0, 0);
+	double	proportions_yx[6] = {0, 0, 1, 0, 0, 0};
+	t_matrix	shear_y = create_shearing_matrix(proportions_yx);
 	t_tuple	point_shear_y = create_point(2, 3, 4);
 	t_tuple	result_shear_y = multiply_matrix_by_tuple(shear_y, point_shear_y);
 	t_tuple	expect_shear_y = create_point(2, 5, 4);
@@ -1016,7 +1019,8 @@ int	main(void)
 
 
 	printf("\n\033[1;35mA shearing transformation moves y in proportion to z\033[0m\n");
-	t_matrix	shear_y_z = create_shearing_matrix(0, 0, 0, 1, 0, 0);
+	double	proportions_yz[6] = {0, 0, 0, 1, 0, 0};
+	t_matrix	shear_y_z = create_shearing_matrix(proportions_yz);
 	t_tuple	point_shear_y_z = create_point(2, 3, 4);
 	t_tuple	result_shear_y_z = multiply_matrix_by_tuple(shear_y_z, point_shear_y_z);
 	t_tuple	expect_shear_y_z = create_point(2, 7, 4);
@@ -1029,7 +1033,8 @@ int	main(void)
 
 
 	printf("\n\033[1;35mA shearing transformation moves z in proportion to x\033[0m\n");
-	t_matrix	shear_z_x = create_shearing_matrix(0, 0, 0, 0, 1, 0);
+	double	proportions_zx[6] = {0, 0, 0, 0, 1, 0};
+	t_matrix	shear_z_x = create_shearing_matrix(proportions_zx);
 	t_tuple	point_shear_z_x = create_point(2, 3, 4);
 	t_tuple	result_shear_z_x = multiply_matrix_by_tuple(shear_z_x, point_shear_z_x);
 	t_tuple	expect_shear_z_x = create_point(2, 3, 6);
@@ -1042,7 +1047,8 @@ int	main(void)
 
 
 	printf("\n\033[1;35mA shearing transformation moves z in proportion to y\033[0m\n");
-	t_matrix	shear_z_y = create_shearing_matrix(0, 0, 0, 0, 0, 1);
+	double	proportions_zy[6] = {0, 0, 0, 0, 0, 1};
+	t_matrix	shear_z_y = create_shearing_matrix(proportions_zy);
 	t_tuple	point_shear_z_y = create_point(2, 3, 4);
 	t_tuple	result_shear_z_y = multiply_matrix_by_tuple(shear_z_y, point_shear_z_y);
 	t_tuple	expect_shear_z_y = create_point(2, 3, 7);
@@ -1087,6 +1093,57 @@ int	main(void)
 		printf("\33[1;32mOK\033[0m\n");
 	else
 		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+
+	printf("\n\033[1;35mCreating and querying a ray\033[0m\n");
+	t_tuple	origin_ray = create_point(1, 2, 3);
+	t_tuple	direction_ray = create_vector(4, 5, 6);
+	t_ray	ray = create_ray(origin_ray, direction_ray);
+	printf("origin: %.2f, %.2f, %.2f, %.2f\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
+	printf("direction: %.2f, %.2f, %.2f, %.2f\n", ray.direction.x, ray.direction.y, ray.direction.z, ray.direction.w);
+	if (check_tuple_equality(origin_ray, ray.origin) && check_tuple_equality(direction_ray, ray.direction))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+	printf("\n\033[1;35mComputing a point from a distance\033[0m\n");
+	t_ray	ray_dist = create_ray(create_point(2, 3, 4), create_vector(1, 0, 0));
+	t_tuple	point_dist_0 = position(ray_dist, 0);
+	t_tuple	point_dist_1 = position(ray_dist, 1);
+	t_tuple	point_dist_2 = position(ray_dist, -1);
+	t_tuple	point_dist_3 = position(ray_dist, 2.5);
+	
+	t_tuple	expect_dist_0 = create_point(2, 3, 4);
+	t_tuple	expect_dist_1 = create_point(3, 3, 4);
+	t_tuple	expect_dist_2 = create_point(1, 3, 4);
+	t_tuple	expect_dist_3 = create_point(4.5, 3, 4);
+	printf("expect_0: %.2f, %.2f, %.2f, %.2f\n", expect_dist_0.x, expect_dist_0.y, expect_dist_0.z, expect_dist_0.w);
+	printf("result_0: %.2f, %.2f, %.2f, %.2f\n", point_dist_0.x, point_dist_0.y, point_dist_0.z, point_dist_0.w);
+	printf("expect_1: %.2f, %.2f, %.2f, %.2f\n", expect_dist_1.x, expect_dist_1.y, expect_dist_1.z, expect_dist_1.w);
+	printf("result_1: %.2f, %.2f, %.2f, %.2f\n", point_dist_1.x, point_dist_1.y, point_dist_1.z, point_dist_1.w);
+	printf("expect_2: %.2f, %.2f, %.2f, %.2f\n", expect_dist_2.x, expect_dist_2.y, expect_dist_2.z, expect_dist_2.w);
+	printf("result_2: %.2f, %.2f, %.2f, %.2f\n", point_dist_2.x, point_dist_2.y, point_dist_2.z, point_dist_2.w);
+	printf("expect_3: %.2f, %.2f, %.2f, %.2f\n", expect_dist_3.x, expect_dist_3.y, expect_dist_3.z, expect_dist_3.w);
+	printf("result_3: %.2f, %.2f, %.2f, %.2f\n", point_dist_3.x, point_dist_3.y, point_dist_3.z, point_dist_3.w);
+	if (check_tuple_equality(expect_dist_0, point_dist_0) && check_tuple_equality(expect_dist_1, point_dist_1) && check_tuple_equality(expect_dist_2, point_dist_2) && check_tuple_equality(expect_dist_3, point_dist_3))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+	
+
+
+
+
+
+
+
+
+
+
 
 
 
