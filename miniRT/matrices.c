@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:59:42 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/18 19:13:02 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/19 23:07:19 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,13 @@ t_matrix	calc_inverse_matrix(t_matrix m)
 	return (inv);
 }
 
+
+
+
+// M_PI is a constant defined in math.h that represents the value of pi. It is used in various mathematical calculations involving circles, trigonometry, and other geometric shapes. For example, it can be used to calculate the circumference of a circle or the area of a circle. It is a useful constant in many mathematical and scientific applications.
+
+
+
 t_matrix	create_translation_matrix(double x, double y, double z)
 {
 	t_matrix	translation;
@@ -319,4 +326,68 @@ t_matrix	create_translation_matrix(double x, double y, double z)
 	translation.grid[1][3] = y;
 	translation.grid[2][3] = z;
 	return (translation);
+}
+
+t_matrix	create_scaling_matrix(double x, double y, double z)
+{
+	t_matrix	scaling;
+
+	scaling = create_matrix_identity(4);
+	scaling.grid[0][0] = x;
+	scaling.grid[1][1] = y;
+	scaling.grid[2][2] = z;
+	return (scaling);
+}
+
+
+t_matrix	create_rotation_matrix_x(double rad)
+{
+	t_matrix	rotation;
+
+	rotation = create_matrix_identity(4);
+	rotation.grid[1][1] = cos(rad);
+	rotation.grid[1][2] = -sin(rad);
+	rotation.grid[2][1] = sin(rad);
+	rotation.grid[2][2] = cos(rad);
+	return (rotation);
+}
+
+t_matrix	create_rotation_matrix_y(double rad)
+{
+	t_matrix	rotation;
+
+	rotation = create_matrix_identity(4);
+	rotation.grid[0][0] = cos(rad);
+	rotation.grid[0][2] = sin(rad);
+	rotation.grid[2][0] = -sin(rad);
+	rotation.grid[2][2] = cos(rad);
+	return (rotation);
+}
+
+
+t_matrix	create_rotation_matrix_z(double rad)
+{
+	t_matrix	rotation;
+
+	rotation = create_matrix_identity(4);
+	rotation.grid[0][0] = cos(rad);
+	rotation.grid[0][1] = -sin(rad);
+	rotation.grid[1][0] = sin(rad);
+	rotation.grid[1][1] = cos(rad);
+	return (rotation);
+}
+
+
+t_matrix	create_shearing_matrix(double xy, double xz, double yx, double yz, double zx, double zy)
+{
+	t_matrix	shearing;
+
+	shearing = create_matrix_identity(4);
+	shearing.grid[0][1] = xy;
+	shearing.grid[0][2] = xz;
+	shearing.grid[1][0] = yx;
+	shearing.grid[1][2] = yz;
+	shearing.grid[2][0] = zx;
+	shearing.grid[2][1] = zy;
+	return (shearing);
 }

@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/18 20:13:12 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/19 22:58:31 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -833,8 +833,276 @@ int	main(void)
 		printf("\33[1;32mOK\033[0m\n");
 	else
 		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+
+	printf("\n\033[1;35mA scaling matrix applied to a point\033[0m\n");
+	t_matrix	scale = create_scaling_matrix(2, 3, 4);
+	t_tuple		point_scale = create_point(-4, 6, 8);
+	t_tuple		result_scale = multiply_matrix_by_tuple(scale, point_scale);
+	t_tuple		expect_scale = create_point(-8, 18, 32);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_scale.x, expect_scale.y, expect_scale.z, expect_scale.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_scale.x, result_scale.y, result_scale.z, result_scale.w);
+	if (check_tuple_equality(expect_scale, result_scale))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
 	
 
+
+
+	printf("\n\033[1;35mA scaling matrix applied to a vector\033[0m\n");
+	t_matrix	scale_vec = create_scaling_matrix(2, 3, 4);
+	t_tuple		vector_scale = create_vector(-4, 6, 8);
+	t_tuple		result_scale_vec = multiply_matrix_by_tuple(scale_vec, vector_scale);
+	t_tuple		expect_scale_vec = create_vector(-8, 18, 32);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_scale_vec.x, expect_scale_vec.y, expect_scale_vec.z, expect_scale_vec.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_scale_vec.x, result_scale_vec.y, result_scale_vec.z, result_scale_vec.w);
+	if (check_tuple_equality(expect_scale_vec, result_scale_vec))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+	printf("\n\033[1;35mMultiplying by the inverse of a scaling matrix\033[0m\n");
+	t_matrix	scale_inv = create_scaling_matrix(2, 3, 4);
+	t_matrix	scale_inv_inv = calc_inverse_matrix(scale_inv);
+	t_tuple		vector_scale_inv = create_vector(-4, 6, 8);
+	t_tuple		result_scale_inv = multiply_matrix_by_tuple(scale_inv_inv, vector_scale_inv);
+	t_tuple		expect_scale_inv = create_vector(-2, 2, 2);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_scale_inv.x, expect_scale_inv.y, expect_scale_inv.z, expect_scale_inv.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_scale_inv.x, result_scale_inv.y, result_scale_inv.z, result_scale_inv.w);
+	if (check_tuple_equality(expect_scale_inv, result_scale_inv))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+
+
+	printf("\n\033[1;35mReflection is scaling by a negative value\033[0m\n");
+	t_matrix	reflect = create_scaling_matrix(-1, 1, 1);
+	t_tuple		point_reflect = create_point(2, 3, 4);
+	t_tuple		result_reflect = multiply_matrix_by_tuple(reflect, point_reflect);
+	t_tuple		expect_reflect = create_point(-2, 3, 4);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_reflect.x, expect_reflect.y, expect_reflect.z, expect_reflect.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_reflect.x, result_reflect.y, result_reflect.z, result_reflect.w);
+	if (check_tuple_equality(expect_reflect, result_reflect))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+
+	printf("\n\033[1;35mRotating a point around the x axis\033[0m\n");
+	t_tuple	point_rot_x = create_point(0, 1, 0);
+	t_matrix	rotate_x_pi_4 = create_rotation_matrix_x(M_PI / 4);
+	t_matrix	rotate_x_pi_2 = create_rotation_matrix_x(M_PI / 2);
+	t_tuple	result_rot_x_pi_4 = multiply_matrix_by_tuple(rotate_x_pi_4, point_rot_x);
+	t_tuple	result_rot_x_pi_2 = multiply_matrix_by_tuple(rotate_x_pi_2, point_rot_x);
+
+	
+	t_tuple	expect_rot_x_PI_4 = create_point(0, sqrt(2) / 2, sqrt(2) / 2);
+	t_tuple	expect_rot_x_pi_2 = create_point(0, 0, 1);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_rot_x_PI_4.x, expect_rot_x_PI_4.y, expect_rot_x_PI_4.z, expect_rot_x_PI_4.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_rot_x_pi_4.x, result_rot_x_pi_4.y, result_rot_x_pi_4.z, result_rot_x_pi_4.w);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_rot_x_pi_2.x, expect_rot_x_pi_2.y, expect_rot_x_pi_2.z, expect_rot_x_pi_2.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_rot_x_pi_2.x, result_rot_x_pi_2.y, result_rot_x_pi_2.z, result_rot_x_pi_2.w);
+	if (check_tuple_equality(expect_rot_x_PI_4, result_rot_x_pi_4) && check_tuple_equality(expect_rot_x_pi_2, result_rot_x_pi_2))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+	printf("\n\033[1;35mThe inverse of an x-rotation rotates in the opposite direction\033[0m\n");
+	t_tuple	point_rot_x_inv = create_point(0, 1, 0);
+	t_matrix	rotate_x_pi_4_inv = create_rotation_matrix_x(M_PI / 4);
+	t_matrix	rotate_x_pi_4_inv_inv = calc_inverse_matrix(rotate_x_pi_4_inv);
+	t_tuple	result_rot_x_pi_4_inv = multiply_matrix_by_tuple(rotate_x_pi_4_inv_inv, point_rot_x_inv);
+	t_tuple	expect_rot_x_PI_4_inv = create_point(0, sqrt(2) / 2, -sqrt(2) / 2);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_rot_x_PI_4_inv.x, expect_rot_x_PI_4_inv.y, expect_rot_x_PI_4_inv.z, expect_rot_x_PI_4_inv.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_rot_x_pi_4_inv.x, result_rot_x_pi_4_inv.y, result_rot_x_pi_4_inv.z, result_rot_x_pi_4_inv.w);
+	if (check_tuple_equality(expect_rot_x_PI_4_inv, result_rot_x_pi_4_inv))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+
+	printf("\n\033[1;35mRotating a point around the y axis\033[0m\n");
+	t_tuple	point_rot_y = create_point(0, 0, 1);
+	t_matrix	rotate_y_pi_4 = create_rotation_matrix_y(M_PI / 4);
+	t_matrix	rotate_y_pi_2 = create_rotation_matrix_y(M_PI / 2);
+	t_tuple	result_rot_y_pi_4 = multiply_matrix_by_tuple(rotate_y_pi_4, point_rot_y);
+	t_tuple	result_rot_y_pi_2 = multiply_matrix_by_tuple(rotate_y_pi_2, point_rot_y);
+	t_tuple	expect_rot_y_PI_4 = create_point(sqrt(2) / 2, 0, sqrt(2) / 2);
+	t_tuple	expect_rot_y_pi_2 = create_point(1, 0, 0);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_rot_y_PI_4.x, expect_rot_y_PI_4.y, expect_rot_y_PI_4.z, expect_rot_y_PI_4.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_rot_y_pi_4.x, result_rot_y_pi_4.y, result_rot_y_pi_4.z, result_rot_y_pi_4.w);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_rot_y_pi_2.x, expect_rot_y_pi_2.y, expect_rot_y_pi_2.z, expect_rot_y_pi_2.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_rot_y_pi_2.x, result_rot_y_pi_2.y, result_rot_y_pi_2.z, result_rot_y_pi_2.w);
+	if (check_tuple_equality(expect_rot_y_PI_4, result_rot_y_pi_4) && check_tuple_equality(expect_rot_y_pi_2, result_rot_y_pi_2))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+	printf("\n\033[1;35mRotating a point around the z axis\033[0m\n");
+	t_tuple	point_rot_z = create_point(0, 1, 0);
+	t_matrix	rotate_z_pi_4 = create_rotation_matrix_z(M_PI / 4);
+	t_matrix	rotate_z_pi_2 = create_rotation_matrix_z(M_PI / 2);
+	t_tuple	result_rot_z_pi_4 = multiply_matrix_by_tuple(rotate_z_pi_4, point_rot_z);
+	t_tuple	result_rot_z_pi_2 = multiply_matrix_by_tuple(rotate_z_pi_2, point_rot_z);
+	t_tuple	expect_rot_z_PI_4 = create_point(-sqrt(2) / 2, sqrt(2) / 2, 0);
+	t_tuple	expect_rot_z_pi_2 = create_point(-1, 0, 0);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_rot_z_PI_4.x, expect_rot_z_PI_4.y, expect_rot_z_PI_4.z, expect_rot_z_PI_4.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_rot_z_pi_4.x, result_rot_z_pi_4.y, result_rot_z_pi_4.z, result_rot_z_pi_4.w);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_rot_z_pi_2.x, expect_rot_z_pi_2.y, expect_rot_z_pi_2.z, expect_rot_z_pi_2.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_rot_z_pi_2.x, result_rot_z_pi_2.y, result_rot_z_pi_2.z, result_rot_z_pi_2.w);
+	if (check_tuple_equality(expect_rot_z_PI_4, result_rot_z_pi_4) && check_tuple_equality(expect_rot_z_pi_2, result_rot_z_pi_2))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+		
+	
+//sheraring
+
+	printf("\n\033[1;35mA shearing transformation moves x in proportion to y\033[0m\n");
+	t_matrix	shear = create_shearing_matrix(1, 0, 0, 0, 0, 0);
+	t_tuple	point_shear = create_point(2, 3, 4);
+	t_tuple	result_shear = multiply_matrix_by_tuple(shear, point_shear);
+	t_tuple	expect_shear = create_point(5, 3, 4);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_shear.x, expect_shear.y, expect_shear.z, expect_shear.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_shear.x, result_shear.y, result_shear.z, result_shear.w);
+	if (check_tuple_equality(expect_shear, result_shear))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+	printf("\n\033[1;35mA shearing transformation moves x in proportion to z\033[0m\n");
+	t_matrix	shear_z = create_shearing_matrix(0, 1, 0, 0, 0, 0);
+	t_tuple	point_shear_z = create_point(2, 3, 4);
+	t_tuple	result_shear_z = multiply_matrix_by_tuple(shear_z, point_shear_z);
+	t_tuple	expect_shear_z = create_point(6, 3, 4);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_shear_z.x, expect_shear_z.y, expect_shear_z.z, expect_shear_z.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_shear_z.x, result_shear_z.y, result_shear_z.z, result_shear_z.w);
+	if (check_tuple_equality(expect_shear_z, result_shear_z))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+	printf("\n\033[1;35mA shearing transformation moves y in proportion to x\033[0m\n");
+	t_matrix	shear_y = create_shearing_matrix(0, 0, 1, 0, 0, 0);
+	t_tuple	point_shear_y = create_point(2, 3, 4);
+	t_tuple	result_shear_y = multiply_matrix_by_tuple(shear_y, point_shear_y);
+	t_tuple	expect_shear_y = create_point(2, 5, 4);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_shear_y.x, expect_shear_y.y, expect_shear_y.z, expect_shear_y.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_shear_y.x, result_shear_y.y, result_shear_y.z, result_shear_y.w);
+	if (check_tuple_equality(expect_shear_y, result_shear_y))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+	printf("\n\033[1;35mA shearing transformation moves y in proportion to z\033[0m\n");
+	t_matrix	shear_y_z = create_shearing_matrix(0, 0, 0, 1, 0, 0);
+	t_tuple	point_shear_y_z = create_point(2, 3, 4);
+	t_tuple	result_shear_y_z = multiply_matrix_by_tuple(shear_y_z, point_shear_y_z);
+	t_tuple	expect_shear_y_z = create_point(2, 7, 4);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_shear_y_z.x, expect_shear_y_z.y, expect_shear_y_z.z, expect_shear_y_z.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_shear_y_z.x, result_shear_y_z.y, result_shear_y_z.z, result_shear_y_z.w);
+	if (check_tuple_equality(expect_shear_y_z, result_shear_y_z))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+	printf("\n\033[1;35mA shearing transformation moves z in proportion to x\033[0m\n");
+	t_matrix	shear_z_x = create_shearing_matrix(0, 0, 0, 0, 1, 0);
+	t_tuple	point_shear_z_x = create_point(2, 3, 4);
+	t_tuple	result_shear_z_x = multiply_matrix_by_tuple(shear_z_x, point_shear_z_x);
+	t_tuple	expect_shear_z_x = create_point(2, 3, 6);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_shear_z_x.x, expect_shear_z_x.y, expect_shear_z_x.z, expect_shear_z_x.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_shear_z_x.x, result_shear_z_x.y, result_shear_z_x.z, result_shear_z_x.w);
+	if (check_tuple_equality(expect_shear_z_x, result_shear_z_x))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+	printf("\n\033[1;35mA shearing transformation moves z in proportion to y\033[0m\n");
+	t_matrix	shear_z_y = create_shearing_matrix(0, 0, 0, 0, 0, 1);
+	t_tuple	point_shear_z_y = create_point(2, 3, 4);
+	t_tuple	result_shear_z_y = multiply_matrix_by_tuple(shear_z_y, point_shear_z_y);
+	t_tuple	expect_shear_z_y = create_point(2, 3, 7);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_shear_z_y.x, expect_shear_z_y.y, expect_shear_z_y.z, expect_shear_z_y.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_shear_z_y.x, result_shear_z_y.y, result_shear_z_y.z, result_shear_z_y.w);
+	if (check_tuple_equality(expect_shear_z_y, result_shear_z_y))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+
+	printf("\n\033[1;35mIndividual transformations are applied in sequence\033[0m\n");
+	t_tuple		point_seq = create_point(1, 0, 1);
+	t_matrix	rotate_seq = create_rotation_matrix_x(M_PI / 2);
+	t_matrix	scale_seq = create_scaling_matrix(5, 5, 5);
+	t_matrix	translate_seq = create_translation_matrix(10, 5, 7);
+	t_tuple	result_seq = multiply_matrix_by_tuple(translate_seq, multiply_matrix_by_tuple(scale_seq, multiply_matrix_by_tuple(rotate_seq, point_seq)));
+	t_tuple	expect_seq = create_point(15, 0, 7);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_seq.x, expect_seq.y, expect_seq.z, expect_seq.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_seq.x, result_seq.y, result_seq.z, result_seq.w);
+	if (check_tuple_equality(expect_seq, result_seq))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+
+	printf("\n\033[1;35mChained transformations must be applied in reverse order\033[0m\n");
+	t_tuple		point_chain = create_point(1, 0, 1);
+	t_matrix	rotate_chain = create_rotation_matrix_x(M_PI / 2);
+	t_matrix	scale_chain = create_scaling_matrix(5, 5, 5);
+	t_matrix	translate_chain = create_translation_matrix(10, 5, 7);
+	t_matrix	transform_chain = multiply_matrices(translate_chain, multiply_matrices(scale_chain, rotate_chain));
+	t_tuple	result_chain = multiply_matrix_by_tuple(transform_chain, point_chain);
+	t_tuple	expect_chain = create_point(15, 0, 7);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", expect_chain.x, expect_chain.y, expect_chain.z, expect_chain.w);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", result_chain.x, result_chain.y, result_chain.z, result_chain.w);
+	if (check_tuple_equality(expect_chain, result_chain))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+
+
+
+
+printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\33[1;32msou linda absoluta eu sou estafany...\033[0m\n");
+printf("\33[1;33mno meu cross fox eu vou sair\033[0m\n");
+printf("\33[1;34mvou viajar vou me divertir\033[0m\n");
+printf("\33[1;35nao vou ficar mais te esperando\033[0m\n");
+printf("\33[1;36pq euuu sooou stefany\033[0m\n");
+
+
+
+	
 	return (0);
 }
 
