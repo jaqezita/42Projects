@@ -6,7 +6,7 @@
 #    By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/02 14:10:02 by jaqribei          #+#    #+#              #
-#    Updated: 2024/04/09 14:15:03 by jaqribei         ###   ########.fr        #
+#    Updated: 2024/04/22 18:28:49 by jaqribei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,18 @@ FLAGS = -g3
 
 INCLUDES = tests.h
 
-SRC = tests.c tuples.c matrices.c
+SRC = tests.c tuples.c matrices.c rays.c 
 
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) -lm -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) -lm libcassert.a -o $(NAME)
 	@echo "$(GREEN)[✓] $(RESET)$(CYAN)$(NAME) created$(RESET)"
 
 %.o: %.c
-	@$(CC) $(FLAGS) -c $< -o $@ -I $(INCLUDES)
+	@$(CC) $(FLAGS) libcassert.a -I $(INCLUDES) -c $< -o $@
 
 # libft:
 # 	@make -C ./libft

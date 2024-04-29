@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/20 01:47:42 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:03:24 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <assert.h>
+# include "libassert.h"
 
 # define EPSILON 0.00001
 
@@ -42,7 +43,29 @@ typedef struct	s_ray
 	t_tuple		direction;
 }				t_ray;
 
+typedef struct	s_sphere
+{
+	t_tuple		center;
+	double		radius;
+	int			id;
+}				t_sphere;
 
+typedef struct	s_intersec
+{
+	double		t1;
+	double		t2;
+	t_sphere	*sphere;
+}				t_intersec;
+
+/**
+ * @brief Create a tuple
+ * 
+ * @param x cordinate of vector
+ * @param y cordinate of vector
+ * @param z cordinate of vector
+ * @param w cordinate of vector
+ * @return t_tuple 
+ **/	
 t_tuple		create_tuple(double x, double y, double z, double w);
 t_tuple		create_point(double x, double y, double z);
 t_tuple		create_vector(double x, double y, double z);
@@ -77,6 +100,9 @@ t_matrix	create_rotation_matrix_z(double rad);
 t_matrix	create_shearing_matrix(double proportion[6]);
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray ray, double t);
+t_sphere	create_sphere();
+
+
 
 
 

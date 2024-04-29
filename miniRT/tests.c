@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/20 01:43:16 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:37:30 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -400,10 +400,12 @@ int	main(void)
 		printf("\33[1;31mFAIL\033[0m\n\n");
 	printf("expect: matrix[2][2]: %.2f\n", mat_e[2][2]);
 	printf("result: matrix[2][2]: %.2f\n", matrix2.grid[2][2]);
+	
 	if (fabs(mat_e[2][2] - matrix2.grid[2][2]) < EPSILON)
 		printf("\33[1;32mOK\033[0m\n\n");
 	else
 		printf("\33[1;31mFAIL\033[0m\n\n");
+	quick_test_double(init_instance_default(NULL), mat_e[2][2], matrix2.grid[2][2]);
 	
 
 	printf("\n\033[1;35mMatrix equality with identical matrices\033[0m\n");
@@ -1116,7 +1118,7 @@ int	main(void)
 	t_tuple	point_dist_1 = position(ray_dist, 1);
 	t_tuple	point_dist_2 = position(ray_dist, -1);
 	t_tuple	point_dist_3 = position(ray_dist, 2.5);
-	
+
 	t_tuple	expect_dist_0 = create_point(2, 3, 4);
 	t_tuple	expect_dist_1 = create_point(3, 3, 4);
 	t_tuple	expect_dist_2 = create_point(1, 3, 4);
@@ -1133,10 +1135,6 @@ int	main(void)
 		printf("\33[1;32mOK\033[0m\n");
 	else
 		printf("\33[1;31mFAIL\033[0m\n");
-	
-
-
-
 
 
 

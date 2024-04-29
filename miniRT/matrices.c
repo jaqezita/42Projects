@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:59:42 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/19 23:07:19 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/04/20 01:16:56 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,7 +339,6 @@ t_matrix	create_scaling_matrix(double x, double y, double z)
 	return (scaling);
 }
 
-
 t_matrix	create_rotation_matrix_x(double rad)
 {
 	t_matrix	rotation;
@@ -364,7 +363,6 @@ t_matrix	create_rotation_matrix_y(double rad)
 	return (rotation);
 }
 
-
 t_matrix	create_rotation_matrix_z(double rad)
 {
 	t_matrix	rotation;
@@ -377,17 +375,16 @@ t_matrix	create_rotation_matrix_z(double rad)
 	return (rotation);
 }
 
-
-t_matrix	create_shearing_matrix(double xy, double xz, double yx, double yz, double zx, double zy)
+t_matrix	create_shearing_matrix(double proportion[6])
 {
 	t_matrix	shearing;
 
 	shearing = create_matrix_identity(4);
-	shearing.grid[0][1] = xy;
-	shearing.grid[0][2] = xz;
-	shearing.grid[1][0] = yx;
-	shearing.grid[1][2] = yz;
-	shearing.grid[2][0] = zx;
-	shearing.grid[2][1] = zy;
+	shearing.grid[0][1] = proportion[0];
+	shearing.grid[0][2] = proportion[1];
+	shearing.grid[1][0] = proportion[2];
+	shearing.grid[1][2] = proportion[3];
+	shearing.grid[2][0] = proportion[4];
+	shearing.grid[2][1] = proportion[5];
 	return (shearing);
 }
