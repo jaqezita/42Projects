@@ -3,14 +3,14 @@
 #------------------------------------------------------------------------------#
 
 # Compiler and flags
-CC		=	c++
-CFLAGS	=	-Wall -Werror -Wextra -std=c++98
-RM		=	rm -rf
+CC      =   c++
+CFLAGS  =   -Wall -Werror -Wextra -std=c++98
+RM      =   rm -rf
 
 # Dir and file names
-NAME	=	
-SRCS	=	
-OBJS	=	$(SRCS:.cpp=.o)
+NAME    =   phonebook
+SRCS    =   $(wildcard *.cpp) # Updated to include all .cpp files
+OBJS    =   $(SRCS:.cpp=.o)
 
 #------------------------------------------------------------------------------#
 #                                 TARGETS                                      #
@@ -23,7 +23,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 # Compiles sources into objects
-.cpp.o: $(SRCS)
+%.o: %.cpp # Updated pattern rule
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Removes objects
@@ -37,4 +37,10 @@ fclean: clean
 # Removes objects and executables and remakes
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+run: re
+	@./$(NAME)
+
+val: re
+	@valgrind --leak-check=full ./$(NAME)
+
+.PHONY: all clean fclean re
