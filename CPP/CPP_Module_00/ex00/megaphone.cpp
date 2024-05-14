@@ -6,12 +6,11 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 15:29:41 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/05/08 22:52:50 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/05/13 22:04:52 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cctype>
 #include <string>
 
 int	main(int argc, char** argv)
