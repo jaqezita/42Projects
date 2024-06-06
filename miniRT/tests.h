@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/25 10:03:24 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/06 03:30:16 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,28 @@ typedef struct	s_sphere
 	double		radius;
 	int			id;
 }				t_sphere;
-
+typedef struct	s_discriminant
+{
+	double		a;
+	double		b;
+	double		c;
+	double		discriminant;
+}				t_discriminant;
 typedef struct	s_intersec
 {
-	double		t1;
-	double		t2;
-	t_sphere	*sphere;
+	int			count;
+	double		t[2];
 }				t_intersec;
+
+
+
+typedef struct	s_rt
+{
+	t_ray			ray;
+	t_sphere		sphere;
+	t_intersec		intersec;
+	t_discriminant	discriminant;
+}					t_rt;
 
 /**
  * @brief Create a tuple
@@ -101,8 +116,10 @@ t_matrix	create_shearing_matrix(double proportion[6]);
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray ray, double t);
 t_sphere	create_sphere();
+t_intersec	intersect(t_ray ray, t_sphere sphere, t_discriminant discriminant);
+t_discriminant	calc_discriminant(t_ray ray, t_sphere sphere);
 
-
+t_tuple sphere_to_ray(t_ray ray, t_sphere sphere);
 
 
 

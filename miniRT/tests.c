@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/04/22 18:37:30 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/06 03:14:26 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1136,26 +1136,75 @@ int	main(void)
 	else
 		printf("\33[1;31mFAIL\033[0m\n");
 
+	
+	
+	printf("\n\033[1;35mA ray intersects a sphere at two points\033[0m\n");
+	t_rt rt;
+	t_ray	ray_sphere = create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
+	t_sphere	sphere = create_sphere();
+	t_discriminant	discriminant = calc_discriminant(ray_sphere, sphere);
+	t_intersec	intersec_sphere = intersect(ray_sphere, sphere, discriminant);
+	printf("intersections: %d\n", intersec_sphere.count);
+	printf("t1: %.2f\n", intersec_sphere.t[0]);
+	printf("t2: %.2f\n", intersec_sphere.t[1]);
+	if (intersec_sphere.count == 2 && intersec_sphere.t[0] == 4.0 && intersec_sphere.t[1] == 6.0)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
 
 
 
 
+	printf("\n\033[1;35mA ray intersects a sphere at a tangent\033[0m\n");
+	t_ray	ray_tangent = create_ray(create_point(0, 1, -5), create_vector(0, 0, 1));
+	t_intersec	intersec_tangent = intersect(ray_tangent, sphere, discriminant);
+	printf("intersections: %d\n", intersec_tangent.count);
+	printf("t1: %.2f\n", intersec_tangent.t[0]);
+	printf("t2: %.2f\n", intersec_tangent.t[1]);
+	if (intersec_tangent.count == 2 && intersec_tangent.t[0] == 5.0 && intersec_tangent.t[1] == 5.0)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+		
+
+
+	printf("\n\033[1;35mA ray misses a sphere\033[0m\n");
+	t_ray	ray_miss = create_ray(create_point(0, 2, -5), create_vector(0, 0, 1));
+	t_sphere	sphere_miss = create_sphere();
+	t_intersec	intersec_miss = intersect(ray_miss, sphere_miss, discriminant);
+	printf("intersections: %d\n", intersec_miss.count);
+	if (intersec_miss.count == 0)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+	
+	
+	printf("\n\033[1;35mA ray originates inside a sphere\033[0m\n");
+	t_ray	ray_inside = create_ray(create_point(0, 0, 0), create_vector(0, 0, 1));
+	t_sphere	sphere_inside = create_sphere();
+	t_intersec	intersec_inside = intersect(ray_inside, sphere_inside, discriminant);
+	printf("intersections: %d\n", intersec_inside.count);
+	printf("t1: %.2f\n", intersec_inside.t[0]);
+	printf("t2: %.2f\n", intersec_inside.t[1]);
+	if (intersec_inside.count == 2 && intersec_inside.t[0] == -1.0 && intersec_inside.t[1] == 1.0)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
 
 
 
-
-
-
-
-
-
-printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\33[1;32msou linda absoluta eu sou estafany...\033[0m\n");
-printf("\33[1;33mno meu cross fox eu vou sair\033[0m\n");
-printf("\33[1;34mvou viajar vou me divertir\033[0m\n");
-printf("\33[1;35nao vou ficar mais te esperando\033[0m\n");
-printf("\33[1;36pq euuu sooou stefany\033[0m\n");
-
-
+	printf("\n\033[1;35mA sphere is behind a ray\033[0m\n");
+	t_ray	ray_behind = create_ray(create_point(0, 0, 5), create_vector(0, 0, 1));
+	t_sphere	sphere_behind = create_sphere();
+	t_intersec	intersec_behind = intersect(ray_behind, sphere_behind, discriminant);
+	printf("intersections: %d\n", intersec_behind.count);
+	printf("t1: %.2f\n", intersec_behind.t[0]);
+	printf("t2: %.2f\n", intersec_behind.t[1]);
+	if (intersec_behind.count == 2 && intersec_behind.t[0] == -6.0 && intersec_behind.t[1] == -4.0)
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+		
 
 	
 	return (0);
