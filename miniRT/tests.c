@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/06/06 03:14:26 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/11 05:15:24 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1205,6 +1205,48 @@ int	main(void)
 	else
 		printf("\33[1;31mFAIL\033[0m\n");
 		
+
+	// printf("\n\033[1;35mAggregating intersections\033[0m\n");
+	// t_sphere		sphere_intersec_1 = create_sphere();
+	// t_intersection	intersec_1 = intersect_sphere(1, sphere_intersec);
+	// t_intersection	intersec_2 = intersect_sphere(2, sphere_intersec);
+	// t_intersections	intersecs = create_intersections(intersec_1, intersec_2);
+	
+
+
+
+	printf("\n\033[1;35mTranslating a ray\033[0m\n");
+	t_ray	ray_translate = create_ray(create_point(1, 2, 3), create_vector(0, 1, 0));
+	t_matrix	transform_translate = create_translation_matrix(3, 4, 5);
+	t_ray	result_translate = transform_ray(ray_translate, transform_translate);
+	t_tuple	expect_origin_translate = create_point(4, 6, 8);
+	t_tuple	expect_direction_translate = create_vector(0, 1, 0);
+	printf("expect_origin: %.2f, %.2f, %.2f, %.2f\n", expect_origin_translate.x, expect_origin_translate.y, expect_origin_translate.z, expect_origin_translate.w);
+	printf("result_origin: %.2f, %.2f, %.2f, %.2f\n", result_translate.origin.x, result_translate.origin.y, result_translate.origin.z, result_translate.origin.w);
+	if (check_tuple_equality(expect_origin_translate, result_translate.origin) && check_tuple_equality(expect_direction_translate, result_translate.direction))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+
+
+
+	printf("\n\033[1;35mScaling a ray\033[0m\n");
+	t_ray	ray_scale = create_ray(create_point(1, 2, 3), create_vector(0, 1, 0));
+	t_matrix	transform_scale = create_scaling_matrix(2, 3, 4);
+	t_ray		result_transform_scale = transform_ray(ray_scale, transform_scale);
+	t_tuple	expect_origin_scale = create_point(2, 6, 12);
+	t_tuple	expect_direction_scale = create_vector(0, 3, 0);
+	printf("expect_origin: %.2f, %.2f, %.2f, %.2f\n", expect_origin_scale.x, expect_origin_scale.y, expect_origin_scale.z, expect_origin_scale.w);
+	printf("result_origin: %.2f, %.2f, %.2f, %.2f\n", result_transform_scale.origin.x, result_transform_scale.origin.y, result_transform_scale.origin.z, result_transform_scale.origin.w);
+	printf("expect_direction: %.2f, %.2f, %.2f, %.2f\n", expect_direction_scale.x, expect_direction_scale.y, expect_direction_scale.z, expect_direction_scale.w);
+	printf("result_direction: %.2f, %.2f, %.2f, %.2f\n", result_transform_scale.direction.x, result_transform_scale.direction.y, result_transform_scale.direction.z, result_transform_scale.direction.w);
+	if (check_tuple_equality(expect_origin_scale, result_transform_scale.origin) && check_tuple_equality(expect_direction_scale, result_transform_scale.direction))
+		printf("\33[1;32mOK\033[0m\n");
+	else
+		printf("\33[1;31mFAIL\033[0m\n");
+	
+
+
 
 	
 	return (0);

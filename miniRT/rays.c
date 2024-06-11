@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 01:12:23 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/06/06 03:17:58 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/11 05:11:28 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ t_discriminant	calc_discriminant(t_ray ray, t_sphere sphere)
 	t_discriminant	discriminant;
 	
 	discriminant.a = dot_product(ray.direction, ray.direction);
-	// discriminant.b = 2 * (dot_product(ray.direction, subtract_tuples(ray.origin, sphere.center)));
 	discriminant.b = 2 * dot_product(ray.direction, sphere_to_ray(ray, sphere));
-	// discriminant.c = dot_product(subtract_tuples(ray.origin, sphere.center), subtract_tuples(ray.origin, sphere.center)) - 1;
 	discriminant.c = dot_product(sphere_to_ray(ray, sphere), sphere_to_ray(ray, sphere)) - 1;
 	discriminant.discriminant = pow(discriminant.b, 2) - (4 * discriminant.a * discriminant.c);
 	return (discriminant);
@@ -78,3 +76,17 @@ t_intersec	intersect(t_ray ray, t_sphere sphere, t_discriminant discriminant)
 	return (intersec);
 }
 
+// t_intersection intersections(t_intersection *intersections)
+// {
+	
+	
+// }
+
+t_ray		transform_ray(t_ray ray, t_matrix matrix)
+{
+	t_ray		result;
+
+	result.origin = multiply_matrix_by_tuple(matrix, ray.origin);
+	result.direction = multiply_matrix_by_tuple(matrix, ray.direction);
+	return (result);
+}
