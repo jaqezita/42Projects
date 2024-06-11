@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/06/11 05:54:15 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/11 06:23:12 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1250,7 +1250,19 @@ int	main(void)
 
 	printf("\n\033[1;35mChanging a sphere's transformation\033[0m\n");
 	t_sphere	sphere_default = create_sphere();
+	t_sphere s = create_sphere();
+	t_matrix s_t = create_translation_matrix(2, 3, 4);
+	s = set_transform(s, s_t);
+	printf("expect: %.2f, %.2f, %.2f, %.2f\n", s.transform.grid[0][0], s.transform.grid[0][1], s.transform.grid[0][2], s.transform.grid[0][3]);
+	printf("result: %.2f, %.2f, %.2f, %.2f\n", s_t.grid[0][0], s_t.grid[0][1], s_t.grid[0][2], s_t.grid[0][3]);
 	
+	
+
+	
+	if (matrix_equality(s.transform, s_t)) 
+		printf("\33[1;32mOK\033[0m\n");
+	else 
+		printf("\33[1;31mFAIL\033[0m\n");
 
 	
 	

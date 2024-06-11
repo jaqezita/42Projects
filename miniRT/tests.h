@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/06/11 05:49:23 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/11 06:19:28 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ t_tuple sphere_to_ray(t_ray ray, t_sphere sphere);
 t_intersection	intersect_sphere(double t, t_sphere sphere);
 
 t_ray		transform_ray(t_ray ray, t_matrix matrix);
-t_sphere	set_transform(t_sphere sphere, double x, double y, double z);
+t_sphere	set_transform(t_sphere sphere, t_matrix matrix);
 
 
 
