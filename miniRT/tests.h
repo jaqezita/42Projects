@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:48:14 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/06/11 06:19:28 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:53:54 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 
 # define EPSILON 0.00001
 
+enum		e_obj
+{
+	SPHERE,
+	CYLINDER,
+	PLANE
+};
 typedef struct	s_tuple
 {
 	double		x;
@@ -57,18 +63,27 @@ typedef struct	s_discriminant
 	double		c;
 	double		discriminant;
 }				t_discriminant;
-typedef struct	s_intersec
-{
-	int			count;
-	double		t[2];
-}				t_intersec;
+// typedef struct	s_intersec
+// {
+// 	int			count;
+// 	double		t[2];
+// }				t_intersec;
 
-typedef struct	s_intersection
+typedef struct	s_intersect
 {
 	double			t;
-	t_sphere		sphere;
+	t_sphere		*sphere;
+	t_intersect		*next;
 	
-}				t_intersection;
+}				t_intersect;
+
+typedef struct	s_intersections
+{
+	t_intersect		*head;
+	t_sphere		*sphere;
+	
+}				t_intersections;
+
 
 // typedef struct s_intersections
 // {

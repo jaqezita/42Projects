@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 01:12:23 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/06/11 06:16:09 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:07:57 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,42 @@ t_discriminant	calc_discriminant(t_ray ray, t_sphere sphere)
 	return (discriminant);
 }
 
+t_intersect *create_intersection_node(double t, t_sphere *sphere)
+{
+	t_intersect *node;
+
+	node = (t_intersect*)malloc(sizeof(t_intersect));
+	if (!node) 
+		return NULL;
+	node->t = t;
+	node->sphere = sphere;
+	node->next = NULL;
+	return (node);
+}
+
+void add_intersection(t_intersect **head, double t, t_sphere *sphere)
+{
+	t_intersect *new_node;
+	
+	new_node = create_intersection_node(t, sphere);
+	if (*head == NULL || t < (*head)->t)
+	{
+		new_node->next = *head;
+		*head = new_node;
+	}
+	else
+	{
+		t_intersect *current = *head;
+		while (current->next!= NULL && current->next->t < t) 
+			current = current->next;
+		new_node->next = current->next;
+		current->next = new_node;
+	}
+}
+
 t_intersec	intersect(t_ray ray, t_sphere sphere, t_discriminant discriminant)
 {
-	double				t1;
-	double				t2;
+	
 	t_intersec			intersec;
 
 	discriminant = calc_discriminant(ray, sphere);
@@ -76,11 +108,15 @@ t_intersec	intersect(t_ray ray, t_sphere sphere, t_discriminant discriminant)
 	return (intersec);
 }
 
-// t_intersection intersections(t_intersection *intersections)
-// {
+t_intersections intersections(t_ray ray, t_sphere sphere)
+{
+	t_discriminant		discriminant;
+	t_intersection		intersection;
+
+	discriminant = calc_discriminant(ray, sphere);
 	
 	
-// }
+}
 
 t_ray		transform_ray(t_ray ray, t_matrix matrix)
 {
