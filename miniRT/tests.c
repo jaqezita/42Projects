@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:45:46 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/06/11 05:15:24 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/11 05:54:15 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1248,6 +1248,15 @@ int	main(void)
 
 
 
+	printf("\n\033[1;35mChanging a sphere's transformation\033[0m\n");
+	t_sphere	sphere_default = create_sphere();
+	
+
+	
+	
+	
+	
+	
 	
 	return (0);
 }

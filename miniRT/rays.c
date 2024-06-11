@@ -6,7 +6,7 @@
 /*   By: jaqribei <jaqribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 01:12:23 by jaqribei          #+#    #+#             */
-/*   Updated: 2024/06/11 05:11:28 by jaqribei         ###   ########.fr       */
+/*   Updated: 2024/06/11 06:16:09 by jaqribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,3 +90,10 @@ t_ray		transform_ray(t_ray ray, t_matrix matrix)
 	result.direction = multiply_matrix_by_tuple(matrix, ray.direction);
 	return (result);
 }
+
+t_sphere	set_transform(t_sphere sphere, t_matrix matrix)
+{
+	sphere.transform = matrix;
+	return (sphere);
+}
+
